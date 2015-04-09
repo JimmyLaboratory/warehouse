@@ -38,6 +38,11 @@ return array (
         'bizRule' => NULL,
         'data' => NULL,
       ),
+      'xueyuan' => 
+      array (
+        'bizRule' => NULL,
+        'data' => NULL,
+      ),
     ),
   ),
   'secure' => 
@@ -54,6 +59,11 @@ return array (
         'data' => NULL,
       ),
       'secure' => 
+      array (
+        'bizRule' => NULL,
+        'data' => NULL,
+      ),
+      'baoweichu' => 
       array (
         'bizRule' => NULL,
         'data' => NULL,

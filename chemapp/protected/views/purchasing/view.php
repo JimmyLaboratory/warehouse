@@ -47,31 +47,43 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
 ?>
 <h1>审批操作</h1>
 <div class="form">
-        <form id="purchasing-form" action="index.php?r=purchasing/approve&id=<?php echo $model->purchasing_id ?>" method="post">
+	<form id="purchasing-form" action="index.php?r=purchasing/approve&id=<?php echo $model->purchasing_id ?>" method="post">
 	<div class="row">
-		<label for="Purchasing_purchasing_id" class="required"><input size="20" maxlength="20" name="Purchasing[approve]" id="Purchasing_purchasing_id" type="radio" value="1">同意采购 <input name="Purchasing[approve]" id="Purchasing_chem_id" type="radio" value="-1">拒绝采购 </label>			
-        </div>
+		<label for="Purchasing_purchasing_id" class="required">
+			<input size="20" maxlength="20" name="Purchasing[approve]" id="Purchasing_purchasing_id" type="radio" value="1" />同意采购
+		</label>
+		<label for="Purchasing_chem_id" class="required">
+			<input name="Purchasing[approve]" id="Purchasing_chem_id" type="radio" value="-1" />拒绝采购
+		</label>
+	</div>
 
 	<div class="row">
-                审批人1：<input type="textField" name="Purchasing[person1]" value="" /><br />
+		<label>审批人：</label>
+		<input type="textField" name="Purchasing[person1]" value="<?php echo User::getInfo()->realname; ?>" /><br />
+		<label for="Purchasing_information" class="required">审批意见：</label>
+		<textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>
+	</div>
+	<!--<div class="row">
+	                审批人1：<input type="textField" name="Purchasing[person1]" value="" /><br />
 		<label for="Purchasing_information" class="required">审批意见1 </label>	
-                <textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>			
-        </div>
-                
-        <div class="row">
-                审批人2：<input type="textField" name="Purchasing[person2]" value="" /><br />
+	                <textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>			
+	        </div>-->
+	                
+	        <div class="row" style="display:none">
+	                审批人2：<input type="textField" name="Purchasing[person2]" value="" /><br />
 		<label for="Purchasing_information" class="required">审批意见2 </label>	
-                <textarea rows="2" cols="50" name="Purchasing[reason2]" id="Purchasing_information"></textarea>			
-        </div>
-                
-        <div class="row">
-                审批人3：<input type="textField" name="Purchasing[person3]" value="" /><br />
+	                <textarea rows="2" cols="50" name="Purchasing[reason2]" id="Purchasing_information"></textarea>			
+	        </div>
+	                
+	        <div class="row" style="display:none">
+	                审批人3：<input type="textField" name="Purchasing[person3]" value="" /><br />
 		<label for="Purchasing_information" class="required">审批意见3 </label>	
-                <textarea rows="2" cols="50" name="Purchasing[reason3]" id="Purchasing_information"></textarea>			
-        </div>
+	                <textarea rows="2" cols="50" name="Purchasing[reason3]" id="Purchasing_information"></textarea>			
+	        </div>
 
 	<div class="row buttons">
-		<input type="submit" name="yt0" value="审批">	</div>
+		<input type="submit" name="yt0" value="审批">
+	</div>
 </form>
 </div>
 <?php endif; ?>
