@@ -36,7 +36,7 @@ $('.search-form form').submit(function(){
 
 <?php if( Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) ): ?>
 <p>
-&emsp;&emsp;这里显示的是属于你的化学品，单击<img src="/warehouse/chemapp/assets/de002d6/gridview/update.png" alt="申请使用">申请使用你的药品，同时你还可以在输入框中输入信息进行筛选。
+&emsp;&emsp;这里显示的是属于你的化学品，单击<img src="assets/de002d6/gridview/update.png" alt="申请使用">申请使用你的药品，同时你还可以在输入框中输入信息进行筛选。
 </p>
 <?php else: ?>
 <p>&emsp;&emsp;这里列出了的老师们申购的所有化学品，可以在输入框中输入信息进行筛选。</p>
