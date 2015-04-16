@@ -47,7 +47,7 @@
 
 				array('label'=>'采购单', 'url'=>array('/purchasing/no'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array('label'=>'采购入库', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				array('label'=>'采购入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
 				array('label'=>'备案单', 'url'=>array('/achieve/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				

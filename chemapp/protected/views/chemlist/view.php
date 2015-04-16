@@ -11,6 +11,59 @@ $this->menu=array(
 );
 ?>
 
+<h1>使用申请</h1>
+<?php
+$using = new Using;
+$using -> chem_id = $model -> chem_id;
+?>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'using-grid',
+	'dataProvider'=>$using->search(),
+	'filter'=>$using,
+	'columns'=>array(
+		'using_id',
+		array(
+                    'name'=>'chem_id',
+                    'value'=>'$data->chemlist->chem_name'
+                ),
+                array(
+                    'name'=>'status',
+                    'value'=>'Using::getStatusInfo($data->status)'
+                ),
+                array(
+                    'name'=>'user_id',
+                    'value'=>'$data->user->realname'
+                ),
+		array(
+                    'name'=>'timestamp',
+                    'value'=>'date("Y-m-d H:i:s",$data->timestamp)'
+                ),
+		array(
+                    'name'=>'applyuse',
+                    'value'=>'$data->applyuse.$data->chemlist->unit->unit_name'
+                ),
+		'reason',
+		/*
+		'use_start',
+		'useway',
+		'junk',
+		'status',
+		'information',
+		*/
+		array(
+			'class'=>'CButtonColumn',
+                        'template'=>'{view}',
+                        'buttons'=>array(
+                                'view' => array(
+                                    'label'=>'查看',
+                                    'options'=>array('target'=>'_blank'),
+                                ),
+                            ),
+		),
+	),
+)); ?>
+
+
 <h1>化学品信息</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -104,58 +157,5 @@ $purchasing = Purchasing::model()->find('chem_id='.$model->chem_id);
                     'type'=>'raw',
                     'value'=>implode('<br />',json_decode($purchasing->information,true))
                 ),
-	),
-)); ?>
-
-
-<h1>使用申请</h1>
-<?php
-$using = new Using;
-$using -> chem_id = $model -> chem_id;
-?>
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'using-grid',
-	'dataProvider'=>$using->search(),
-	'filter'=>$using,
-	'columns'=>array(
-		'using_id',
-		array(
-                    'name'=>'chem_id',
-                    'value'=>'$data->chemlist->chem_name'
-                ),
-                array(
-                    'name'=>'status',
-                    'value'=>'Using::getStatusInfo($data->status)'
-                ),
-                array(
-                    'name'=>'user_id',
-                    'value'=>'$data->user->realname'
-                ),
-		array(
-                    'name'=>'timestamp',
-                    'value'=>'date("Y-m-d H:i:s",$data->timestamp)'
-                ),
-		array(
-                    'name'=>'applyuse',
-                    'value'=>'$data->applyuse.$data->chemlist->unit->unit_name'
-                ),
-		'reason',
-		/*
-		'use_start',
-		'useway',
-		'junk',
-		'status',
-		'information',
-		*/
-		array(
-			'class'=>'CButtonColumn',
-                        'template'=>'{view}',
-                        'buttons'=>array(
-                                'view' => array(
-                                    'label'=>'查看',
-                                    'options'=>array('target'=>'_blank'),
-                                ),
-                            ),
-		),
 	),
 )); ?>

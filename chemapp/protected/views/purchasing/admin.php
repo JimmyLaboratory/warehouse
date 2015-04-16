@@ -76,6 +76,7 @@ $('.search-form form').submit(function(){
                                 'view' => array(
                                     'label'=>'查看',
                                     'options'=>array('target'=>'_blank'),
+									'url'=>'Yii::app()->createUrl("purchasing/view",array("id"=>$data->purchasing_id, "refer"=>"purchase"))',
                                 ),
                                 'update' => array(
                                     'label'=>'入库',
@@ -93,6 +94,7 @@ $('.search-form form').submit(function(){
                                 'view' => array(
                                     'label'=>'查看',
                                     'options'=>array('target'=>'_blank'),
+									'url'=>'Yii::app()->createUrl("purchasing/view",array("id"=>$data->purchasing_id, "refer"=>"purchase"))',
                                 ),
                             ),
 		)
