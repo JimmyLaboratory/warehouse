@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'查看化学品', 'url'=>array('/chemlist/admin')),
-        array('label'=>'查看采购申请列表', 'url'=>array('/purchasing/admin'))
+	//array('label'=>'查看化学品', 'url'=>array('/chemlist/admin')),
+    array('label'=>'查看采购申请列表', 'url'=>array('/purchasing/admin'))
 );
 ?>
 

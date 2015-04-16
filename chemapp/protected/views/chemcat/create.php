@@ -10,6 +10,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>管理化学品分类</h1>
+<h1>添加化学品分类项</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('create_form', array('model'=>$model,'cur_parent_id'=>$cur_parent_id)); ?>

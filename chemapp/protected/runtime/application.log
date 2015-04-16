@@ -7014,3 +7014,228 @@ REQUEST_URI=/warehouse/chemapp/index.php?r=chemlist/view&id=10
 in H:\wamp\www\warehouse\chemapp\protected\views\chemlist\view.php (56)
 in H:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php (51)
 in H:\wamp\www\warehouse\chemapp\index.php (13)
+2015/04/16 17:45:49 [warning] [application] Failed to set unsafe attribute "purchasing_id" of "Chemlist".
+in C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php (305)
+in C:\wamp\www\warehouse\chemapp\index.php (13)
+2015/04/16 17:45:50 [error] [php] Trying to get property of non-object (C:\wamp\www\warehouse\chemapp\protected\views\purchasing\view.php:164)
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\CController.php(870): PurchasingController->renderFile()
+#1 C:\wamp\www\warehouse\framework\web\CController.php(783): PurchasingController->renderPartial()
+#2 C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php(61): PurchasingController->render()
+#3 unknown(0): PurchasingController->actionView()
+#4 C:\wamp\www\warehouse\framework\web\actions\CAction.php(107): ReflectionMethod->invokeArgs()
+#5 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(48): CInlineAction->runWithParamsInternal()
+#6 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams()
+#7 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): PurchasingController->runAction()
+#8 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#9 C:\wamp\www\warehouse\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#10 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): PurchasingController->filterAccessControl()
+#11 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#12 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#13 C:\wamp\www\warehouse\framework\web\CController.php(266): PurchasingController->runActionWithFilters()
+#14 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): PurchasingController->run()
+#15 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController()
+#16 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#17 C:\wamp\www\warehouse\chemapp\index.php(13): CWebApplication->run()
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/view&id=SG2T201504161742379
+in C:\wamp\www\warehouse\chemapp\protected\views\purchasing\view.php (164)
+in C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php (61)
+in C:\wamp\www\warehouse\chemapp\index.php (13)
+2015/04/16 18:02:30 [error] [exception.CHttpException.403] exception 'CHttpException' with message '您未被授权执行这个动作' in C:\wamp\www\warehouse\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE6\x82\xA8\xE6\x9C\xAA\xE8\xA2\xAB\xE6\x8E\x88\xE6\x9D\x83...')
+#1 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('admin')
+#8 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('purchasing/admi...')
+#9 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/admin
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=purchasing/apply
+---
+2015/04/16 18:10:04 [error] [exception.CException] exception 'CException' with message '属性 "CWebUser.role" 未被定义.' in C:\wamp\www\warehouse\framework\base\CComponent.php:131
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\auth\CWebUser.php(141): CComponent->__get('role')
+#1 C:\wamp\www\warehouse\chemapp\protected\views\purchasing\admin.php(11): CWebUser->__get('role')
+#2 C:\wamp\www\warehouse\framework\web\CBaseController.php(127): require('C:\\wamp\\www\\war...')
+#3 C:\wamp\www\warehouse\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\\wamp\\www\\war...', Array, true)
+#4 C:\wamp\www\warehouse\framework\web\CController.php(870): CBaseController->renderFile('C:\\wamp\\www\\war...', Array, true)
+#5 C:\wamp\www\warehouse\framework\web\CController.php(783): CController->renderPartial('admin', Array, true)
+#6 C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php(398): CController->render('admin', Array)
+#7 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): PurchasingController->actionAdmin()
+#8 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#15 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('admin')
+#17 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('purchasing/admi...')
+#18 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/admin
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=purchasing/apply
+---
+2015/04/16 18:10:18 [error] [exception.CException] exception 'CException' with message 'CWebUser and its behaviors do not have a method or closure named "role".' in C:\wamp\www\warehouse\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\wamp\www\warehouse\chemapp\protected\views\purchasing\admin.php(11): CComponent->__call('role', Array)
+#1 C:\wamp\www\warehouse\chemapp\protected\views\purchasing\admin.php(11): CWebUser->role()
+#2 C:\wamp\www\warehouse\framework\web\CBaseController.php(127): require('C:\\wamp\\www\\war...')
+#3 C:\wamp\www\warehouse\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\\wamp\\www\\war...', Array, true)
+#4 C:\wamp\www\warehouse\framework\web\CController.php(870): CBaseController->renderFile('C:\\wamp\\www\\war...', Array, true)
+#5 C:\wamp\www\warehouse\framework\web\CController.php(783): CController->renderPartial('admin', Array, true)
+#6 C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php(398): CController->render('admin', Array)
+#7 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): PurchasingController->actionAdmin()
+#8 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#15 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('admin')
+#17 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('purchasing/admi...')
+#18 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/admin
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=purchasing/apply
+---
+2015/04/16 18:24:42 [error] [php] Undefined index: Chemlist[status] (C:\wamp\www\warehouse\chemapp\protected\views\chemlist\admin.php:25)
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\CController.php(870): ChemlistController->renderFile()
+#1 C:\wamp\www\warehouse\framework\web\CController.php(783): ChemlistController->renderPartial()
+#2 C:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php(144): ChemlistController->render()
+#3 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): ChemlistController->actionAdmin()
+#4 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): ChemlistController->runAction()
+#6 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\wamp\www\warehouse\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): ChemlistController->filterAccessControl()
+#9 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#11 C:\wamp\www\warehouse\framework\web\CController.php(266): ChemlistController->runActionWithFilters()
+#12 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): ChemlistController->run()
+#13 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController()
+#14 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\wamp\www\warehouse\chemapp\index.php(13): CWebApplication->run()
+REQUEST_URI=/warehouse/chemapp/index.php?r=chemlist/admin&Chemlist%5Bstatus%5D=3
+in C:\wamp\www\warehouse\chemapp\protected\views\chemlist\admin.php (25)
+in C:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php (144)
+in C:\wamp\www\warehouse\chemapp\index.php (13)
+2015/04/16 18:28:08 [error] [php] Undefined variable: data (C:\wamp\www\warehouse\chemapp\protected\views\chemlist\admin.php:84)
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\CController.php(870): ChemlistController->renderFile()
+#1 C:\wamp\www\warehouse\framework\web\CController.php(783): ChemlistController->renderPartial()
+#2 C:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php(144): ChemlistController->render()
+#3 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): ChemlistController->actionAdmin()
+#4 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): ChemlistController->runAction()
+#6 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\wamp\www\warehouse\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): ChemlistController->filterAccessControl()
+#9 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#11 C:\wamp\www\warehouse\framework\web\CController.php(266): ChemlistController->runActionWithFilters()
+#12 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): ChemlistController->run()
+#13 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController()
+#14 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\wamp\www\warehouse\chemapp\index.php(13): CWebApplication->run()
+REQUEST_URI=/warehouse/chemapp/index.php?r=chemlist/admin
+in C:\wamp\www\warehouse\chemapp\protected\views\chemlist\admin.php (84)
+in C:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php (144)
+in C:\wamp\www\warehouse\chemapp\index.php (13)
+2015/04/16 19:06:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message '您未被授权执行这个动作' in C:\wamp\www\warehouse\framework\web\auth\CAccessControlFilter.php:157
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\auth\CAccessControlFilter.php(120): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE6\x82\xA8\xE6\x9C\xAA\xE8\xA2\xAB\xE6\x8E\x88\xE6\x9D\x83...')
+#1 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#6 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('apply')
+#8 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('purchasing/appl...')
+#9 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/apply
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=purchasing/admin&status=APPROVE
+---
+2015/04/16 19:23:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '选中的订单并未进入采购状态' in C:\wamp\www\warehouse\chemapp\protected\views\purchasing\purchase_print.php:6
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\CBaseController.php(127): require()
+#1 C:\wamp\www\warehouse\framework\web\CBaseController.php(96): CBaseController->renderInternal('C:\\wamp\\www\\war...', Array, true)
+#2 C:\wamp\www\warehouse\framework\web\CController.php(870): CBaseController->renderFile('C:\\wamp\\www\\war...', Array, true)
+#3 C:\wamp\www\warehouse\framework\web\CController.php(783): CController->renderPartial('purchase_print', Array, true)
+#4 C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php(149): CController->render('purchase_print', Array)
+#5 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): PurchasingController->actionPurchasePrint()
+#6 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#7 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#8 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#9 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#10 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#11 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#13 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('purchasePrint')
+#15 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('purchasing/purc...')
+#16 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#17 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/purchasePrint
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=purchasing/admin
+---
+2015/04/16 19:24:03 [error] [exception.CHttpException.400] exception 'CHttpException' with message '你没有选择任何采购单哦。' in C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php:112
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): PurchasingController->actionTopurchase()
+#1 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#8 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('topurchase')
+#10 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('purchasing/topu...')
+#11 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=purchasing/topurchase
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=purchasing/admin
+---
+2015/04/16 20:19:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php:156
+Stack trace:
+#0 C:\wamp\www\warehouse\chemapp\protected\controllers\ChemlistController.php(50): ChemlistController->loadModel('SY2T20150416201...')
+#1 [internal function]: ChemlistController->actionView('SY2T20150416201...')
+#2 C:\wamp\www\warehouse\framework\web\actions\CAction.php(107): ReflectionMethod->invokeArgs(Object(ChemlistController), Array)
+#3 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(ChemlistController), Object(ReflectionMethod), Array)
+#4 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 C:\wamp\www\warehouse\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 C:\wamp\www\warehouse\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 C:\wamp\www\warehouse\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\wamp\www\warehouse\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\wamp\www\warehouse\framework\web\CController.php(292): CFilterChain->run()
+#11 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('view')
+#13 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('chemlist/view')
+#14 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=chemlist/view&id=SY2T201504162012253
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=chemlist/view&id=9
+---
+2015/04/16 20:31:24 [warning] [application] Failed to set unsafe attribute "purchasing_id" of "Chemlist".
+in C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php (305)
+in C:\wamp\www\warehouse\chemapp\index.php (13)

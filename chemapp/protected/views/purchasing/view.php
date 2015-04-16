@@ -81,12 +81,14 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
 	                <textarea rows="2" cols="50" name="Purchasing[reason3]" id="Purchasing_information"></textarea>			
 	        </div>
 
-	<div class="row buttons">
+	<div class="row buttons" style="text-align:center">
 		<input type="submit" name="yt0" value="审批">
 	</div>
 </form>
 </div>
 <?php endif; ?>
+
+<br /><br />
 <h1>采购申请信息</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -118,7 +120,8 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
 	),
 )); ?>
 
-<h1>化学品信息</h1>
+<br /><br />
+<h1 onclick="$(this).next().toggle(0)">化学品信息<span style="font-size:50%"> （点击展开 / 收起）</span></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model->chemlist,
@@ -158,7 +161,7 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
                     'name'=>'useway',
                     'value'=>  Chemlist::getUsewayOptions($model->chemlist->useway)
                 ),
-                array(
+                @array(
                     'name'=>'supplier_id',
                     'value'=>$model->chemlist->supplier->supplier_name.$model->chemlist->supplier_other
                 ),
@@ -177,3 +180,4 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
                 ),
 	),
 )); ?>
+<script type="text/javascript">$('#yw1').hide(0)</script>

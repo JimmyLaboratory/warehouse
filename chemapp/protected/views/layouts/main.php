@@ -47,13 +47,25 @@
 
 				array('label'=>'采购单', 'url'=>array('/purchasing/no'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array('label'=>'采购入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				array('label'=>'入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array('label'=>'备案单', 'url'=>array('/achieve/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				array('label'=>'备案', 'url'=>array('/achieve/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array('label'=>'出库', 'url'=>array('/outstorage/create'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				array(
+					'label'=>'出库',
+					'url'=>array('/outstorage/create'),
+					'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
+				),
 				
-				array('label'=>'查看化学品', 'url'=>array('/chemlist/admin'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'查看申领化学品',
+					'url'=>array('/chemlist/admin&Chemlist[status]=3'),
+					'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
+				),
+				array(
+					'label'=>'查看化学品',
+					'url'=>array('/chemlist/admin'),
+					'visible'=>!Yii::app()->user->isGuest && !Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
+				),
 				
 				array('label'=>'系统管理', 'url'=>array('/site/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				

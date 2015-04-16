@@ -5,11 +5,16 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-        array('label'=>'查看所有', 'url'=>array('/purchasing/admin')),
-	array('label'=>'查看待审批项', 'url'=>array('/purchasing/admin','status'=>'APPROVE')),
-	array('label'=>'查看审批完成项', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PASS_FINAL)),
-        array('label'=>'查看采购清单', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING)),
-        array('label'=>'查看被拒绝的采购项', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT))),
+	array(
+		'label'=>'返回开始申购',
+		'url'=>array('/purchasing/apply'),
+		'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
+	),
+	array('label'=>'只看待审批的', 'url'=>array('/purchasing/admin','status'=>'APPROVE')),
+	array('label'=>'查看所有', 'url'=>array('/purchasing/admin')),
+	array('label'=>'只看审批完成的', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PASS_FINAL)),
+	array('label'=>'只看正在采购的', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING)),
+	array('label'=>'只看被拒绝的采购', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT))),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -29,7 +34,7 @@ $('.search-form form').submit(function(){
 <h1>查看采购申请</h1>
 
 <p>
-你可以在这里查看到所有采购申请，点击查看，可以进行审批或查看详细的采购单信息
+你可以在这里查看到所有采购申请，单击<img src="/warehouse/chemapp/assets/de002d6/gridview/view.png" alt="申请使用">可以进行审批和查看详细的采购单信息。
 </p>
 
 <?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>
@@ -100,7 +105,17 @@ $('.search-form form').submit(function(){
 		)
 	),
 )); ?>
-<?php if(Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())): ?>
+
+
+<?php if(
+	Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
+	&& (
+		!isset($_GET['status']) ||
+		(isset($_GET['status']) && $_GET['status'] !== 'APPROVE')
+	)
+): ?>
+<p style="text-align:center">温馨提示：通过审批的采购，才能生成采购单！！！</p>
+
 <div>操作选中项<select class="handerSelection"><option value="0">请选择操作</option><option value="1">生成备案单</option><option value="2">生成采购单</option><option value="3">打印采购单</option></select></div>
 <form method="post" id="hander" action=""><input type="hidden" id="ids" name="ids"></input></form>
 <script>
@@ -140,4 +155,6 @@ $('.search-form form').submit(function(){
                 });
         });
 </script>
+<?php else: ?>
+<p style="text-align:center">温馨提示：只有<a href="index.php?r=purchasing/admin&Purchasing[status]=9">审批完成的采购单</a>，才能生成采购单。</p>
 <?php endif; ?>

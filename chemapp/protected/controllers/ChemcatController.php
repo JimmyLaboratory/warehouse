@@ -66,7 +66,7 @@ class ChemcatController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0'
 		));
 	}
 

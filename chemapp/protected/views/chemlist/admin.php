@@ -22,12 +22,25 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-
+<?php
+	if(
+		isset($_GET['Chemlist']['status'])
+		 &&((int)$_GET['Chemlist']['status']) == 3
+		// &&Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
+	): ?>
+<h1>查看化学品<span style="font-size:50%;letter-spacing:normal">（已入库，可申请领用的）</span></h1>
+<?php else: ?>
 <h1>查看化学品</h1>
+<?php endif; ?>
 
+
+<?php if( Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) ): ?>
 <p>
-这里显示的是属于你的化学品，单击<img src="/warehouse/chemapp/assets/de002d6/gridview/update.png" alt="申请使用">申请使用你的药品，同时你还可以在输入框中输入信息进行筛选。
+&emsp;&emsp;这里显示的是属于你的化学品，单击<img src="/warehouse/chemapp/assets/de002d6/gridview/update.png" alt="申请使用">申请使用你的药品，同时你还可以在输入框中输入信息进行筛选。
 </p>
+<?php else: ?>
+<p>&emsp;&emsp;这里列出了的老师们申购的所有化学品，可以在输入框中输入信息进行筛选。</p>
+<?php endif; ?>
 
 <?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">

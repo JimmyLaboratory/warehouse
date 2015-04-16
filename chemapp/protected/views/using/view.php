@@ -18,34 +18,48 @@ if( ($model->status == Using::STATUS_APPLY && Yii::app() -> authManager -> check
 <h1>审批操作</h1>
 <div class="form">
         <form id="purchasing-form" action="index.php?r=using/approve&id=<?php echo $model->using_id ?>" method="post">
-	<div class="row">
-		<label for="Using_id" class="required"><input size="20" maxlength="20" name="Using[approve]" id="Using" type="radio" value="1">同意使用 <input name="Using[approve]" id="Using" type="radio" value="-1">拒绝使用 </label>			
-        </div>
 
 	<div class="row">
+		<label for="Using_using_id" class="required">
+			<input name="Using[approve]" id="Using_using_id" type="radio" value="1" />同意使用
+		</label>
+		<label for="Using_chem_id" class="required">
+			<input name="Using[approve]" id="Using_chem_id" type="radio" value="-1" />拒绝使用
+		</label>
+	</div>
+
+	<div class="row">
+		<label>审批人：</label>
+		<input type="textField" name="Using[person1]" value="<?php echo User::getInfo()->realname; ?>" /><br />
+		<label for="Using_information" class="required">审批意见 </label>		
+		<textarea rows="2" cols="50" name="Using[reason1]" id="Using_information"></textarea>			
+	</div>
+
+	<!-- <div class="row">
                 审批人1：<input type="textField" name="Using[person1]" value="" /><br />
 		<label for="Using_information" class="required">审批意见1 </label>		
                 <textarea rows="2" cols="50" name="Using[reason1]" id="Using_information"></textarea>			
-        </div>
+        </div> -->
                 
-        <div class="row">
+        <div class="row" style="display:none">
                 审批人2：<input type="textField" name="Using[person2]" value="" /><br />
 		<label for="Using_information" class="required">审批意见2 </label>		
                 <textarea rows="2" cols="50" name="Using[reason2]" id="Using_information"></textarea>			
         </div>
                 
-        <div class="row">
+        <div class="row" style="display:none">
                 审批人3：<input type="textField" name="Using[person3]" value="" /><br />
 		<label for="Using_information" class="required">审批意见3 </label>		
                 <textarea rows="2" cols="50" name="Using[reason3]" id="Using_information"></textarea>			
         </div>
 
-	<div class="row buttons">
+	<div class="row buttons" style="text-align:center">
 		<input type="submit" name="yt0" value="审批">	</div>
 </form>
 </div>
 <?php endif; ?>
 
+<br /><br />
 <h1>使用申请单详细</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(

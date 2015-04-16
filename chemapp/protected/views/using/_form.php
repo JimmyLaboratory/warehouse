@@ -14,8 +14,9 @@
                         $userInfo = User::getInfo();
                         $using_id = isset($_POST['Using']['using_id']) ? $_POST['Using']['using_id'] :'SY'.$userInfo->department_id.'T'.date('YmdHi').mt_rand(0, 999);
                 ?>
-		<label for="Using_using_id" class="required">申请使用单编号（无须更改）</label>
-                <input name="Using[using_id]" id="purchasing_id" type="text" value="<?php echo $using_id ?>" readonly="true">
+		<label for="Using_using_id" class="required">申请使用单编号</label>
+			<span><?php echo $using_id ?></span>
+            <input name="Using[using_id]" id="purchasing_id" type="hidden" value="<?php echo $using_id ?>" readonly="true">
         </div>
         
 	<div class="row">
@@ -32,19 +33,24 @@
                 echo $form->dropDownList($model,'chem_id',$chemOptions); ?>
 		<?php echo $form->error($model,'chem_id'); ?>
 	</div>
-        
+        <style type="text/css">
+			select { max-width: 490px; }
+        </style>
         <div class="row">
-		<label for="Using_user_id" class="required">申请用户（无须填写）</label>		
-                <input name="Using[user_id]" id="Using_user_id" type="text" value="<?php echo $userInfo->realname ?>"  readonly="true">			
+		<label for="Using_user_id" class="required">申请用户</label>
+			<span><?php echo $userInfo->realname ?></span>
+            <input name="Using[user_id]" id="Using_user_id" type="hidden" value="<?php echo $userInfo->realname ?>"  readonly="true">			
         </div>
         <?php
-        //echo '<script>var units ='.  json_encode($chemUnits).';var lefts = '.json_encode($chemLeft).';</script>';
+        echo '<script>var units ='.  json_encode($chemUnits).';var lefts = '.json_encode($chemLeft).';</script>';
         ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'applyuse'); ?>
 		<?php echo $form->textField($model,'applyuse'); ?><span id="apply_unit"></span>
 		<?php echo $form->error($model,'applyuse'); ?>
+		<span id="left-amout" style="color:#f00;font-size:87.5%;display:none"></span>
 	</div>
+	
         <script>
                 $('#Using_chem_id').change(function()
                 {
@@ -60,9 +66,12 @@
                         
                 $('#Using_applyuse').blur(function(){
                         if($(this).val() > lefts[$('#Using_chem_id').val()]){
-                                alert('申请使用量不可大于剩余量');
-                                $(this).val('');
-                        }
+                                //alert('申请使用量不可大于剩余量');
+								$('#left-amout').show().html('&emsp;注意：申请使用量不应大于剩余量');
+                                //$(this).val('');
+                        } else {
+							$('#left-amout').hide();
+						}
                 });
                         
         </script>
