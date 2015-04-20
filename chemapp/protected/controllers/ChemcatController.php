@@ -62,7 +62,7 @@ class ChemcatController extends Controller
 		{
 			$model->attributes=$_POST['Chemcat'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->cat_id));
+				$this->redirect(array('admin','cur_parent_id'=>$_GET['cur_parent_id']));
 		}
 
 		$this->render('create',array(
@@ -90,7 +90,7 @@ class ChemcatController extends Controller
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0'
 		));
 	}
 
@@ -141,7 +141,8 @@ class ChemcatController extends Controller
 			$model->attributes=$_GET['Chemcat'];
 
 		$this->render('admin',array(
-			'model'=>$model,
+			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0' ,
+			//'parent_name'=>isset($_GET['parent_name'])? $_GET['parent_name']:"顶级分类"  //添加传递参数
 		));
 	}
 

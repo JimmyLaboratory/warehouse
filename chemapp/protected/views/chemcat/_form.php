@@ -1,3 +1,4 @@
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -5,9 +6,31 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">标有<span class="required">*</span> 符号为必填项</p>
 
 	<?php echo $form->errorSummary($model); ?>
+
+<?php
+function getName($parent_id){
+        $data = Chemcat::getDropListById($parent_id);
+        return array_pop($data);
+}
+?>
+		
+	<div class="row">
+		<?php 
+			if(isset($cur_parent_id)){
+				echo $form->labelEx($model,'parent_id');
+				echo getName($cur_parent_id);
+				echo "<input type=hidden name=Chemcat[parent_id] value=".$cur_parent_id.">";
+			}
+
+        ?>
+        
+    </div>
+		<?php echo $form->error($model,'parent_id'); ?>
+	
+
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'chemcat_name'); ?>
@@ -15,18 +38,6 @@
 		<?php echo $form->error($model,'chemcat_name'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'parent_id'); ?>
-		<?php 
-                if(isset($_GET['current_id']) && (int)$_GET['current_id'] > 0){
-                        echo $form->dropDownList($model,'parent_id', Chemcat::getDropListById((int)$_GET['current_id']));
-                }
-                else{
-                        echo $form->dropDownList($model,'parent_id', Chemcat::getDropList($model->parent_id));
-                }
-                ?>
-		<?php echo $form->error($model,'parent_id'); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

@@ -87,6 +87,20 @@ class Chemcat extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	public function searchByParentID($parent_id)
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+
+		$criteria->compare('parent_id',$parent_id);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
         
         public static function getLevels($id,$lastQuery = ''){
                 if(empty($id)) return $lastQuery;
@@ -124,4 +138,6 @@ class Chemcat extends CActiveRecord
                         return $return;
                 }                
         }
+
+        
 }

@@ -8,6 +8,6 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>Update Chemcat <?php echo $model->cat_id; ?></h1>
+<h1>修改分类/药品名 </h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
