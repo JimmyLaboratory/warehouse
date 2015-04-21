@@ -60,8 +60,8 @@ if( ($model->status == Using::STATUS_APPLY && Yii::app() -> authManager -> check
 <?php endif; ?>
 
 <br /><br />
-<h1>使用申请单详细</h1>
 
+<h1 onclick="$(this).next().toggle(0)">使用申请单详细<span style="font-size:50%"> （点击展开 / 收起）</span></h1>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
@@ -102,7 +102,7 @@ if( ($model->status == Using::STATUS_APPLY && Yii::app() -> authManager -> check
 )); ?>
 
 
-<h1>化学品信息</h1>
+<h1 onclick="$(this).next().toggle(0)">化学品信息<span style="font-size:50%"> （点击展开 / 收起）</span></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model->chemlist,
@@ -159,7 +159,7 @@ if( ($model->status == Using::STATUS_APPLY && Yii::app() -> authManager -> check
 )); ?>
 
 
-<h1>采购申请信息</h1>
+<h1 onclick="$(this).next().toggle(0)">采购申请详细<span style="font-size:50%"> （点击展开 / 收起）</span></h1>
 <?php
 $purchasing = Purchasing::model()->find('chem_id='.$model->chemlist->chem_id);
 ?>

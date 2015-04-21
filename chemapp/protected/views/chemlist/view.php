@@ -64,7 +64,7 @@ $using -> chem_id = $model -> chem_id;
 )); ?>
 
 
-<h1>化学品信息</h1>
+<h1 onclick="$(this).next().toggle(0)">化学品信息<span style="font-size:50%"> （点击展开 / 收起）</span></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -127,7 +127,7 @@ $using -> chem_id = $model -> chem_id;
 	),
 )); ?>
 
-<h1>采购申请信息</h1>
+<h1 onclick="$(this).next().toggle(0)">采购申请信息<span style="font-size:50%"> （点击展开 / 收起）</span></h1>
 <?php
 $purchasing = Purchasing::model()->find('chem_id='.$model->chem_id);
 ?>

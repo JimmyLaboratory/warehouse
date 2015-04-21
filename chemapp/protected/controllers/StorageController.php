@@ -27,7 +27,7 @@ class StorageController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
+				'actions'=>array('admin','index','view','create','update','delete'),
 				'roles'=>array('school'),
 			),
 			array('deny',  // deny all users
@@ -62,11 +62,12 @@ class StorageController extends Controller
 		{
 			$model->attributes=$_POST['Storage'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->storage_id));
+				$this->redirect(array('admin','sid'=>$model->parent_id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'sid'=>$_GET['sid'],
 		));
 	}
 
@@ -117,17 +118,16 @@ class StorageController extends Controller
 	/**
 	 * Lists all models.
 	 */
+
 	public function actionIndex()
 	{
-                if(!empty($_GET['parent_id']) && (int)$_GET['parent_id'] > 0){
-                        $dataProvider=new CActiveDataProvider('Storage',array('criteria'=>array('condition'=>'parent_id='.(int)$_GET['parent_id'])));
-                }
-                else{
-                        $dataProvider=new CActiveDataProvider('Storage',array('criteria'=>array('condition'=>'parent_id=0')));
-                }
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+                //if(!empty($_GET['parent_id']) && (int)$_GET['parent_id'] > 0){
+                //        $dataProvider=new CActiveDataProvider('Storage',array('criteria'=>array('condition'=>'parent_id='.(int)$_GET['parent_id'])));
+                //}
+                //else{
+                //        $dataProvider=new CActiveDataProvider('Storage',array('criteria'=>array('condition'=>'parent_id=0')));
+                //}
+		$this->redirect(array('admin'));
 	}
 
 	/**
@@ -142,6 +142,7 @@ class StorageController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'sid'=>isset($_GET['sid'])? $_GET['sid']:0
 		));
 	}
 

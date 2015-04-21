@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Storage', 'url'=>array('index')),
-	array('label'=>'Create Storage', 'url'=>array('create')),
+	array('label'=>'显示所有仓库', 'url'=>array('admin')),
+	array('label'=>'在这里新建一项','url'=>array('create','sid'=>isset($_GET['sid'])? $_GET['sid'] : 0)),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -42,18 +42,29 @@ function getName($parent_id){
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'storage-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->searchByParentID($sid), //修改storage类方法search()
 	'filter'=>$model,
 	'columns'=>array(
-		'storage_id',
+		//'storage_id',
 		'storage_name',
 		'note',
-                array(
-                    'name' => 'parent_id',
-                    'value' => 'getName($data->parent_id)'
-                ),
+        /*array(
+            'name' => 'parent_id',
+            'value' => 'getName($data->parent_id)'
+        ),*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>' {view}{delete}{update}',
+			'buttons'=>array(
+				'view'=>array(
+					'label'=>'查看下层仓库',
+					'url'=>'Yii::app()->controller->createUrl("admin", array("sid"=>$data->primaryKey,))'
+					),
+				'update'=>array(
+					'label'=>'修改仓库/架',
+					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
+				)
+			)
 		),
 	),
 )); ?>

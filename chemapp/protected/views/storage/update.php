@@ -5,11 +5,9 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
+$pid=$model->parent_id;
 $this->menu=array(
-	array('label'=>'List Storage', 'url'=>array('index')),
-	array('label'=>'Create Storage', 'url'=>array('create')),
-	array('label'=>'View Storage', 'url'=>array('view', 'id'=>$model->storage_id)),
-	array('label'=>'Manage Storage', 'url'=>array('admin')),
+	array('label'=>'返回', 'url'=>array('admin','sid'=>$pid)),
 );
 ?>
 

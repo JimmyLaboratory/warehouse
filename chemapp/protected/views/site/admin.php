@@ -69,11 +69,11 @@
 		</thead>
 		<tbody>
 			<tr class="odd"><td><a target="_blank" href="index.php?r=user">用户管理</a></td></tr>
-			<tr class="even"><td><a target="_blank" href="index.php?r=department">学院部门管理</a></td></tr>
+			<tr class="even"><td><a target="_blank" href="index.php?r=department">学院部门管理</a><!-- --></tr>
 			<tr class="odd"><td><a target="_blank" href="index.php?r=supplier">供应商管理</a></td></tr>
-			<tr class="even"><td><a target="_blank" href="index.php?r=storage">仓库管理</a></td></tr>
-			<!-- <tr class="odd"><td><a target="_blank" href="index.php?r=quality">化学品规格管理</a></td></tr>
-			<tr class="even"><td><a target="_blank" href="index.php?r=chemcat">化学品分类管理</a></td></tr>
+			<tr class="even"><td><a target="_blank" href="index.php?r=storage/admin">仓库管理</a></td></tr>
+			<tr class="even"><td><a target="_blank" href="index.php?r=chemcat/admin">化学品分类管理</a></td></tr>
+			<!-- <tr class="odd"><td><a target="_blank" href="index.php?r=quality">化学品规格管理</a></td></tr>	
 			<tr class="odd"><td><a target="_blank" href="index.php?r=unit">化学品国际单位管理</a></td></tr> -->
 			
 			

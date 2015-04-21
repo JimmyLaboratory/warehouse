@@ -64,7 +64,7 @@ class Storage extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'storage_id' => 'Storage',
+			'storage_id' => '仓库(位置)编号',
 			'storage_name' => '仓库（位置）名称',
 			'note' => '备注',
 			'parent_id' => '上级存储位置',
@@ -99,6 +99,15 @@ class Storage extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function searchByParentID($sid){
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('parent_id',$sid);
+
+		return new CActiveDataProvider($this,array(
+			'criteria'=>$criteria,));
 	}
         
         public static function getLevels($id,$lastQuery = ''){
