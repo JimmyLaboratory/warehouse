@@ -93,8 +93,8 @@ class Chemcat extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-
-
+		$criteria->compare('cat_id',$this->cat_id);
+		$criteria->compare('chemcat_name',$this->chemcat_name,true);
 		$criteria->compare('parent_id',$parent_id);
 
 		return new CActiveDataProvider($this, array(

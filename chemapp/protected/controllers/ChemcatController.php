@@ -48,29 +48,6 @@ class ChemcatController extends Controller
 	}
 
 	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$model=new Chemcat;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Chemcat']))
-		{
-			$model->attributes=$_POST['Chemcat'];
-			if($model->save())
-				$this->redirect(array('admin','cur_parent_id'=>$_GET['cur_parent_id']));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0'
-		));
-	}
-
-	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
@@ -114,35 +91,26 @@ class ChemcatController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-                if(!empty($_GET['parent_id']) && (int)$_GET['parent_id'] > 0){
-                        $dataProvider=new CActiveDataProvider('Chemcat',array('criteria'=>array('condition'=>'parent_id='.(int)$_GET['parent_id'])));
-                }
-                else{
-                        $dataProvider=new CActiveDataProvider('Chemcat',array('criteria'=>array('condition'=>'parent_id=0')));
-                }
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
 
 	/**
-	 * Manages all models.
+	 * 管理药品分类页面
+	 * 包括搜索/添加/删除/修改
 	 */
 	public function actionAdmin()
 	{
 		$model=new Chemcat('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Chemcat']))
+		if(isset($_POST['Chemcat']))		//这是提交新的分类为数据库添加记录
+		{
+			$model->attributes=$_POST['Chemcat'];
+			if($model->save())
+				$this->redirect(array('admin','cur_parent_id'=>$_POST['Chemcat']['parent_id']));
+		}
+		else if(isset($_GET['Chemcat']))	//这是高级搜索的提交,和上面的提交绝不会同时发生
 			$model->attributes=$_GET['Chemcat'];
 
 		$this->render('admin',array(
 			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0' ,
-			//'parent_name'=>isset($_GET['parent_name'])? $_GET['parent_name']:"顶级分类"  //添加传递参数
 		));
 	}
 

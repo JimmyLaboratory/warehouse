@@ -6,7 +6,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'返回顶级分类', 'url'=>array('admin'),),
-	array('label'=>'在此分类下添加子分类/药品', 'url'=>array('create','cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id'] : 0)),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -24,7 +23,6 @@ $('.search-form form').submit(function(){
 ?>
 
 <h1>管理化学品分类</h1>
-<?php //echo "<p>上级分类：".$parent_name."</p>"; ?>
 
 <?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -47,18 +45,17 @@ function getName($parent_id){
 	'columns'=>array(
 		//'cat_id',
 		array(
-			'name'=>'chemcat_name',
-			'type'=>'html',
-			//'url'=>'Yii::app()->controller->createUrl("admin", array("cur_parent_id"=>$data->primaryKey))'
+			'class'=>'CLinkColumn',
+			'header'=>'药品/分类名',
+			'labelExpression'=>'$data->chemcat_name',		//显示内容
+			'linkHtmlOptions'=>array('title'=>'点击进入下一级分类'),		//鼠标停留时显示字符框
+			'urlExpression'=>'Yii::app()->controller->createUrl("admin", array("cur_parent_id"=>$data->primaryKey,))'//显示URL
 		),
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>' {view}{delete}{update}',
+			'header'=>'可选操作',
+			'template'=>' {delete}{update}',
 			'buttons'=>array(
-				'view'=>array(
-					'label'=>'查看子分类',
-					'url'=>'Yii::app()->controller->createUrl("admin", array("cur_parent_id"=>$data->primaryKey,))'
-					),
 				'update'=>array(
 					'label'=>'修改药品/分类名',
 					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
@@ -68,3 +65,26 @@ function getName($parent_id){
 	)
 ));
 ?>
+
+<?php 
+	if(isset($_GET['search'])) return;
+	$form=$this->beginWidget('CActiveForm', array(
+	'id'=>'chemcat-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+		<?php 
+			echo "<input type=hidden name=Chemcat[parent_id] value=".$cur_parent_id.">";
+		?>  
+    </div>
+
+    <div class="row">
+		<?php echo '在此新建项'; ?>
+		<?php echo $form->textField($model,'chemcat_name',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->error($model,'chemcat_name'); ?>
+
+		<?php echo CHtml::submitButton('提交'); ?>
+	</div>
+<?php $this->endWidget(); ?>
