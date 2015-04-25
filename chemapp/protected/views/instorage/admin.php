@@ -24,7 +24,7 @@ $('.search-form form').submit(function(){
 
 <h1>入库列表</h1>
 
-<?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('搜索','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -36,12 +36,14 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'instorage_id',
-		'purchasing_id',
-		'user_id',
+		array(
+			'class'=>'CLinkColumn',
+			'labelExpression'=>'$data->purchasing_id',
+			'header'=>'采购单编号',
+			'urlExpression'=>'Yii::app()->createUrl("instorage/view",array("id"=>$data->instorage_id))'
+		),
 		'verifydate',
 		'expired',
-		'specail_note',
 		/*
 		'weight',
 		'nums',
@@ -51,6 +53,7 @@ $('.search-form form').submit(function(){
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}'
 		),
 	),
 )); ?>

@@ -30,8 +30,8 @@ $this->menu=array(
 		'email',
 		'note',
 		array(
-                    'name'=>'lock',
-                    'value'=>($model->lock == '1') ? '冻结' : '有效'
-                ),
+            'name'=>'lock',
+            'value'=>User::showLock($data->lock)
+        ),
 	),
 )); ?>

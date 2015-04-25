@@ -8,6 +8,7 @@
  * @property integer $status
  * @property integer $user_id
  * @property integer $chemcat_id
+ * @property string  $chem_name
  * @property integer $quality_id
  * @property string $quality_other
  * @property double $unit_package
@@ -109,6 +110,7 @@ class Chemlist extends CActiveRecord
 	{
 		return array(
 			'chem_id' => '化学品ID',
+			'chem_name'=>'药品名称',
 			'status' => '状态',
 			'user_id' => '归属用户',
 			'chemcat_id' => '所属分类',
@@ -128,8 +130,7 @@ class Chemlist extends CActiveRecord
 			'note' => '备注',
 			'used' => '已使用',
 			'storage_id' => '存储仓库',
-                        'chem_name' => '化学品名称',
-                        'foundation' => '数据测量依据'
+            'foundation' => '数据测量依据'
 		);
 	}
 
@@ -173,24 +174,9 @@ class Chemlist extends CActiveRecord
                 }
 
 		$criteria->compare('chem_id',$this->chem_id);
-                $criteria->compare('chem_name',$this->chem_name,true);
+        $criteria->compare('chem_name',$this->chem_name,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('chemcat_id',$this->chemcat_id);
-		$criteria->compare('quality_id',$this->quality_id);
-		$criteria->compare('quality_other',$this->quality_other,true);
-		$criteria->compare('unit_package',$this->unit_package);
-		$criteria->compare('unit_id',$this->unit_id);
-		$criteria->compare('nums',$this->nums);
-		$criteria->compare('production_date',$this->production_date,true);
-		$criteria->compare('expired',$this->expired);
-		$criteria->compare('producer',$this->producer,true);
-		$criteria->compare('useway',$this->useway);
-		$criteria->compare('supplier_id',$this->supplier_id);
-		$criteria->compare('supplier_code',$this->supplier_code,true);
-		$criteria->compare('supplier_other',$this->supplier_other,true);
-		$criteria->compare('specail_note',$this->specail_note,true);
-		$criteria->compare('note',$this->note,true);
-		$criteria->compare('used',$this->used);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

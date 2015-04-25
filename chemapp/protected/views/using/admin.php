@@ -5,9 +5,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'显示所有申请', 'url'=>array('/using/admin')),
-	array('label'=>'只显示待审批的', 'url'=>array('/using/admin','status'=>'APPROVE')),
-        array('label'=>'只显示待领取的', 'url'=>array('/using/admin','status'=>'BEPICK')),
+	array('label'=>'所有申请', 'url'=>array('/using/admin')),
+	array('label'=>'待审批申请', 'url'=>array('/using/admin','status'=>'APPROVE')),
+    array('label'=>'可领取申请', 'url'=>array('/using/admin','status'=>'BEPICK')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -38,28 +38,30 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'using_id',
 		array(
-                    'name'=>'chem_id',
-                    'value'=>'$data->chemlist->chem_name'
-                ),
-                array(
-                    'name'=>'status',
-                    'value'=>'Using::getStatusInfo($data->status)'
-                ),
-                array(
-                    'name'=>'user_id',
-                    'value'=>'$data->user->realname'
-                ),
+			'class'=>'CLinkColumn',
+			'header'=>'申请使用单编号',
+            'labelExpression'=>'$data->using_id',
+            'urlExpression'=>'Yii::app()->createUrl("using/view",array("id"=>$data->using_id))',
+        ),
 		array(
-                    'name'=>'timestamp',
-                    'value'=>'date("Y-m-d H:i:s",$data->timestamp)'
-                ),
+            'name'=>'chem_id',			//药品名
+            'value'=>'$data->chemlist->chem_name'
+        ),
+        
+        array(
+            'name'=>'user_id',			//申请人
+            'value'=>'$data->user->realname'
+        ),
 		array(
-                    'name'=>'applyuse',
-                    'value'=>'$data->applyuse.$data->chemlist->unit->unit_name'
-                ),
-		'reason',
+            'name'=>'timestamp',
+            'value'=>'date("Y-m-d H:i:s",$data->timestamp)'
+        ),
+		array(
+            'name'=>'applyuse',			//申请使用量
+            'value'=>'$data->applyuse.$data->chemlist->unit->unit_name'
+        ),
+		'reason',						//申请原因
 		/*
 		'use_start',
 		'useway',
@@ -68,14 +70,8 @@ $('.search-form form').submit(function(){
 		'information',
 		*/
 		array(
-			'class'=>'CButtonColumn',
-                        'template'=>'{view}',
-                        'buttons'=>array(
-                                'view' => array(
-                                    'label'=>'查看',
-                                    'options'=>array('target'=>'_blank'),
-                                ),
-                            ),
-		),
+            'name'=>'status',			//审批状态
+            'value'=>'Using::getStatusInfo($data->status)'
+        ),
 	),
 )); ?>

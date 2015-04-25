@@ -136,52 +136,49 @@ class User extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
-                $userInfo = User::getInfo();
-                if($userInfo -> user_role == 'college'){
-                        $this->department_id = $userInfo->department_id;
-                }
-		$criteria->compare('user_id',$this->user_id,true);
+        $userInfo = User::getInfo();
+        if($userInfo -> user_role == 'college'){
+            $this->department_id = $userInfo->department_id;
+        }
 		$criteria->compare('user_name',$this->user_name,true);
-		$criteria->compare('password',$this->password,true);
 		$criteria->compare('realname',$this->realname,true);
 		$criteria->compare('user_role',$this->user_role,true);
-		$criteria->compare('department_id',$this->department_id);
-		$criteria->compare('cardno',$this->cardno,true);
-		$criteria->compare('tel_long',$this->tel_long,true);
-		$criteria->compare('tel_short',$this->tel_short);
-		$criteria->compare('tel_office',$this->tel_office,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('note',$this->note,true);
 		$criteria->compare('lock',$this->lock);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-        
-        public static function getRoleOptions()
-        {
-                return array(
-                    'school' => '学校',
-                    'secure' => '保卫处',
-                    'college' => '学院',
-                    'teacher' => '教师',
-                );
-        }
+    
+    public static function getRoleOptions()
+    {
+            return array(
+                'school' => '学校',
+                'secure' => '保卫处',
+                'college' => '学院',
+                'teacher' => '教师',
+            );
+    }
 
-		public function getRoleName()
-        {
-			switch ($this->user_role) {
-				case 'school': $ret = '学校'; break;
-				case 'secure': $ret = '保卫处'; break;
-				case 'college': $ret = '学院'; break;
-				case 'teacher': $ret = '教师'; break;
-				default: $ret = '未知'; break;
-			} return $ret;
-        }
-        
-        public static function getInfo(){
-                if(Yii::app()->user->isGuest) return false;
-                return User::model() ->find('user_name=:user_name',array(':user_name'=>Yii::app()->user->getId()));
-        }
+	public function getRoleName()
+    {
+		switch ($this->user_role) {
+			case 'school': $ret = '学校'; break;
+			case 'secure': $ret = '保卫处'; break;
+			case 'college': $ret = '学院'; break;
+			case 'teacher': $ret = '教师'; break;
+			default: $ret = '未知'; break;
+		} return $ret;
+    }
+    
+    public static function getInfo(){
+            if(Yii::app()->user->isGuest) return false;
+            return User::model() ->find('user_name=:user_name',array(':user_name'=>Yii::app()->user->getId()));
+    }
+    public static function showLock($int){
+    	if($int == 1){
+    		return '冻结' ;
+    	}
+    	else return '有效';
+    }
 }

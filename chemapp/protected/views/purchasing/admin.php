@@ -10,11 +10,11 @@ $this->menu=array(
 		'url'=>array('/purchasing/apply'),
 		'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
 	),
-	array('label'=>'只看待审批的', 'url'=>array('/purchasing/admin','status'=>'APPROVE')),
-	array('label'=>'查看所有', 'url'=>array('/purchasing/admin')),
-	array('label'=>'只看审批完成的', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PASS_FINAL)),
-	array('label'=>'只看正在采购的', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING)),
-	array('label'=>'只看被拒绝的采购', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT))),
+	array('label'=>'待审批的申请', 'url'=>array('/purchasing/admin','status'=>'APPROVE')),
+	array('label'=>'查看所有申请', 'url'=>array('/purchasing/admin')),
+	array('label'=>'审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PASS_FINAL)),
+	array('label'=>'采购中', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING)),
+	array('label'=>'被拒申请', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT))),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -47,62 +47,46 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'purchasing-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
-                array(
-                    'class'=>'CCheckBoxColumn',
-                    'selectableRows'=>'10',
-                    'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
-                ),
-		'purchasing_id',
+        array(
+            'class'=>'CCheckBoxColumn',
+            'selectableRows'=>'10',
+            'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
+        ),
+		//'purchasing_id',
+        array(
+            'class'=>'CLinkColumn',
+            'header'=>'申购编号',
+            'labelExpression'=>'$data->purchasing_id',
+            'urlExpression'=>'Yii::app()->createUrl("purchasing/view",array("id"=>$data->purchasing_id, "refer"=>"purchase"))',
+        ),
 		array(
-                    'name'=>'user_id',
-                    'value'=>'$data->user->realname'
-                ),
-                array(
-                    'name'=>'user_id',
-                    'value'=>'$data->user->department->department_name'
-                ),
+            'name'=>'user_id',
+            'value'=>'$data->user->realname'
+        ),
 		array(
-                    'name'=>'timestamp',
-                    'value'=>'date("Y-m-d H:i:s",$data->timestamp)'
-                ),
+            'name'=>'timestamp',
+            'value'=>'date("Y-m-d H:i:s",$data->timestamp)'
+        ),
 		array(
-                    'name'=>'status',
-                    'value'=>'Purchasing::getStatusInfo($data->status)'
-                ),
+            'name'=>'status',
+            'value'=>'Purchasing::getStatusInfo($data->status)'
+        ),
 		//'information',
 		array(
-                        'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()),
-                        'header'=>'操作',
-			'class'=>'CButtonColumn',
-                        'template'=>'{view}{update}',
-                        'buttons'=>array(
-                                'view' => array(
-                                    'label'=>'查看',
-                                    'options'=>array('target'=>'_blank'),
-									'url'=>'Yii::app()->createUrl("purchasing/view",array("id"=>$data->purchasing_id, "refer"=>"purchase"))',
-                                ),
-                                'update' => array(
-                                    'label'=>'入库',
-                                    'options'=>array('target'=>'_blank'),
-                                    'url'=>'Yii::app()->createUrl("instorage/create",array("id"=>$data->purchasing_id))',
-                                ),
-                            ),
+            'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()),
+            'header'=>'入库',
+            'class'=>'CButtonColumn',
+            'template'=>'{update}',
+            'buttons'=>array(
+                'update' => array(
+                    'label'=>'入库',
+                    'options'=>array('target'=>'_blank'),
+                    'url'=>'Yii::app()->createUrl("instorage/create",array("id"=>$data->purchasing_id))',
+                ),
+            ),
 		),
-                array(
-                        'visible'=>!Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()),
-                        'header'=>'操作',
-			'class'=>'CButtonColumn',
-                        'template'=>'{view}',
-                        'buttons'=>array(
-                                'view' => array(
-                                    'label'=>'查看',
-                                    'options'=>array('target'=>'_blank'),
-									'url'=>'Yii::app()->createUrl("purchasing/view",array("id"=>$data->purchasing_id, "refer"=>"purchase"))',
-                                ),
-                            ),
-		)
 	),
 )); ?>
 
