@@ -24,6 +24,8 @@
  * @property string $specail_note
  * @property string $note
  * @property double $used
+ * @property string $url 				//药品介绍网址	
+ * @property string $pics 				//药品样品图片
  * @property integer $storage_id
  */
 class Chemlist extends CActiveRecord
@@ -75,13 +77,15 @@ class Chemlist extends CActiveRecord
 			array('status, user_id, chemcat_id, quality_id, unit_package, unit_id, nums, production_date, expired, producer, useway, supplier_id, chem_name', 'required'),
 			array('status, user_id, chemcat_id, quality_id, unit_id, nums, useway, supplier_id, storage_id', 'numerical', 'integerOnly'=>true),
 			array('unit_package, used', 'numerical'),
-                        array('expired', 'length', 'max'=>10),
+            array('expired', 'length', 'max'=>10),
 			array('quality_other', 'length', 'max'=>60),
 			array('producer, supplier_other', 'length', 'max'=>50),
 			array('supplier_code', 'length', 'max'=>30),
-                        array('specail_note', 'length', 'max'=>1000),
-                        array('foundation', 'length', 'max'=>1000),
-                        array('note', 'length', 'max'=>1000),
+            array('specail_note', 'length', 'max'=>1000),
+            array('foundation', 'length', 'max'=>1000),
+            array('note', 'length', 'max'=>1000),
+            array('url', 'length', 'max'=>1000),
+            array('pics', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('chem_id, status, user_id, chemcat_id, chem_name, quality_id, quality_other, unit_package, unit_id, nums, production_date, expired, producer, useway, supplier_id, supplier_code, supplier_other, specail_note, note, used, storage_id', 'safe', 'on'=>'search'),
@@ -96,10 +100,10 @@ class Chemlist extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
-                    'quality'=>array(self::BELONGS_TO, 'Quality', 'quality_id'),
-                    'unit'=>array(self::BELONGS_TO, 'Unit', 'unit_id'),
-                    'supplier'=>array(self::BELONGS_TO, 'Supplier', 'supplier_id'),
+	        'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
+	        'quality'=>array(self::BELONGS_TO, 'Quality', 'quality_id'),
+	        'unit'=>array(self::BELONGS_TO, 'Unit', 'unit_id'),
+	        'supplier'=>array(self::BELONGS_TO, 'Supplier', 'supplier_id'),
 		);
 	}
 
@@ -130,7 +134,9 @@ class Chemlist extends CActiveRecord
 			'note' => '备注',
 			'used' => '已使用',
 			'storage_id' => '存储仓库',
-            'foundation' => '数据测量依据'
+            'foundation' => '数据测量依据',
+            'url' => '药品简介网址',
+            'pics' => '图片'
 		);
 	}
 

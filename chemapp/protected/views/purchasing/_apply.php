@@ -223,6 +223,18 @@ jQuery(document).ready(function(){
 		<?php echo $form->error($model,'note'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'url'); ?>
+        <?php echo $form->textField($model,'url',array('size'=>60, 'maxlength'=>60)); ?>
+        <?php echo $form->error($model,'url'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'pics'); ?>
+        <?php echo CHtml::activeFileField($model,'pics'); ?>
+        <?php echo $form->error($model,'pics'); ?>
+    </div>    
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? '提交' : '保存'); ?>
 	</div>

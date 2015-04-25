@@ -127,6 +127,11 @@ $using -> chem_id = $model -> chem_id;
             'name'=>'storage_id',   //存储仓库
             'value'=>  Storage::getLevels($model->storage_id)
         ),
+        array(
+            'name'=>'pics',
+            'type'=>'raw',
+            'value'=>CHtml::link('<img width="400px" src="upload/'.$model->pics.'" />','upload/'.$model->pics,array('target'=>'_blank'))
+        ),
 	),
 )); ?>
 

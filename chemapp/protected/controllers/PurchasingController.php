@@ -26,24 +26,24 @@ class PurchasingController extends Controller
 	public function accessRules()
 	{
 		return array(
-                        array('allow',
-                                'actions'=>array('apply'),
-                                'roles'=>array('teacher')),
-                        array('allow',
-                                'actions'=>array('approve'),
-                                'roles'=>array('college','secure','school')),
-                        array('allow',
-                                'actions'=>array('admin','view','print'),
-                                'roles'=>array('college','secure','school','teacher')
-                        ),
-                        array('allow',
-                                'actions'=>array('delete'),
-                                'roles'=>array('teacher')
-                        ),
-                        array('allow',
-                                'actions'=>array('cancel','topurchase','toachieve','purchasePrint','no'),
-                                'roles'=>array('school')
-                        ),
+            array('allow',
+                    'actions'=>array('apply'),
+                    'roles'=>array('teacher')),
+            array('allow',
+                    'actions'=>array('approve'),
+                    'roles'=>array('college','secure','school')),
+            array('allow',
+                    'actions'=>array('admin','view','print'),
+                    'roles'=>array('college','secure','school','teacher')
+            ),
+            array('allow',
+                    'actions'=>array('delete'),
+                    'roles'=>array('teacher')
+            ),
+            array('allow',
+                    'actions'=>array('cancel','topurchase','toachieve','purchasePrint','no'),
+                    'roles'=>array('school')
+            ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -303,24 +303,31 @@ class PurchasingController extends Controller
 		if(isset($_POST['Chemlist']))
 		{
 			$model->attributes=$_POST['Chemlist'];
-                        $model->production_date = date('Y-m-d');
-                        $userInfo = User::getInfo();
-                        $model->user_id = $userInfo -> user_id;//注入用户ID
-                        $model->status = Purchasing::STATUS_APPLY;
+            $model->production_date = date('Y-m-d');
+            $userInfo = User::getInfo();
+            $model->user_id = $userInfo -> user_id;//注入用户ID
+            $model->status = Purchasing::STATUS_APPLY;
+            $image = CUploadedFile::getInstance($model, 'pics');
+            if( is_object($image) && get_class($image) === 'CUploadedFile' ){  
+                    $model->pics = uniqid().'.jpg';                     //随机改名
+                    $image->saveAs(Yii::app()->basePath.'/../upload/'.$model->pics);  //保存到upload文件夹
+            }else{  
+                    $model->pics = 'NoPic.jpg';  
+            } 
 			if($model->save())
-                        {
-                                $model2=new Purchasing;
-                                $model2->purchasing_id = $_POST['Chemlist']['purchasing_id'];
-                                $model2->chem_id = $model->chem_id;
-                                $model2->user_id = $model->user_id;
-                                $model2->timestamp = time();
-                                $model2->status = Chemlist::STATUS_APPLY;
-                                $information = array('教师：'.$userInfo->user_name.'【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'提交采购申请表');
-                                $model2->information = json_encode($information);
-                                if($model2->save()){
-                                        $this->redirect(array('view','id'=>$model2->purchasing_id));
-                                }
-                        }
+            {
+                    $model2=new Purchasing;
+                    $model2->purchasing_id = $_POST['Chemlist']['purchasing_id'];
+                    $model2->chem_id = $model->chem_id;
+                    $model2->user_id = $model->user_id;
+                    $model2->timestamp = time();
+                    $model2->status = Chemlist::STATUS_APPLY;
+                    $information = array('教师：'.$userInfo->user_name.'【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'提交采购申请表');
+                    $model2->information = json_encode($information);
+                    if($model2->save()){
+                            $this->redirect(array('view','id'=>$model2->purchasing_id));
+                    }
+            }
 		}
 
 		$this->render('apply',array(

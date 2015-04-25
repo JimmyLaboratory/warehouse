@@ -50,11 +50,11 @@ class Instorage extends CActiveRecord
 			array('nums, storage_id', 'numerical', 'integerOnly'=>true),
 			array('weight', 'length', 'max'=>50),
 			array('purchasing_id', 'length', 'max'=>20),
-                        array('deliver_name', 'length', 'max'=>40),
-                        array('deliver_tel', 'length', 'max'=>20),
-                        array('specail_note', 'length', 'max'=>500),
-                        array('user_id', 'length', 'max'=>100),
-                        array('note', 'length', 'max'=>500),
+            array('deliver_name', 'length', 'max'=>40),
+            array('deliver_tel', 'length', 'max'=>20),
+            array('specail_note', 'length', 'max'=>500),
+            array('user_id', 'length', 'max'=>100),
+            array('note', 'length', 'max'=>500),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('instorage_id, purchasing_id, user_id, verifydate, expired, specail_note, weight, nums, storage_id, note, pics', 'safe', 'on'=>'search'),
@@ -69,7 +69,7 @@ class Instorage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'hander' => array(self::BELONGS_TO, 'User', 'user_id')
+            'hander' => array(self::BELONGS_TO, 'User', 'user_id')
 		);
 	}
 
@@ -90,7 +90,7 @@ class Instorage extends CActiveRecord
 			'storage_id' => '存放仓库（货架）',
 			'note' => '备注',
 			'pics' => '图片',
-                        'deliver_name' => '送货人',
+            'deliver_name' => '送货人',
 			'deliver_tel' => '送货人电话',
 		);
 	}
@@ -117,7 +117,7 @@ class Instorage extends CActiveRecord
 		$criteria->compare('storage_id',$this->storage_id);
 		$criteria->compare('note',$this->note,true);
 		$criteria->compare('pics',$this->pics,true);
-                $criteria->compare('deliver_name',$this->deliver_name,true);
+        $criteria->compare('deliver_name',$this->deliver_name,true);
 		$criteria->compare('deliver_tel',$this->deliver_tel,true);
 
 		return new CActiveDataProvider($this, array(

@@ -16,23 +16,23 @@ $this->menu=array(
 	'attributes'=>array(
 		'instorage_id',
 		'purchasing_id',
-                'user_id',
+        'user_id',
 		'verifydate',
 		'expired',
 		'specail_note',
 		'weight',
 		'nums',
-                'deliver_name',
-                'deliver_tel',
-                array(
-                    'name'=>'storage_id',
-                    'value'=>  Storage::getLevels($model->storage_id)
-                ),
+        'deliver_name',
+        'deliver_tel',
+        array(
+            'name'=>'storage_id',
+            'value'=>  Storage::getLevels($model->storage_id)
+        ),
 		'note',
 		array(
-                    'name'=>'pics',
-                    'type'=>'raw',
-                    'value'=>CHtml::link('<img width="400px" src="upload/'.$model->pics.'" />','upload/'.$model->pics,array('target'=>'_blank'))
-                ),
+            'name'=>'pics',
+            'type'=>'raw',
+            'value'=>CHtml::link('<img width="400px" src="upload/'.$model->pics.'" />','upload/'.$model->pics,array('target'=>'_blank'))
+        ),
 	),
 )); ?>

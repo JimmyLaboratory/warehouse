@@ -59,7 +59,7 @@ return array(
 			'emulatePrepare' => true,
 			'username' => 'chemlab_root',
 			'password' => 'chemlabszu009',
-			'password' => '',
+			//'password' => '',
 			'charset' => 'utf8',
 		),
 		

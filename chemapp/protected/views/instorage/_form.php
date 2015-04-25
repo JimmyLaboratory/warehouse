@@ -3,7 +3,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'instorage-form',
 	'enableAjaxValidation'=>false,
-        'htmlOptions'=>array('enctype'=>'multipart/form-data'),  
+    'htmlOptions'=>array('enctype'=>'multipart/form-data'),  
 )); ?>
 
 	<p class="note">标有<span class="required">*</span> 符号为必填项</p>
@@ -154,7 +154,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? '提交' : '保存'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
