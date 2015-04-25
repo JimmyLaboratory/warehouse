@@ -7239,3 +7239,31 @@ HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=chemlist/view&id=9
 2015/04/16 20:31:24 [warning] [application] Failed to set unsafe attribute "purchasing_id" of "Chemlist".
 in C:\wamp\www\warehouse\chemapp\protected\controllers\PurchasingController.php (305)
 in C:\wamp\www\warehouse\chemapp\index.php (13)
+2015/04/21 17:21:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection 无法开启数据库连线: SQLSTATE[HY000] [1045] Acc�s refus� pour l'utilisateur: 'root'@'@localhost' (mot de passe: NON)' in C:\wamp\www\warehouse\framework\db\CDbConnection.php:382
+Stack trace:
+#0 C:\wamp\www\warehouse\framework\db\CDbConnection.php(331): CDbConnection->open()
+#1 C:\wamp\www\warehouse\framework\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 C:\wamp\www\warehouse\framework\base\CModule.php(388): CDbConnection->init()
+#3 C:\wamp\www\warehouse\framework\base\CApplication.php(431): CModule->getComponent('db')
+#4 C:\wamp\www\warehouse\framework\db\ar\CActiveRecord.php(615): CApplication->getDb()
+#5 C:\wamp\www\warehouse\framework\db\ar\CActiveRecord.php(2263): CActiveRecord->getDbConnection()
+#6 C:\wamp\www\warehouse\framework\db\ar\CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(User))
+#7 C:\wamp\www\warehouse\chemapp\protected\models\User.php(30): CActiveRecord::model('User')
+#8 C:\wamp\www\warehouse\chemapp\protected\components\UserIdentity.php(22): User::model()
+#9 C:\wamp\www\warehouse\chemapp\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#10 C:\wamp\www\warehouse\framework\validators\CInlineValidator.php(43): LoginForm->authenticate('password', Array)
+#11 C:\wamp\www\warehouse\framework\validators\CValidator.php(197): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 C:\wamp\www\warehouse\framework\base\CModel.php(158): CValidator->validate(Object(LoginForm), NULL)
+#13 C:\wamp\www\warehouse\chemapp\protected\controllers\SiteController.php(92): CModel->validate()
+#14 C:\wamp\www\warehouse\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#15 C:\wamp\www\warehouse\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#16 C:\wamp\www\warehouse\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#17 C:\wamp\www\warehouse\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\wamp\www\warehouse\framework\web\CWebApplication.php(276): CController->run('login')
+#19 C:\wamp\www\warehouse\framework\web\CWebApplication.php(135): CWebApplication->runController('site/login')
+#20 C:\wamp\www\warehouse\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#21 C:\wamp\www\warehouse\chemapp\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/warehouse/chemapp/index.php?r=site/login
+HTTP_REFERER=http://localhost/warehouse/chemapp/index.php?r=site/login
+---

@@ -57,10 +57,9 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=chemwarehouse',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			//'password' => 'chemlabszu009',
-			'password' => '',
-			'charset' => 'utf8',
+			'username' => 'chemlab_root',
+			'password' => 'chemlabszu009',
+		'charset' => 'utf8',
 		),
 		
 		'errorHandler'=>array(
