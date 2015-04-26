@@ -156,10 +156,16 @@ jQuery(document).ready(function(){
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'useway'); ?>
-		<?php echo $form->dropDownList($model,'useway',  Chemlist::getUsewayOptions()); ?>
-		<?php echo $form->error($model,'useway'); ?>
-	</div>
+        <?php echo $form->labelEx($model,'useway'); ?>
+        <?php echo $form->dropDownList($model,'useway',  Chemlist::getUsewayOptions()); ?>
+        <?php echo $form->error($model,'useway'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'purpose'); ?>
+        <?php echo $form->textArea($model,'purpose',array('rows'=>6, 'cols'=>60)); ?>
+        <?php echo $form->error($model,'purpose'); ?>
+    </div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'supplier_id'); ?>

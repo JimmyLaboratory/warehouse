@@ -24,6 +24,7 @@
  * @property string $specail_note
  * @property string $note
  * @property double $used
+ * @property string $purpose			//使用目的
  * @property string $url 				//药品介绍网址	
  * @property string $pics 				//药品样品图片
  * @property integer $storage_id
@@ -84,6 +85,7 @@ class Chemlist extends CActiveRecord
             array('specail_note', 'length', 'max'=>1000),
             array('foundation', 'length', 'max'=>1000),
             array('note', 'length', 'max'=>1000),
+            array('purpose', 'length', 'max'=>1000),
             array('url', 'length', 'max'=>1000),
             array('pics', 'length', 'max'=>1000),
 			// The following rule is used by search().
@@ -127,6 +129,7 @@ class Chemlist extends CActiveRecord
 			'expired' => '有效期',
 			'producer' => '生产厂商',
 			'useway' => '使用方向',
+			'purpose'=> '使用目的',
 			'supplier_id' => '供应商',
 			'supplier_code' => '供应商内部货号',
 			'supplier_other' => '其它供应商',
