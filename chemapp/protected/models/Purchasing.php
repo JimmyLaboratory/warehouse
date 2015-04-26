@@ -103,7 +103,7 @@ class Purchasing extends CActiveRecord
 			'timestamp' => '提交申请时间',
 			'status' => '状态',
 			'information' => '信息',
-                        'purchasing_no' => '采购清单编号'
+            'purchasing_no' => '采购清单编号'
 		);
 	}
 

@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'取消申请', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->purchasing_id),'confirm'=>'你确定取消这个申请吗?'),'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) && ($model->status == Purchasing::STATUS_APPLY)),
-        array('label'=>'打印表格', 'url'=>array('print','id'=>$model->purchasing_id), 'linkOptions'=>array('target'=>'_blank'), 'visible'=> Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())),
+    array('label'=>'打印表格', 'url'=>array('print','id'=>$model->purchasing_id), 'linkOptions'=>array('target'=>'_blank'), 'visible'=> Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())),
 );
 ?>
 
@@ -39,54 +39,6 @@ if(Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId()) 
 endif;
 ?>
 
-<?php
-if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId())) ||
-    ( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SCHOOL) && Yii::app() -> authManager -> checkAccess('secure',Yii::app()->user->getId())) ||
-    ( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SECURE) && Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId()))
-        ):
-?>
-<h1>审批操作</h1>
-<div class="form">
-	<form id="purchasing-form" action="index.php?r=purchasing/approve&id=<?php echo $model->purchasing_id ?>" method="post">
-	<div class="row">
-		<label for="Purchasing_purchasing_id" class="required">
-			<input size="20" maxlength="20" name="Purchasing[approve]" id="Purchasing_purchasing_id" type="radio" value="1" />同意采购
-		</label>
-		<label for="Purchasing_chem_id" class="required">
-			<input name="Purchasing[approve]" id="Purchasing_chem_id" type="radio" value="-1" />拒绝采购
-		</label>
-	</div>
-
-	<div class="row">
-		<label>审批人：</label>
-		<input type="textField" name="Purchasing[person1]" value="<?php echo User::getInfo()->realname; ?>" /><br />
-		<label for="Purchasing_information" class="required">审批意见：</label>
-		<textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>
-	</div>
-	<!--<div class="row">
-	                审批人1：<input type="textField" name="Purchasing[person1]" value="" /><br />
-		<label for="Purchasing_information" class="required">审批意见1 </label>	
-	                <textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>			
-	        </div>-->
-	                
-	        <div class="row" style="display:none">
-	                审批人2：<input type="textField" name="Purchasing[person2]" value="" /><br />
-		<label for="Purchasing_information" class="required">审批意见2 </label>	
-	                <textarea rows="2" cols="50" name="Purchasing[reason2]" id="Purchasing_information"></textarea>			
-	        </div>
-	                
-	        <div class="row" style="display:none">
-	                审批人3：<input type="textField" name="Purchasing[person3]" value="" /><br />
-		<label for="Purchasing_information" class="required">审批意见3 </label>	
-	                <textarea rows="2" cols="50" name="Purchasing[reason3]" id="Purchasing_information"></textarea>			
-	        </div>
-
-	<div class="row buttons" style="text-align:center">
-		<input type="submit" name="yt0" value="审批">
-	</div>
-</form>
-</div>
-<?php endif; ?>
 
 <br /><br />
 <h1>采购申请信息</h1>
@@ -191,3 +143,53 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
 	),
 )); ?>
 <script type="text/javascript">$('#yw1').hide(0)</script>
+
+<?php
+if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId())) ||
+    ( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SCHOOL) && Yii::app() -> authManager -> checkAccess('secure',Yii::app()->user->getId())) ||
+    ( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SECURE) && Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId()))
+        ):
+?>
+
+<br></br>
+
+<h1>审批操作</h1>
+<div class="form">
+    <form id="purchasing-form" action="index.php?r=purchasing/approve&id=<?php echo $model->purchasing_id ?>" method="post">
+    <div class="row">
+        <label for="Purchasing_purchasing_id" class="required">
+            <input size="20" maxlength="20" name="Purchasing[approve]" id="Purchasing_purchasing_id" type="radio" value="1" />同意采购
+        </label>
+        <label for="Purchasing_chem_id" class="required">
+            <input name="Purchasing[approve]" id="Purchasing_chem_id" type="radio" value="-1" />拒绝采购
+        </label>
+    </div>
+
+    <div class="row">
+        <label>录入人：</label>
+        <input type="textField" name="Purchasing[inputer]" value="<?php echo User::getInfo()->realname; ?>" /><br />
+        <label>审批人：</label>
+        <input type="textField" name="Purchasing[person1]" value="" /><br />
+        
+        <label for="Purchasing_information" class="required">审批意见：</label>
+        <textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>
+    </div>
+    <!--<div class="row">
+                    审批人1：<input type="textField" name="Purchasing[person1]" value="" /><br />
+        <label for="Purchasing_information" class="required">审批意见1 </label> 
+                    <textarea rows="2" cols="50" name="Purchasing[reason1]" id="Purchasing_information"></textarea>         
+            </div>-->
+                    
+ 
+            <div class="row" style="display:none">
+                    审批人3：<input type="textField" name="Purchasing[person3]" value="" /><br />
+        <label for="Purchasing_information" class="required">审批意见3 </label> 
+                    <textarea rows="2" cols="50" name="Purchasing[reason3]" id="Purchasing_information"></textarea>         
+            </div>
+
+    <div class="row buttons" style="text-align:center">
+        <input type="submit" name="yt0" value="提交">
+    </div>
+</form>
+</div>
+<?php endif; ?>

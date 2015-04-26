@@ -63,10 +63,10 @@ class PurchasingController extends Controller
         
         public function actionPrint($id)
         {
-                $this -> layout = '//layouts/column0';
-                $this->render('print',array(
-			'model'=>$this->loadModel($id),
-		));
+            $this -> layout = '//layouts/column0';
+            $this->render('print',array(
+			     'model'=>$this->loadModel($id),
+		      ));
         }
         
         public function actionToachieve(){
@@ -160,114 +160,82 @@ class PurchasingController extends Controller
                 $model->save();
                 $this->redirect(array('view','id'=>$model->purchasing_id));
         }
-        
+        private function getInformation($model,$userInfo,$department){
+            //从审批页面获取审批信息,参数为部门,例如'学院''保卫处''学校'
+            $information = json_decode($model -> information,true);
+            if($_POST['Purchasing']['approve'] == '1'){
+                $information[] = $department.'【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
+            }
+            else if($_POST['Purchasing']['approve'] == '-1'){
+                $information[] = $department.'【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
+            }
+            if(!empty($_POST['Purchasing']['inputer']))
+                    $information[] = $department.'录入人:'.$_POST['Purchasing']['inputer'];
+            if(!empty($_POST['Purchasing']['person1']))
+                    $information[] = $department.'审批人:'.$_POST['Purchasing']['person1'].' 意见：'.$_POST['Purchasing']['reason1'];
+            if(!empty($_POST['Purchasing']['person2']))
+                    $information[] = $department.'审批人'.$_POST['Purchasing']['person2'].' 意见：'.$_POST['Purchasing']['reason2'];
+            if(!empty($_POST['Purchasing']['person3']))
+                    $information[] = $department.'审批人'.$_POST['Purchasing']['person3'].' 意见：'.$_POST['Purchasing']['reason3'];
+            return json_encode($information);
+        }
+
         public function actionApprove($id){
-                $model = $this->loadModel($id);
-                
-                if(isset($_POST['Purchasing']))
-		{
-                        $userInfo = User::getInfo();
-			if(($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId()))){
-                                if($model->user->department_id != $userInfo->department_id) return false;
-                                if($_POST['Purchasing']['approve'] == '1'){
-                                        $model -> status = Purchasing::STATUS_PASS_FIRST;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学院【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学院审批人'.$_POST['Purchasing']['person1'].'意见：'.$_POST['Purchasing']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学院审批人'.$_POST['Purchasing']['person2'].'意见：'.$_POST['Purchasing']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学院审批人'.$_POST['Purchasing']['person3'].'意见：'.$_POST['Purchasing']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                                if($_POST['Purchasing']['approve'] == '-1'){
-                                        $model -> status = Purchasing::STATUS_REJECT;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学院【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学院审批人'.$_POST['Purchasing']['person1'].'意见：'.$_POST['Purchasing']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学院审批人'.$_POST['Purchasing']['person2'].'意见：'.$_POST['Purchasing']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学院审批人'.$_POST['Purchasing']['person3'].'意见：'.$_POST['Purchasing']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                        }
+            $model = $this->loadModel($id);
+            if(isset($_POST['Purchasing'])){
+                    $userInfo = User::getInfo();
+		            if(($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId()))){
+                        //学院审批
+                        if($model->user->department_id != $userInfo->department_id) return false;
                         
-                        if( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SCHOOL) && Yii::app() -> authManager -> checkAccess('secure',Yii::app()->user->getId())){
-                                if($_POST['Purchasing']['approve'] == '1'){
-                                        $model -> status = $model->status == Purchasing::STATUS_PASS_SCHOOL ? Purchasing::STATUS_PASS_FINAL : Purchasing::STATUS_PASS_SECURE;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '保卫处【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '保卫处审批人'.$_POST['Purchasing']['person1'].'意见：'.$_POST['Purchasing']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '保卫处审批人'.$_POST['Purchasing']['person2'].'意见：'.$_POST['Purchasing']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '保卫处审批人'.$_POST['Purchasing']['person3'].'意见：'.$_POST['Purchasing']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                                if($_POST['Purchasing']['approve'] == '-1'){
-                                        $model -> status = Purchasing::STATUS_REJECT;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '保卫处【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '保卫处审批人'.$_POST['Purchasing']['person1'].'意见：'.$_POST['Purchasing']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '保卫处审批人'.$_POST['Purchasing']['person2'].'意见：'.$_POST['Purchasing']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '保卫处审批人'.$_POST['Purchasing']['person3'].'意见：'.$_POST['Purchasing']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
+                        if($_POST['Purchasing']['approve'] == '1'){
+                            $model -> status = Purchasing::STATUS_PASS_FIRST;
                         }
-                        
-                        if( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SECURE) && Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId())){
-                                if($_POST['Purchasing']['approve'] == '1'){
-                                        $model -> status = $model->status == Purchasing::STATUS_PASS_SECURE ? Purchasing::STATUS_PASS_FINAL : Purchasing::STATUS_PASS_SCHOOL;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学校【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学校审批人'.$_POST['Purchasing']['person1'].'意见：'.$_POST['Purchasing']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学校审批人'.$_POST['Purchasing']['person2'].'意见：'.$_POST['Purchasing']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学校审批人'.$_POST['Purchasing']['person3'].'意见：'.$_POST['Purchasing']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                                if($_POST['Purchasing']['approve'] == '-1'){
-                                        $model -> status = Purchasing::STATUS_REJECT;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学校【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学校审批人'.$_POST['Purchasing']['person1'].'意见：'.$_POST['Purchasing']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学校审批人'.$_POST['Purchasing']['person2'].'意见：'.$_POST['Purchasing']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学校审批人'.$_POST['Purchasing']['person3'].'意见：'.$_POST['Purchasing']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
+                        else if($_POST['Purchasing']['approve'] == '-1'){
+                            $model -> status = Purchasing::STATUS_REJECT;
                         }
-		}
+                    
+                        $model->information = $this::getInformation($model,$userInfo,'学院');
+                        $model->save();
+                    }
+                    
+                    if( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SCHOOL) && Yii::app() -> authManager -> checkAccess('secure',Yii::app()->user->getId())){
+                            //保卫处审批
+                            $information = json_decode($model -> information,true);
+                            if($_POST['Purchasing']['approve'] == '1'){
+                                    $model -> status = $model->status == Purchasing::STATUS_PASS_SCHOOL ? Purchasing::STATUS_PASS_FINAL : Purchasing::STATUS_PASS_SECURE;
+                            }
+                            if($_POST['Purchasing']['approve'] == '-1'){
+                                    $model -> status = Purchasing::STATUS_REJECT;
+                            }
+                            $model->information = $this::getInformation($model,$userInfo,'保卫处');
+                            $model->save();
+                    }
+        
+                    if( ($model->status == Purchasing::STATUS_PASS_FIRST || $model->status == Purchasing::STATUS_PASS_SECURE) && Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId())){
+                            if($_POST['Purchasing']['approve'] == '1'){
+                                    $model -> status = $model->status == Purchasing::STATUS_PASS_SECURE ? Purchasing::STATUS_PASS_FINAL : Purchasing::STATUS_PASS_SCHOOL;
+                            }
+                            if($_POST['Purchasing']['approve'] == '-1'){
+                                    $model -> status = Purchasing::STATUS_REJECT;
+                            }
+                            $model->information = $this::getInformation($model,$userInfo,'学校');
+                            $model->save();
+                    }
+	        }
                 
-                if($model -> status == Purchasing::STATUS_PASS_FINAL){
-                        $chemModel = Chemlist::model()->findByPk($model->chem_id);
-                        $chemModel -> status = Chemlist::STATUS_APPROVE;
-                        $chemModel -> save();
-                }
-                if($model -> status == Purchasing::STATUS_REJECT){
-                        $chemModel = Chemlist::model()->findByPk($model->chem_id);
-                        $chemModel -> status = Chemlist::STATUS_REJECT;
-                        $chemModel -> save();
-                }
-                
-                $this->redirect(array('view','id'=>$model->purchasing_id));
+            if($model -> status == Purchasing::STATUS_PASS_FINAL){
+                    $chemModel = Chemlist::model()->findByPk($model->chem_id);
+                    $chemModel -> status = Chemlist::STATUS_APPROVE;
+                    $chemModel -> save();
+            }
+            if($model -> status == Purchasing::STATUS_REJECT){
+                    $chemModel = Chemlist::model()->findByPk($model->chem_id);
+                    $chemModel -> status = Chemlist::STATUS_REJECT;
+                    $chemModel -> save();
+            }
+            
+            $this->redirect(array('view','id'=>$model->purchasing_id));
         }
 
 	/**
