@@ -4,8 +4,8 @@ body
 	padding: 0;
 	color: #555;
 	/*font: normal 10pt Arial,Helvetica,sans-serif;*/
-	background: #EFEFEF;
-	font: normal 12pt Arial,Helvetica,sans-serif,"Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+	background: url(2.jpg);
+	font: normal 13px Arial,Helvetica,sans-serif,"Microsoft YaHei", "微软雅黑", "黑体", "宋体";
 }
 
 #page
@@ -78,8 +78,7 @@ body
 {
 	/* display: inline; */
 	display: inline-block;
-	margin: 13px 15px;
-	min-width: 100px;
+	padding: 5px 10px;
 	text-align: center;
 }
 
@@ -87,19 +86,22 @@ body
 {
 	color:#ffffff;
 	background-color:transparent;
-	font-size:16px;/*font-size:12px;*/
+	font-size:13px;/*font-size:12px;*/
 	/* font-weight:bold; */
 	text-decoration:none;
-	padding:8px 15px;
+	padding: 5px 0px;
 	/*  */
 	letter-spacing:1px;
 	padding: auto 20px;
 }
 
+#mainmenu ul li:hover, #mainmenu ul li.active
+{
+	background-color:#EFF4FA;
+}
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
 	color: #6399cd;
-	background-color:#EFF4FA;
 	text-decoration:none;
 }
 
@@ -252,4 +254,7 @@ div.search-form
 .operations li a:hover
 {
 	background: #80CFFF;
+}
+#content h2{
+	text-align: center;
 }
