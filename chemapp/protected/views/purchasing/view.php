@@ -97,26 +97,26 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
 		'purchasing_id',
 		'chem_id',
 		array(
-                    'name'=>'user_id',
-                    'value'=>$model->user->user_name.'【'.$model->user->realname.'】'
-                ),
-                array(
-                    'name'=>'学院',
-                    'value'=>$model->user->department->department_name
-                ),
+            'name'=>'user_id',
+            'value'=>$model->user->user_name.'【'.$model->user->realname.'】'
+        ),
+        array(
+            'name'=>'学院',
+            'value'=>$model->user->department->department_name
+        ),
 		array(
-                    'name'=>'timestamp',
-                    'value'=>date('Y-m-d H:i:s',$model->timestamp)
-                ),
-                array(
-                    'name'=>'status',
-                    'value'=>Purchasing::getStatusInfo($model->status)
-                ),
-                array(
-                    'name'=>'information',
-                    'type'=>'raw',
-                    'value'=>implode('<br />',json_decode($model->information,true))
-                ),
+            'name'=>'timestamp',
+            'value'=>date('Y-m-d H:i:s',$model->timestamp)
+        ),
+        array(
+            'name'=>'status',
+            'value'=>Purchasing::getStatusInfo($model->status)
+        ),
+        array(
+            'name'=>'information',
+            'type'=>'raw',
+            'value'=>implode('<br />',json_decode($model->information,true))
+        ),
 	),
 )); ?>
 
@@ -127,57 +127,67 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
 	'data'=>$model->chemlist,
 	'attributes'=>array(
 		'chem_id',
-                'chem_name',
+        'chem_name',
 		array(
-                    'name'=>'status',
-                    'value'=>Chemlist::getStatusInfo($model->chemlist->status)
-                ),
+            'name'=>'status',
+            'value'=>Chemlist::getStatusInfo($model->chemlist->status)
+        ),
 		array(
-                    'name'=>'user_id',
-                    'value'=>$model->chemlist->user->user_name.'【'.$model->user->realname.'】'
-                ),
-                array(
-                    'name'=>'学院',
-                    'value'=>$model->chemlist->user->department->department_name
-                ),
-                array(
-                    'name'=>'chemcat_id',
-                    'value'=>  Chemcat::getLevels($model->chemlist->chemcat_id)
-                ),
+            'name'=>'user_id',
+            'value'=>$model->chemlist->user->user_name.'【'.$model->user->realname.'】'
+        ),
+        array(
+            'name'=>'学院',
+            'value'=>$model->chemlist->user->department->department_name
+        ),
+        array(
+            'name'=>'chemcat_id',
+            'value'=>  Chemcat::getLevels($model->chemlist->chemcat_id)
+        ),
 		array(
-                    'name'=>'quality_id',
-                    'value'=>isset($model->chemlist->quality->quality_name) ? $model->chemlist->quality->quality_name : '其它'
-                ),
+            'name'=>'quality_id',
+            'value'=>isset($model->chemlist->quality->quality_name) ? $model->chemlist->quality->quality_name : '其它'
+        ),
 		'quality_other',
-                array(
-                    'name'=>'unit_package',
-                    'value'=>$model->chemlist->unit_package.' '.$model->chemlist->unit->unit_name
-                ),
+        array(
+            'name'=>'unit_package',
+            'value'=>$model->chemlist->unit_package.' '.$model->chemlist->unit->unit_name
+        ),
 		'nums',
 		//'production_date',
 		'expired',
 		'producer',
 		array(
-                    'name'=>'useway',
-                    'value'=>  Chemlist::getUsewayOptions($model->chemlist->useway)
-                ),
-                @array(
-                    'name'=>'supplier_id',
-                    'value'=>$model->chemlist->supplier->supplier_name.$model->chemlist->supplier_other
-                ),
+            'name'=>'useway',
+            'value'=>  Chemlist::getUsewayOptions($model->chemlist->useway)
+        ),
+        @array(
+            'name'=>'supplier_id',
+            'value'=>$model->chemlist->supplier->supplier_name.$model->chemlist->supplier_other
+        ),
 		'supplier_code',
 		'specail_note',
-                'foundation',
+        'foundation',
 		'note',
 		'used',
-                array(
-                    'name'=>'剩余量',
-                    'value'=> $model->chemlist->status == Chemlist::STATUS_INSTOCK ? ((float)$model->chemlist->unit_package * (int)$model->chemlist->nums - (float)$model->chemlist->used).$model->chemlist->unit->unit_name : '/'
-                ),
+        array(
+            'name'=>'剩余量',
+            'value'=> $model->chemlist->status == Chemlist::STATUS_INSTOCK ? ((float)$model->chemlist->unit_package * (int)$model->chemlist->nums - (float)$model->chemlist->used).$model->chemlist->unit->unit_name : '/'
+        ),
 		array(
-                    'name'=>'storage_id',
-                    'value'=>  Storage::getLevels($model->chemlist->storage_id)
-                ),
+            'name'=>'storage_id',
+            'value'=>  Storage::getLevels($model->chemlist->storage_id)
+        ),
+        array(
+            'name'=>'url',          //药品介绍网址
+            'type'=>'url',
+            'url'=>'$model->chemlist->url'
+        ),
+        array(
+            'name'=>'pics',         //药品样图
+            'type'=>'raw',
+            'value'=>CHtml::link('<img width="500px" src="upload/'.$model->chemlist->pics.'" />','upload/'.$model->chemlist->pics,array('target'=>'_blank'))
+        )
 	),
 )); ?>
 <script type="text/javascript">$('#yw1').hide(0)</script>
