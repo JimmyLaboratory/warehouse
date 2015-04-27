@@ -27,7 +27,7 @@ class AchieveController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','view','print'),
+				'actions'=>array('admin','view','print','begin','create'),
 				'roles'=>array('school'),
 			),
 			array('deny',  // deny all users
@@ -61,13 +61,39 @@ class AchieveController extends Controller
 			'model'=>$model,
 		));
 	}
-        
-        public function actionPrint($id){
-                $this->layout = '//layouts/column0';
-                $this->render('print',array(
-			'model'=>$this->loadModel($id),
+
+	public function actionBegin()
+	{
+		$model=new Purchasing('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Purchasing']))
+			$model->attributes=$_GET['Purchasing'];
+
+		$this->render('begin',array(
+			'model'=>$model,
 		));
-        }
+	}
+
+	public function actionCreate()
+	{
+		$model=new Achieve('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_POST['Achieve'])){
+			$model->attributes=$_POST['Achieve'];
+			if($model->save())
+				$this->redirect(array('admin'));//,'id'=>$model->purchasing_id));
+		}
+		$this->render('create',array(
+			'model'=>$model,'purchasing_id'=>$_GET['pid'],
+		));
+	}
+        
+    public function actionPrint($id){
+            $this->layout = '//layouts/column0';
+            $this->render('print',array(
+		'model'=>$this->loadModel($id),
+	));
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

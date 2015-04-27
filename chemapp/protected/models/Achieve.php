@@ -9,6 +9,7 @@
  * @property string $achiever
  * @property string $achieve_info
  * @property string $note
+ * @property integer $purchasing_id 		//采购申请编号
  */
 class Achieve extends CActiveRecord
 {
@@ -38,7 +39,7 @@ class Achieve extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('achieve_id, timestamp, achiever, achieve_info, note', 'required'),
+			array(' timestamp, achiever, achieve_info, note,purchasing_id', 'required'),
 			array('timestamp', 'numerical', 'integerOnly'=>true),
 			array('achieve_id', 'length', 'max'=>30),
 			array('achiever', 'length', 'max'=>100),
@@ -65,6 +66,7 @@ class Achieve extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'purchasing_id'=>'采购申请编号',
 			'achieve_id' => '备案单编号',
 			'timestamp' => '备案时间',
 			'achiever' => '备案人',

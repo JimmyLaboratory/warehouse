@@ -5,11 +5,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Achieve', 'url'=>array('index')),
-	array('label'=>'Manage Achieve', 'url'=>array('admin')),
+	array('label'=>'列出备案', 'url'=>array('index')),
+	array('label'=>'管理备案', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Achieve</h1>
+<h1>新建备案单</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model,'purchasing_id'=>$purchasing_id)); ?>

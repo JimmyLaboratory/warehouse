@@ -41,7 +41,11 @@ class PurchasingController extends Controller
                     'roles'=>array('teacher')
             ),
             array('allow',
-                    'actions'=>array('cancel','topurchase','toachieve','purchasePrint','no'),
+                    'actions'=>array('cancel'),
+                    'roles'=>array('college')
+            ),
+            array('allow',
+                    'actions'=>array('topurchase','toachieve','purchasePrint','no'),
                     'roles'=>array('school')
             ),
 			array('deny',  // deny all users
@@ -150,15 +154,25 @@ class PurchasingController extends Controller
         }
         
         public function actionCancel($id){
-                $model = $this->loadModel($id);
-                if($model->status != Purchasing::STATUS_PASS_FINAL && $model->status != Purchasing::STATUS_PURCHASING)
-                        throw new CHttpException(403,'采购单当前状态不允许取消采购');
-                $information = json_decode($model->information, true);
-                $information[] = '学校【'.$_POST['Purchasing']['person'].'】于'.date('Y-m-d H:i:s').'取消采购申请，理由'.$_POST['Purchasing']['reason'];
-                $model->information = json_encode($information);
-                $model->status = Purchasing::STATUS_REJECT;
-                $model->save();
-                $this->redirect(array('view','id'=>$model->purchasing_id));
+            //终止采购
+                $model = $this->loadModel($id);       
+                switch($model->status){
+                    case Purchasing::STATUS_APPLY:;
+                    case Purchasing::STATUS_PASS_FIRST:;
+                    case Purchasing::STATUS_PASS_SECURE:;
+                    case Purchasing::STATUS_PASS_SCHOOL:;
+                    case Purchasing::STATUS_PASS_FINAL:break;
+                    case Defaults:throw new CHttpException(403,'采购单当前状态不允许取消采购');
+                }
+                if(isset($_POST['reason'])){
+                    $information = json_decode($model->information, true);
+                    $information[] = '学院【'.'】于'.date('Y-m-d H:i:s').'终止采购申请，理由'.$_POST['reason'];
+                    $model->information = json_encode($information);
+                    $model->status = Purchasing::STATUS_CANCEL;
+                    $model->save();
+                    $this->redirect(array('view','id'=>$model->purchasing_id));
+                }
+                $this->render('cancel',array('model'=>$model));
         }
         private function getInformation($model,$userInfo,$department){
             //从审批页面获取审批信息,参数为部门,例如'学院''保卫处''学校'

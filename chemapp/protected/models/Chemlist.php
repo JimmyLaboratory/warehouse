@@ -37,6 +37,7 @@ class Chemlist extends CActiveRecord
         const STATUS_INSTOCK = 3;//化学品在库
         const STATUS_USEOVER = 4;//使用毕了
         const STATUS_LOCK = -1;//化学品在库冻结中，禁止使用
+        const STATUS_CANCEL = -2;//采购被终止
 
         public static function getStatusInfo($id){
                 switch($id){
@@ -46,6 +47,7 @@ class Chemlist extends CActiveRecord
                         case self::STATUS_INSTOCK:return '化学品在库';
                         case self::STATUS_USEOVER:return '使用毕了';
                         case self::STATUS_LOCK:return '冻结';
+                        case self::STATUS_CANCEL:return '采购终止';
                 }
         }
                 
@@ -75,9 +77,9 @@ class Chemlist extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status, user_id, chemcat_id, quality_id, unit_package, unit_id, nums, production_date, expired, producer, useway, supplier_id, chem_name', 'required'),
+			array('status, user_id, chemcat_id, quality_id, unit_package, unit_id, nums, production_date, expired, producer, useway, chem_name', 'required'),
 			array('status, user_id, chemcat_id, quality_id, unit_id, nums, useway, supplier_id, storage_id', 'numerical', 'integerOnly'=>true),
-			array('unit_package, used', 'numerical'),
+			array('unit_package, supplier_id,used',  'numerical'),
             array('expired', 'length', 'max'=>10),
 			array('quality_other', 'length', 'max'=>60),
 			array('producer, supplier_other', 'length', 'max'=>50),
