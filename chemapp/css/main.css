@@ -5,11 +5,20 @@ body
 	color: #555;
 	/*font: normal 10pt Arial,Helvetica,sans-serif;*/
 	background: url(2.jpg);
-	/*filter:alpha(opacity=50);
-	-moz-opacity:0.5;  
-      -khtml-opacity: 0.5;  */
-    opacity: 0.95; 		//透明
-	font: normal 13px Arial,Helvetica,sans-serif,"Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+	FILTER:progid:DXImageTransform.Microsoft.Alpha(opacity=95);
+	*FILTER: Alpha(opacity=95);
+	-o-opacity: 0.95;
+	-ms-opacity: 0.95;
+	-moz-opacity: 0.95;
+	-khtml-opacity: 0.95;
+	-webkit-opacity: 0.95;
+	opacity: 0.95;
+	font: normal 100% "Microsoft YaHei", "微软雅黑", "黑体", "宋体",Arial,Helvetica,sans-serif;
+}
+@media only screen and (min-width:1000px) {
+	html{
+		font-size: 87.5%;
+	}
 }
 
 #page
@@ -69,44 +78,51 @@ body
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat left top;
+	/* background:white url(bg.gif) repeat left top; */
+	background: #E0E0E0;
 }
 
 #mainmenu ul
 {
 	/* padding:6px 20px 5px 20px; */
-	margin:0px;
+	margin: 0; padding: 0;
+	text-align: center;
 }
 
 #mainmenu ul li
 {
 	/* display: inline; */
 	display: inline-block;
-	padding: 5px 10px;
+	padding: 0; margin: 0 0 0 -4px;
 	text-align: center;
 }
 
 #mainmenu ul li a
 {
-	color:#ffffff;
+	/* color:#ffffff; */
+	color: #333;
+	display: inline-block;
 	background-color:transparent;
-	font-size:13px;/*font-size:12px;*/
+	font-size: 100%;/*font-size:12px;*/
 	/* font-weight:bold; */
 	text-decoration:none;
-	padding: 5px 0px;
-	/*  */
+	padding: 14px 12px;
+	padding: 1em 0.9em;
+	margin: 0;
 	letter-spacing:1px;
-	padding: auto 20px;
+	border-right: 1px solid #F4F4F4;
 }
 
 #mainmenu ul li:hover, #mainmenu ul li.active
 {
-	background-color:#EFF4FA;
+	/* background-color:#EFF4FA; */
 }
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-	color: #6399cd;
+	/* color: #6399cd; */
 	text-decoration:none;
+	color: #fff;
+	background: #19B4EA;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
