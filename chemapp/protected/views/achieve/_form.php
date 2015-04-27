@@ -10,8 +10,9 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'achieve_id'); ?>
-		<?php echo $form->textField($model,'achieve_id',array('size'=>30,'maxlength'=>30)); ?>
+		<?php echo $form->labelEx($model,'purchasing_id'); ?>
+		<?php echo "<input type=text name=Achieve[purchasing_id] value=".$purchasing_id.">"; ?>
+		<?php echo $form->error($model,'purchasing_id'); ?>
 		<?php echo $form->error($model,'achieve_id'); ?>
 	</div>
 
@@ -40,7 +41,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? '提交' : '保存'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
