@@ -22,7 +22,7 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<h1 id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></h1>
 	</div><!-- header -->
 
 	<div id="mainmenu">
