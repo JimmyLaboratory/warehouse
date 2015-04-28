@@ -59,17 +59,14 @@ else
     </tr>
 <?php
 $achieve_info = json_decode($model->achieve_info,true);
-foreach($achieve_info as $info):
 ?>
     <tr >
-      <td width="211" valign="center" ><p ><?php echo $info['chem_name'] ?></p></td>
-      <td width="178" valign="center" ><p ><?php echo $info['quality'] ?></p></td>
-      <td width="178" valign="center" ><p ><?php echo $info['unit'] ?></p></td>
-      <td width="215" valign="center" ><p ><?php echo $info['nums'] ?></p></td>
+      <td width="211" valign="center" ><p ><?php echo $achieve_info['chem_name'] ?></p></td>
+      <td width="178" valign="center" ><p ><?php echo $achieve_info['quality'] ?></p></td>
+      <td width="178" valign="center" ><p ><?php echo $achieve_info['unit'] ?></p></td>
+      <td width="215" valign="center" ><p ><?php echo $achieve_info['nums'] ?></p></td>
     </tr>
-<?php
-endforeach;
-?>
+
     
   </table>
   

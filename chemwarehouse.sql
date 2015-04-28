@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-04-27 16:11:58
+-- Generation Time: 2015-04-28 05:31:53
 -- 服务器版本： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -33,16 +33,20 @@ CREATE TABLE IF NOT EXISTS `achieve` (
   `achiever` varchar(100) COLLATE utf8_bin NOT NULL,
   `achieve_info` text COLLATE utf8_bin NOT NULL,
   `note` text COLLATE utf8_bin NOT NULL,
-  `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL,
+  `status` int(10) NOT NULL,
+`id` int(11) NOT NULL COMMENT '主键,无他用'
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- 转存表中的数据 `achieve`
 --
 
-INSERT INTO `achieve` (`achieve_id`, `timestamp`, `achiever`, `achieve_info`, `note`, `purchasing_id`) VALUES
-('AR201211102353986', 1352562860, '小崔', '[{"purchasing_id":"SG2T201210281500193","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u79d1\\u7814","note":""},{"purchasing_id":"SG2T2012102816582","chem_name":"\\u785d\\u9178\\u7518\\u6cb9","quality":"\\u4f18\\u7ea7\\u7eaf\\uff08GR\\uff09","unit":"2\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u79d1\\u7814","note":""},{"purchasing_id":"SG2T201210281703541","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u6559\\u5b66","note":""},{"purchasing_id":"SG2T201211082309289","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u4e0d\\u77e5\\u9053","unit":"10\\u514b\\uff08g\\uff09","nums":"1","useway":"\\u6559\\u5b66","note":""},{"purchasing_id":"SG2T201211102058838","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5176\\u5b83","unit":"10\\u514b\\uff08g\\uff09","nums":"5","useway":"\\u6559\\u5b66","note":""}]', '无', ''),
-('', 272, 'asd', 'as', 'asd', 'SG2T201210281500193');
+INSERT INTO `achieve` (`achieve_id`, `timestamp`, `achiever`, `achieve_info`, `note`, `purchasing_id`, `status`, `id`) VALUES
+('AR201211102353986', 1352562860, '小崔', '{"purchasing_id":"SG2T201210281500193","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u79d1\\u7814","note":""},{"purchasing_id":"SG2T2012102816582","chem_name":"\\u785d\\u9178\\u7518\\u6cb9","quality":"\\u4f18\\u7ea7\\u7eaf\\uff08GR\\uff09","unit":"2\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u79d1\\u7814","note":""},{"purchasing_id":"SG2T201210281703541","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u6559\\u5b66","note":""},{"purchasing_id":"SG2T201211082309289","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u4e0d\\u77e5\\u9053","unit":"10\\u514b\\uff08g\\uff09","nums":"1","useway":"\\u6559\\u5b66","note":""},{"purchasing_id":"SG2T201211102058838","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5176\\u5b83","unit":"10\\u514b\\uff08g\\uff09","nums":"5","useway":"\\u6559\\u5b66","note":""}', '无', '321', 0, 1),
+('', 123, '333', '{"chem_name":"\\u6c22[\\u6db2\\u5316\\u7684]\\uff08\\u6db2\\u6c22\\uff09","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u514b\\uff08g\\uff09","nums":"10"}', '333', 'SG2T201504241744152', 0, 8),
+('', 1430187112, '32', '{"chem_name":"\\u6c22[\\u6db2\\u5316\\u7684]\\uff08\\u6db2\\u6c22\\uff09","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u514b\\uff08g\\uff09","nums":"10"}', '32', 'SG2T201504241744152', 0, 9),
+('', 1430188647, 'lkj', '{"chem_name":"\\u6c22[\\u6db2\\u5316\\u7684]\\uff08\\u6db2\\u6c22\\uff09","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u514b\\uff08g\\uff09","nums":"10"}', 'ljk', 'SG2T201504241744152', 0, 10);
 
 -- --------------------------------------------------------
 
@@ -4087,7 +4091,7 @@ INSERT INTO `purchasing` (`purchasing_id`, `chem_id`, `user_id`, `timestamp`, `s
 ('SG2T201210281703541', 4, 4, 1351415034, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 17:03:54\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 17:04:54\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u6709\\u6bd2\\u5316\\u5b66\\u54c1\\u4e0d\\u5141\\u8bb8\\u7533\\u8bf7"]', ''),
 ('SG2T201211082309289', 6, 4, 1352387404, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-08 23:10:04\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:00:51\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:01:13\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 15:01:40\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5c0f\\u660e\\u3011\\u4e8e2012-11-10 15:34:09\\u53d6\\u6d88\\u91c7\\u8d2d\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\u4f9b\\u5e94\\u5546\\u65e0\\u8d27"]', ''),
 ('SG2T201211102058838', 7, 4, 1352552355, 11, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-10 20:59:15\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:01:25\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 21:03:06\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:03:35\\u540c\\u610f\\u8be5\\u7533\\u8bf7"]', 'CG201212062245144'),
-('SG2T201504241744152', 8, 5, 1429892160, 4, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-24 18:16:00\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:45:59\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:bb\\u610f\\u89c1\\uff1abb","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:15:49\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:aaa \\u610f\\u89c1\\uff1aaaa"]', ''),
+('SG2T201504241744152', 8, 5, 1429892160, 6, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-24 18:16:00\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:45:59\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:bb\\u610f\\u89c1\\uff1abb","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:15:49\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:aaa \\u610f\\u89c1\\uff1aaaa"]', ''),
 ('SG2T201504251814456', 9, 5, 1429978571, 0, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-25 18:16:11\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:46:17\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:cc\\u610f\\u89c1\\uff1acc"]', ''),
 ('SG2T201504260504629', 12, 5, 1430017526, 2, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:06:19\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:ttt\\u610f\\u89c1\\uff1attt"]', ''),
 ('SG2T201504260327859', 11, 5, 1430011689, 1, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868"]', '');
@@ -4258,7 +4262,7 @@ INSERT INTO `using` (`using_id`, `chem_id`, `user_id`, `timestamp`, `applyuse`, 
 -- Indexes for table `achieve`
 --
 ALTER TABLE `achieve`
- ADD PRIMARY KEY (`purchasing_id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `chemcat`
@@ -4336,6 +4340,11 @@ ALTER TABLE `using`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `achieve`
+--
+ALTER TABLE `achieve`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键,无他用',AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `chemcat`
 --

@@ -199,4 +199,8 @@ class Chemlist extends CActiveRecord
                 if($id) return $options[$id];
                 else return $options;
         }
+        public static function getChemName($id){
+        	$model=self::findByPk($id);
+        	return $model->chem_name;
+        }
 }

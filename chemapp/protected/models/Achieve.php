@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'achieve':
  * @property string $achieve_id
  * @property integer $timestamp
+ * @property integer $status 				//备案状态
  * @property string $achiever
  * @property string $achieve_info
  * @property string $note
@@ -13,6 +14,9 @@
  */
 class Achieve extends CActiveRecord
 {
+	const STATUS_SENDING = 0 ; //备案中
+	const STATUS_SUCCESS = 1 ;//备案成功
+	const STATUS_FAILED = -1 ;//备案失败
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -23,6 +27,13 @@ class Achieve extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public static function getStatusInfo($id){
+        switch($id){
+            case self::STATUS_SENDING:return '备案中';
+            case self::STATUS_SUCCESS:return '备案成功';
+            case self::STATUS_FAILED:return '备案失败';
+        }
+    }
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,13 +50,13 @@ class Achieve extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array(' timestamp, achiever, achieve_info, note,purchasing_id', 'required'),
+			array(' timestamp, achiever, note,purchasing_id', 'required'),
 			array('timestamp', 'numerical', 'integerOnly'=>true),
-			array('achieve_id', 'length', 'max'=>30),
+			array('achieve_id,status', 'length', 'max'=>30),
 			array('achiever', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('achieve_id, timestamp, achiever, achieve_info, note', 'safe', 'on'=>'search'),
+			array('achieve_id, timestamp, achiever, note', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +83,7 @@ class Achieve extends CActiveRecord
 			'achiever' => '备案人',
 			'achieve_info' => '采购单信息',
 			'note' => '备注',
+			'status'=>'状态',
 		);
 	}
 
@@ -92,6 +104,15 @@ class Achieve extends CActiveRecord
 		$criteria->compare('achieve_info',$this->achieve_info,true);
 		$criteria->compare('note',$this->note,true);
 
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	public function searchByStatus($id)		//通过备案状态来查找记录
+	{
+		$criteria=new CDbCriteria;
+		$criteria->compare('status',$id,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
