@@ -52,8 +52,20 @@ $('.search-form form').submit(function(){
 		'pics',
 		*/
 		array(
+			'header'=>'操作',
 			'class'=>'CButtonColumn',
-			'template'=>'{update}{delete}'
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{update}{delete}',
+			
+			 'buttons'=>array(
+                'update' => array(
+                    'label'=>'更新',
+                ),
+                'delete'=>array(
+                    'label'=>'删除',
+                )
+            ),
 		),
 	),
 )); ?>

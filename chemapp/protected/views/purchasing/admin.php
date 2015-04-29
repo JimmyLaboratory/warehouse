@@ -94,6 +94,8 @@ $('.search-form form').submit(function(){
             'header'=>'操作',
             'class'=>'CButtonColumn',
             'deleteConfirmation'=>"确定要终止这个采购申请吗?",
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
             'template'=>'{update}{delete}',
             'buttons'=>array(
                 'update' => array(

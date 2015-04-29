@@ -59,12 +59,11 @@ function getName($parent_id){
 			'template'=>' {delete}{update}',
 			'buttons'=>array(
 				'update'=>array(
+				'label'=>'更正',
 					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
-				)
-			),
-			
-			'buttons'=>array(
+				),
 				'delete'=>array(
+				'label'=>'删除',
 					'visible' => '$data->primaryKey>100',
 				)
 			)
