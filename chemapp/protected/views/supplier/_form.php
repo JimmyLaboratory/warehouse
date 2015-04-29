@@ -16,6 +16,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'colleage_id'); ?>
+		<?php echo $form->textField($model,'colleage_id',array('size'=>60,'maxlength'=>200)); ?>
+		<?php echo $form->error($model,'colleage_id'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'website'); ?>
 		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>200)); ?>
 		<?php echo $form->error($model,'website'); ?>
