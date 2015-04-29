@@ -60,6 +60,13 @@ function getName($parent_id){
 					'label'=>'修改药品/分类名',
 					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
 				)
+			),
+			
+			'buttons'=>array(
+				'delete'=>array(
+					'label'=>'删除',
+					'visible' => '$data->primaryKey>100',
+				)
 			)
 		)
 	)
