@@ -54,17 +54,17 @@ function getName($parent_id){
 		array(
 			'class'=>'CButtonColumn',
 			'header'=>'可选操作',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
 			'template'=>' {delete}{update}',
 			'buttons'=>array(
 				'update'=>array(
-					'label'=>'修改药品/分类名',
 					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
 				)
 			),
 			
 			'buttons'=>array(
 				'delete'=>array(
-					'label'=>'删除',
 					'visible' => '$data->primaryKey>100',
 				)
 			)
