@@ -67,11 +67,7 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
-        array(
-            'class'=>'CCheckBoxColumn',
-            'selectableRows'=>'10',
-            'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
-        ),
+
 		//'purchasing_id',
         array(
             'class'=>'CLinkColumn',
