@@ -67,11 +67,7 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
-        array(
-            'class'=>'CCheckBoxColumn',
-            'selectableRows'=>'10',
-            'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
-        ),
+
 		//'purchasing_id',
         array(
             'class'=>'CLinkColumn',
@@ -98,6 +94,8 @@ $('.search-form form').submit(function(){
             'header'=>'操作',
             'class'=>'CButtonColumn',
             'deleteConfirmation'=>"确定要终止这个采购申请吗?",
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
             'template'=>'{update}{delete}',
             'buttons'=>array(
                 'update' => array(

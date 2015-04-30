@@ -42,7 +42,7 @@ class Supplier extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('supplier_name, website, email, contact, tel, person, personaltel, note', 'required'),
+			array('supplier_name, website, email, contact, tel, person, personaltel, note,colleage_id', 'required'),
 			array('supplier_name', 'length', 'max'=>60),
 			array('website', 'length', 'max'=>200),
 			array('email', 'length', 'max'=>100),
@@ -71,7 +71,8 @@ class Supplier extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'supplier_id' => '供应商ID',
+			//'supplier_id' => '所属学院号',
+			'colleage_id' =>'所属学院号',
 			'supplier_name' => '供应商名称',
 			'website' => '网站',
 			'email' => '邮箱',
@@ -94,7 +95,8 @@ class Supplier extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('supplier_id',$this->supplier_id);
+		//$criteria->compare('supplier_id',$this->supplier_id);
+		//$criteria->compare('colleage_id',$this->colleage_name,true);
 		$criteria->compare('supplier_name',$this->supplier_name,true);
 		$criteria->compare('website',$this->website,true);
 		$criteria->compare('email',$this->email,true);

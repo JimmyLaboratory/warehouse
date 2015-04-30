@@ -5,10 +5,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'开始备案','url'=>array('/achieve/begin')),
-	array('label'=>'正在备案'),
-	array('label'=>'完成备案'),
-	array('label'=>'备案失败'),
+	array('label'=>'开始备案','url'=>array('/achieve/begin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL)),
+	array('label'=>'正在备案','url'=>array('/achieve/admin','status'=>Achieve::STATUS_SENDING)),
+	array('label'=>'完成备案','url'=>array('/achieve/admin','status'=>Achieve::STATUS_SUCCESS)),
+	array('label'=>'备案失败','url'=>array('/achieve/admin','status'=>Achieve::STATUS_FAILED)),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -25,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>备案单列表</h1>
+<h1>审批通过可备案申购列表</h1>
 
 <?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">

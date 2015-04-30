@@ -27,7 +27,7 @@ class AchieveController extends Controller
 	{
 		return array(
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','view','print','begin','create'),
+				'actions'=>array('admin','view','print','begin','create','update'),
 				'roles'=>array('school'),
 			),
 			array('deny',  // deny all users
@@ -50,7 +50,7 @@ class AchieveController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actionAdmin()			//这个主要查看各个状态的备案
 	{
 		$model=new Achieve('search');
 		$model->unsetAttributes();  // clear any default values
@@ -58,11 +58,11 @@ class AchieveController extends Controller
 			$model->attributes=$_GET['Achieve'];
 
 		$this->render('admin',array(
-			'model'=>$model,
+			'model'=>$model,'status'=>isset($_GET['status'])? $_GET['status']:Achieve::STATUS_SENDING
 		));
 	}
 
-	public function actionBegin()
+	public function actionBegin()			//这个是"开始备案"的控制器,从采购类那把"全审通过的申请"拿来显示
 	{
 		$model=new Purchasing('search');
 		$model->unsetAttributes();  // clear any default values
@@ -74,27 +74,62 @@ class AchieveController extends Controller
 		));
 	}
 
-	public function actionCreate()
+	public function actionCreate()			//新建备案,参数为采购单ID,填入备案信息,提交
 	{
 		$model=new Achieve('search');
-		$model->unsetAttributes();  // clear any default values
+		$purchasing=Purchasing::model()->findByPk($_GET['pid']);	//获得采购单对象
+		$chemlist=Chemlist::model()->findByPk($purchasing->chem_id);	//获得化学品对象
+
+		$info['chem_name']=$chemlist->chem_name;						//整理药品信息来打印出来
+		//$info['quality']=$chemlist->chem_quality;						可参考PurchasingController.php
+		$info['quality']=$chemlist->quality_id != -1 ? $chemlist->quality->quality_name : $chemlist->quality_other;
+		//$info['unit']=$chemlist->unit;						//中的actionToAchieve
+		$info['unit']=$chemlist->unit_package.$chemlist->unit->unit_name;
+		$info['nums']=$chemlist->nums;
+
 		if(isset($_POST['Achieve'])){
 			$model->attributes=$_POST['Achieve'];
-			if($model->save())
-				$this->redirect(array('admin'));//,'id'=>$model->purchasing_id));
+			$model->achieve_info = json_encode($info);
+			$model->timestamp=time();
+			if($purchasing===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+			if($model->save()){
+				$purchasing->status=Purchasing::STATUS_ARCHIVES;
+				$purchasing->save();
+				$this->redirect(array('print','id'=>$model->id));//提交完成后直接转到打印页面
+			}
 		}
+		$model->purchasing_id=$purchasing->purchasing_id;
+		
 		$this->render('create',array(
-			'model'=>$model,'purchasing_id'=>$_GET['pid'],
+			'model'=>$model,'purchasing'=>$chemlist
 		));
 	}
         
-    public function actionPrint($id){
-            $this->layout = '//layouts/column0';
-            $this->render('print',array(
+    public function actionPrint($id){			//打印备案单
+        $this->layout = '//layouts/column0';
+        $this->render('print',array(
 		'model'=>$this->loadModel($id),
 	));
     }
 
+	public function actionUpdate($id)				//修改备案中的备案单,成功则添加备案号,或者改变状态为备案失败
+	{
+		$model=$this->loadModel($id);
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Achieve']))
+		{
+			$model->attributes=$_POST['Achieve'];
+			if($model->save())
+				$this->redirect(array('admin'));
+		}
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

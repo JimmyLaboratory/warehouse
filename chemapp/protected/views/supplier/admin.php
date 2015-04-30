@@ -37,7 +37,7 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		//'supplier_id',
+		'supplier_id',
 		'supplier_name',
 		'website',
 		'email',
@@ -49,6 +49,25 @@ $('.search-form form').submit(function(){
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'header'=>'可 选 操 作',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'viewButtonImageUrl'=>array('style'=>'display:none'), 
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{view} {delete} {update}',
+			'buttons'=>array(
+			
+				'update'=>array(
+				'label'=>'改',
+				),
+				
+				'view'=>array(
+				'label'=>'查',
+				),
+				
+				'delete'=>array(
+				'label'=>'删',
+				)
+			)
 		),
 	),
 )); ?>
