@@ -33,7 +33,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
+	/* border-top: 3px solid #C9E0ED; */
 }
 
 #content
@@ -76,7 +76,7 @@ body
 	background-size: 80%; */
 	text-indent: -9999px;
 	margin: 0;
-	height: 165px;
+	height: 106px;
 	background: #c1eafe url('header.jpg') center no-repeat;
 }
 
