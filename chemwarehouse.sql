@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-04-29 17:05:02
--- 服务器版本： 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: 2015-05-12 14:28:08
+-- 服务器版本： 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `chemwarehouse`
 --
+DROP DATABASE `chemwarehouse`;
 
 -- --------------------------------------------------------
 
@@ -26,27 +27,32 @@ SET time_zone = "+00:00";
 -- 表的结构 `achieve`
 --
 
-DROP TABLE IF EXISTS `achieve`;
 CREATE TABLE IF NOT EXISTS `achieve` (
+  `id` int(11) NOT NULL COMMENT '主键,无他用',
   `achieve_id` varchar(30) COLLATE utf8_bin NOT NULL,
   `timestamp` int(10) NOT NULL,
   `achiever` varchar(100) COLLATE utf8_bin NOT NULL,
+  `contractID` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '购销合同号（选填）',
+  `purpose` text COLLATE utf8_bin NOT NULL COMMENT '购买用途',
   `achieve_info` text COLLATE utf8_bin NOT NULL,
   `note` text COLLATE utf8_bin NOT NULL,
   `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL,
   `status` int(10) NOT NULL,
-`id` int(11) NOT NULL COMMENT '主键,无他用'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `certificate` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '证书号',
+  `document` varchar(30) COLLATE utf8_bin DEFAULT NULL COMMENT '公文号',
+  `exp_date` int(10) DEFAULT NULL COMMENT '有效期',
+  `license_issuing_authority` text COLLATE utf8_bin COMMENT '发证机关'
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- 转存表中的数据 `achieve`
 --
 
-INSERT INTO `achieve` (`achieve_id`, `timestamp`, `achiever`, `achieve_info`, `note`, `purchasing_id`, `status`, `id`) VALUES
-('AR201211102353986', 1352562860, '小崔', '{"purchasing_id":"SG2T201210281500193","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u79d1\\u7814","note":""},{"purchasing_id":"SG2T2012102816582","chem_name":"\\u785d\\u9178\\u7518\\u6cb9","quality":"\\u4f18\\u7ea7\\u7eaf\\uff08GR\\uff09","unit":"2\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u79d1\\u7814","note":""},{"purchasing_id":"SG2T201210281703541","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u5343\\u514b\\uff08kg\\uff09","nums":"1","useway":"\\u6559\\u5b66","note":""},{"purchasing_id":"SG2T201211082309289","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u4e0d\\u77e5\\u9053","unit":"10\\u514b\\uff08g\\uff09","nums":"1","useway":"\\u6559\\u5b66","note":""},{"purchasing_id":"SG2T201211102058838","chem_name":"\\u6c30\\u5316\\u94a0","quality":"\\u5176\\u5b83","unit":"10\\u514b\\uff08g\\uff09","nums":"5","useway":"\\u6559\\u5b66","note":""}', '无', '321', 0, 1),
-('', 123, '333', '{"chem_name":"\\u6c22[\\u6db2\\u5316\\u7684]\\uff08\\u6db2\\u6c22\\uff09","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u514b\\uff08g\\uff09","nums":"10"}', '333', 'SG2T201504241744152', 0, 8),
-('', 1430187112, '32', '{"chem_name":"\\u6c22[\\u6db2\\u5316\\u7684]\\uff08\\u6db2\\u6c22\\uff09","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u514b\\uff08g\\uff09","nums":"10"}', '32', 'SG2T201504241744152', 0, 9),
-('', 1430188647, 'lkj', '{"chem_name":"\\u6c22[\\u6db2\\u5316\\u7684]\\uff08\\u6db2\\u6c22\\uff09","quality":"\\u5206\\u6790\\u7eaf\\uff08AR\\uff09","unit":"10\\u514b\\uff08g\\uff09","nums":"10"}', 'ljk', 'SG2T201504241744152', 0, 10);
+INSERT INTO `achieve` (`id`, `achieve_id`, `timestamp`, `achiever`, `contractID`, `purpose`, `achieve_info`, `note`, `purchasing_id`, `status`, `certificate`, `document`, `exp_date`, `license_issuing_authority`) VALUES
+(19, '', 1431411981, '1', '', '1', '', '', 'SG2T201504241744152', -1, 'null', 'null', 0, 'null'),
+(20, '', 1431412268, '2', '', '2', '', '', 'SG2T201504241744152', 1, '2', '2', 2015, '2'),
+(21, '', 1431412297, '3', '', '3', '', '', 'SG2T201504241744152', 0, 'null', 'null', 0, 'null'),
+(22, '', 1431413340, '4', '4', '4', '', '4', 'SG2T201504241744152', 0, 'null', 'null', 0, 'null');
 
 -- --------------------------------------------------------
 
@@ -54,9 +60,8 @@ INSERT INTO `achieve` (`achieve_id`, `timestamp`, `achiever`, `achieve_info`, `n
 -- 表的结构 `chemcat`
 --
 
-DROP TABLE IF EXISTS `chemcat`;
 CREATE TABLE IF NOT EXISTS `chemcat` (
-`cat_id` int(5) NOT NULL COMMENT '分类ID',
+  `cat_id` int(5) NOT NULL COMMENT '分类ID',
   `chemcat_name` varchar(400) COLLATE utf8_bin NOT NULL COMMENT '分类名称',
   `parent_id` int(5) NOT NULL COMMENT '父级分类ID'
 ) ENGINE=MyISAM AUTO_INCREMENT=618791023 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='化学品分类';
@@ -1042,8 +1047,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (33568, '二丙硫醚（正丙硫醚;二丙基硫;硫化二正丙基\r）', 33),
 (33569, '乙二醇甲醚（2-甲氧基乙醇;甲基溶纤剂\r）', 33),
 (33569597, '乙二醇乙醚（2-乙氧基乙醇;乙基溶纤剂\r）', 33),
-(33569435, '乙二醇二乙醚（1,2-二乙氧基乙烷;二乙基溶纤剂\r）', 33);
-INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
+(33569435, '乙二醇二乙醚（1,2-二乙氧基乙烷;二乙基溶纤剂\r）', 33),
 (33569776, '乙二醇异丙醚（2-异丙氧基乙醇\r）', 33),
 (33569879, '丙二醇乙醚（1-乙氧基-2-丙醇\r）', 33),
 (33570, '乙酸乙二醇甲醚（2-甲氧基乙酸乙酯;乙酸甲基溶纤剂;乙二醇甲醚乙酸酯\r）', 33),
@@ -1725,7 +1729,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (51520101, '重铬酸银（\r）', 51),
 (51522, '硝酸镁（\r）', 51),
 (5152216, '硝酸铝（\r）', 51),
-(51522809, '硝酸铬（\r）', 51),
+(51522809, '硝酸铬（\r）', 51);
+INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (51522728, '硝酸锰（硝酸亚锰\r）', 51),
 (51522758, '硝酸铁（硝酸高铁\r）', 51),
 (51522470, '硝酸镍（硝酸亚镍\r）', 51),
@@ -1926,8 +1931,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (52093, '过氧化二碳酸二(十八烷基)酯[含量≤87%,含有十八烷醇]（过氧化二(十八烷基)二碳酸酯;过氧化二碳酸二硬脂酰酯\r）', 52),
 (52094, '过氧化二碳酸二环己酯[工业纯]（过氧化二环己基二碳酸酯\r）', 52),
 (52094643, '过氧化二碳酸二环己酯[含量≤91%,含水]（\r）', 52),
-(52095, '过氧化二碳酸-二-(4-叔丁基环己基)酯[工业纯]（过氧化-二-(4-叔丁基环己基)二碳酸酯\r）', 52);
-INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
+(52095, '过氧化二碳酸-二-(4-叔丁基环己基)酯[工业纯]（过氧化-二-(4-叔丁基环己基)二碳酸酯\r）', 52),
 (52095143, '过氧化二碳酸-二-(4-叔丁基环己基)酯[含量≤42%,在水中均匀分布]（\r）', 52),
 (52096, '过氧化二碳酸二苯甲酯[含量≤87%,含水]（过氧化苄基二碳酸酯\r）', 52),
 (52097, '过氧化二碳酸-二-(2-苯氧基乙基)酯[工业纯]（过氧化-二-(2-苯氧基乙基)二碳酸酯\r）', 52),
@@ -2839,8 +2843,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (61758, 'N-苯(基)乙酰胺（乙酰苯胺;退热冰\r）', 61),
 (61759, '苄胺（苯甲胺\r）', 61),
 (61760, 'N-苄基-N-乙基苯胺（N-乙基-N-苄基苯胺;苄乙基苯胺\r）', 61),
-(61761, 'N-乙基苄基甲苯胺（\r）', 61);
-INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
+(61761, 'N-乙基苄基甲苯胺（\r）', 61),
 (61762, '2-氟苯胺（邻氟苯胺;邻氨基氟(化)苯\r）', 61),
 (61762240, '3-氟苯胺（间氟苯胺;间氨基氟(化)苯\r）', 61),
 (61762744, '4-氟苯胺（对氟苯胺;对氨基氟(化)苯\r）', 61),
@@ -3130,7 +3133,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (6187458, '氯甲硫磷可湿性粉剂、颗粒剂（\r）', 61),
 (61874844, '果虫磷可湿性粉剂、颗粒剂（\r）', 61),
 (618746, '治线磷[含量＜5%]（治磷灵；硫磷嗪\r）', 61),
-(61874566, '乙基溴硫磷可湿性粉剂、颗粒剂[含量＞10%]（\r）', 61),
+(61874566, '乙基溴硫磷可湿性粉剂、颗粒剂[含量＞10%]（\r）', 61);
+INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (61874210, '除线磷[含量＞50%]（\r）', 61),
 (61874174, '砜吸磷[含量2%～90%]（\r）', 61),
 (6187487, '三唑磷粉剂（\r）', 61),
@@ -3644,8 +3648,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 (81056, '三溴化磷（\r）', 81),
 (81057, '五溴化磷（\r）', 81),
 (81058, '三溴化铝[无水]（溴化铝\r）', 81),
-(81059, '三溴化硼（\r）', 81);
-INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
+(81059, '三溴化硼（\r）', 81),
 (81060, '二水合三氟化硼（三氟化硼水合物\r）', 81),
 (81061, '五氟化锑（\r）', 81),
 (81062, '硫酸铅[含游离酸＞3%]（\r）', 81),
@@ -3936,9 +3939,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`) VALUES
 -- 表的结构 `chemlist`
 --
 
-DROP TABLE IF EXISTS `chemlist`;
 CREATE TABLE IF NOT EXISTS `chemlist` (
-`chem_id` int(8) NOT NULL COMMENT '化学品ID',
+  `chem_id` int(8) NOT NULL COMMENT '化学品ID',
   `status` tinyint(2) NOT NULL COMMENT '该品状态',
   `user_id` int(5) NOT NULL COMMENT '用户ID',
   `chemcat_id` int(5) NOT NULL COMMENT '分类ID',
@@ -3990,9 +3992,8 @@ INSERT INTO `chemlist` (`chem_id`, `status`, `user_id`, `chemcat_id`, `chem_name
 -- 表的结构 `department`
 --
 
-DROP TABLE IF EXISTS `department`;
 CREATE TABLE IF NOT EXISTS `department` (
-`department_id` int(5) NOT NULL COMMENT '学院ID',
+  `department_id` int(5) NOT NULL COMMENT '学院ID',
   `department_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '学院名称'
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -4014,9 +4015,8 @@ INSERT INTO `department` (`department_id`, `department_name`) VALUES
 -- 表的结构 `instorage`
 --
 
-DROP TABLE IF EXISTS `instorage`;
 CREATE TABLE IF NOT EXISTS `instorage` (
-`instorage_id` int(10) NOT NULL COMMENT '入库ID',
+  `instorage_id` int(10) NOT NULL COMMENT '入库ID',
   `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '采购申请单ID',
   `user_id` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '入库操作人ID',
   `verifydate` date NOT NULL COMMENT '验收日期',
@@ -4045,9 +4045,8 @@ INSERT INTO `instorage` (`instorage_id`, `purchasing_id`, `user_id`, `verifydate
 -- 表的结构 `outstorage`
 --
 
-DROP TABLE IF EXISTS `outstorage`;
 CREATE TABLE IF NOT EXISTS `outstorage` (
-`outstorage_id` int(10) NOT NULL COMMENT '出库ID',
+  `outstorage_id` int(10) NOT NULL COMMENT '出库ID',
   `using_id` varchar(30) COLLATE utf8_bin NOT NULL,
   `apply_user_id` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '申请人用户ID',
   `duty_user_id` int(8) NOT NULL COMMENT '发放人用户ID',
@@ -4071,7 +4070,6 @@ INSERT INTO `outstorage` (`outstorage_id`, `using_id`, `apply_user_id`, `duty_us
 -- 表的结构 `purchasing`
 --
 
-DROP TABLE IF EXISTS `purchasing`;
 CREATE TABLE IF NOT EXISTS `purchasing` (
   `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '采购单编号',
   `chem_id` int(8) NOT NULL COMMENT '化学品编号',
@@ -4092,7 +4090,7 @@ INSERT INTO `purchasing` (`purchasing_id`, `chem_id`, `user_id`, `timestamp`, `s
 ('SG2T201210281703541', 4, 4, 1351415034, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 17:03:54\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 17:04:54\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u6709\\u6bd2\\u5316\\u5b66\\u54c1\\u4e0d\\u5141\\u8bb8\\u7533\\u8bf7"]', ''),
 ('SG2T201211082309289', 6, 4, 1352387404, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-08 23:10:04\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:00:51\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:01:13\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 15:01:40\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5c0f\\u660e\\u3011\\u4e8e2012-11-10 15:34:09\\u53d6\\u6d88\\u91c7\\u8d2d\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\u4f9b\\u5e94\\u5546\\u65e0\\u8d27"]', ''),
 ('SG2T201211102058838', 7, 4, 1352552355, 11, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-10 20:59:15\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:01:25\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 21:03:06\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:03:35\\u540c\\u610f\\u8be5\\u7533\\u8bf7"]', 'CG201212062245144'),
-('SG2T201504241744152', 8, 5, 1429892160, 6, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-24 18:16:00\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:45:59\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:bb\\u610f\\u89c1\\uff1abb","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:15:49\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:aaa \\u610f\\u89c1\\uff1aaaa"]', ''),
+('SG2T201504241744152', 8, 5, 1429892160, 5, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-24 18:16:00\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:45:59\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:bb\\u610f\\u89c1\\uff1abb","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:15:49\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:aaa \\u610f\\u89c1\\uff1aaaa"]', ''),
 ('SG2T201504251814456', 9, 5, 1429978571, 0, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-25 18:16:11\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:46:17\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:cc\\u610f\\u89c1\\uff1acc"]', ''),
 ('SG2T201504260504629', 12, 5, 1430017526, 2, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:06:19\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:ttt\\u610f\\u89c1\\uff1attt"]', ''),
 ('SG2T201504260327859', 11, 5, 1430011689, 1, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868"]', ''),
@@ -4104,9 +4102,8 @@ INSERT INTO `purchasing` (`purchasing_id`, `chem_id`, `user_id`, `timestamp`, `s
 -- 表的结构 `quality`
 --
 
-DROP TABLE IF EXISTS `quality`;
 CREATE TABLE IF NOT EXISTS `quality` (
-`quality_id` int(5) NOT NULL COMMENT '规格ID',
+  `quality_id` int(5) NOT NULL COMMENT '规格ID',
   `quality_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '规格名称'
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -4124,9 +4121,8 @@ INSERT INTO `quality` (`quality_id`, `quality_name`) VALUES
 -- 表的结构 `storage`
 --
 
-DROP TABLE IF EXISTS `storage`;
 CREATE TABLE IF NOT EXISTS `storage` (
-`storage_id` int(5) NOT NULL COMMENT '仓库ID',
+  `storage_id` int(5) NOT NULL COMMENT '仓库ID',
   `storage_name` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '仓库名称',
   `note` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '备注',
   `parent_id` int(5) NOT NULL DEFAULT '0' COMMENT '父仓库（用存保存货架信息）',
@@ -4151,9 +4147,8 @@ INSERT INTO `storage` (`storage_id`, `storage_name`, `note`, `parent_id`, `test`
 -- 表的结构 `supplier`
 --
 
-DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE IF NOT EXISTS `supplier` (
-`supplier_id` int(6) NOT NULL COMMENT '供应商ID',
+  `supplier_id` int(6) NOT NULL COMMENT '供应商ID',
   `supplier_name` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '供应商名称',
   `website` varchar(200) COLLATE utf8_bin NOT NULL COMMENT '网站',
   `email` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '邮箱',
@@ -4177,9 +4172,8 @@ INSERT INTO `supplier` (`supplier_id`, `supplier_name`, `website`, `email`, `con
 -- 表的结构 `unit`
 --
 
-DROP TABLE IF EXISTS `unit`;
 CREATE TABLE IF NOT EXISTS `unit` (
-`unit_id` int(5) NOT NULL COMMENT '商品单位ID',
+  `unit_id` int(5) NOT NULL COMMENT '商品单位ID',
   `unit_name` varchar(25) COLLATE utf8_bin NOT NULL COMMENT '商品单位名称'
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -4197,9 +4191,8 @@ INSERT INTO `unit` (`unit_id`, `unit_name`) VALUES
 -- 表的结构 `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-`user_id` int(10) unsigned NOT NULL COMMENT '用户ID',
+  `user_id` int(10) unsigned NOT NULL COMMENT '用户ID',
   `user_name` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '用户名',
   `password` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '密码（HASH）',
   `realname` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '真实姓名',
@@ -4231,7 +4224,6 @@ INSERT INTO `user` (`user_id`, `user_name`, `password`, `realname`, `user_role`,
 -- 表的结构 `using`
 --
 
-DROP TABLE IF EXISTS `using`;
 CREATE TABLE IF NOT EXISTS `using` (
   `using_id` varchar(30) NOT NULL COMMENT '使用单编号',
   `chem_id` int(6) NOT NULL COMMENT '化学品编号',
@@ -4264,79 +4256,79 @@ INSERT INTO `using` (`using_id`, `chem_id`, `user_id`, `timestamp`, `applyuse`, 
 -- Indexes for table `achieve`
 --
 ALTER TABLE `achieve`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `chemcat`
 --
 ALTER TABLE `chemcat`
- ADD PRIMARY KEY (`cat_id`);
+  ADD PRIMARY KEY (`cat_id`);
 
 --
 -- Indexes for table `chemlist`
 --
 ALTER TABLE `chemlist`
- ADD PRIMARY KEY (`chem_id`);
+  ADD PRIMARY KEY (`chem_id`);
 
 --
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
- ADD PRIMARY KEY (`department_id`);
+  ADD PRIMARY KEY (`department_id`);
 
 --
 -- Indexes for table `instorage`
 --
 ALTER TABLE `instorage`
- ADD PRIMARY KEY (`instorage_id`);
+  ADD PRIMARY KEY (`instorage_id`);
 
 --
 -- Indexes for table `outstorage`
 --
 ALTER TABLE `outstorage`
- ADD PRIMARY KEY (`outstorage_id`);
+  ADD PRIMARY KEY (`outstorage_id`);
 
 --
 -- Indexes for table `purchasing`
 --
 ALTER TABLE `purchasing`
- ADD PRIMARY KEY (`purchasing_id`), ADD KEY `purchasing_no` (`purchasing_no`);
+  ADD PRIMARY KEY (`purchasing_id`), ADD KEY `purchasing_no` (`purchasing_no`);
 
 --
 -- Indexes for table `quality`
 --
 ALTER TABLE `quality`
- ADD PRIMARY KEY (`quality_id`);
+  ADD PRIMARY KEY (`quality_id`);
 
 --
 -- Indexes for table `storage`
 --
 ALTER TABLE `storage`
- ADD PRIMARY KEY (`storage_id`);
+  ADD PRIMARY KEY (`storage_id`);
 
 --
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
- ADD PRIMARY KEY (`supplier_id`);
+  ADD PRIMARY KEY (`supplier_id`);
 
 --
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
- ADD PRIMARY KEY (`unit_id`);
+  ADD PRIMARY KEY (`unit_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`user_id`), ADD UNIQUE KEY `user_name` (`user_name`);
+  ADD PRIMARY KEY (`user_id`), ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
 -- Indexes for table `using`
 --
 ALTER TABLE `using`
- ADD PRIMARY KEY (`using_id`);
+  ADD PRIMARY KEY (`using_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -4346,57 +4338,57 @@ ALTER TABLE `using`
 -- AUTO_INCREMENT for table `achieve`
 --
 ALTER TABLE `achieve`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键,无他用',AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键,无他用',AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `chemcat`
 --
 ALTER TABLE `chemcat`
-MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '分类ID',AUTO_INCREMENT=618791023;
+  MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '分类ID',AUTO_INCREMENT=618791023;
 --
 -- AUTO_INCREMENT for table `chemlist`
 --
 ALTER TABLE `chemlist`
-MODIFY `chem_id` int(8) NOT NULL AUTO_INCREMENT COMMENT '化学品ID',AUTO_INCREMENT=14;
+  MODIFY `chem_id` int(8) NOT NULL AUTO_INCREMENT COMMENT '化学品ID',AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-MODIFY `department_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '学院ID',AUTO_INCREMENT=7;
+  MODIFY `department_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '学院ID',AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `instorage`
 --
 ALTER TABLE `instorage`
-MODIFY `instorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '入库ID',AUTO_INCREMENT=3;
+  MODIFY `instorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '入库ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `outstorage`
 --
 ALTER TABLE `outstorage`
-MODIFY `outstorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '出库ID',AUTO_INCREMENT=5;
+  MODIFY `outstorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '出库ID',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `quality`
 --
 ALTER TABLE `quality`
-MODIFY `quality_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '规格ID',AUTO_INCREMENT=3;
+  MODIFY `quality_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '规格ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-MODIFY `storage_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '仓库ID',AUTO_INCREMENT=17;
+  MODIFY `storage_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '仓库ID',AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-MODIFY `supplier_id` int(6) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',AUTO_INCREMENT=2;
+  MODIFY `supplier_id` int(6) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-MODIFY `unit_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '商品单位ID',AUTO_INCREMENT=3;
+  MODIFY `unit_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '商品单位ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=6;
+  MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

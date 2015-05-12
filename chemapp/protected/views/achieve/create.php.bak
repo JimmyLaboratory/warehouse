@@ -102,5 +102,4 @@ $this->menu=array(
 	)); ?>
 	<script type="text/javascript">$('#yw1').hide(0)</script>
 <br></br>
-<h2>备案单信息</h2>
 <?php echo $this->renderPartial('create_form', array('model'=>$model,'purchasing'=>$purchasing)); ?>

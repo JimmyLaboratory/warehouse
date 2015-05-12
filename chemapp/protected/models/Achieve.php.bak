@@ -116,7 +116,7 @@ class Achieve extends CActiveRecord
 	public function searchByStatus($id)		//TJ:通过备案状态来查找记录
 	{
 		$criteria=new CDbCriteria;
-		$criteria->compare('status',$id);
+		$criteria->compare('status',$id,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

@@ -72,7 +72,7 @@ else
 		<td width="178" valign="center" ><p ><?php echo '购销合同号'; ?></p></td>
 		<td width="178" valign="center" ><p ><?php echo $model->contractID; ?></p></td>
 	</tr>
-
+	<tr > </tr>
 	<tr >
 		<td width="211" valign="center" ><p ><?php echo '证书号'; ?></p></td>
 		<td width="178" valign="center" ><p ><?php echo $model->certificate; ?></p></td>
