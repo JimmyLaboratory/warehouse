@@ -98,6 +98,9 @@ class ChemcatController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		
+		$level=isset($_GET['level'])? $_GET['level']+1:1;
+		
 		$model=new Chemcat('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_POST['Chemcat']))		//这是提交新的分类为数据库添加记录
@@ -110,7 +113,7 @@ class ChemcatController extends Controller
 			$model->attributes=$_GET['Chemcat'];
 
 		$this->render('admin',array(
-			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0' ,
+			'model'=>$model,'cur_parent_id'=>isset($_GET['cur_parent_id'])? $_GET['cur_parent_id']:'0' ,'level'=>$level
 		));
 	}
 

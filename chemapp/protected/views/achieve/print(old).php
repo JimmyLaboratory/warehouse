@@ -3,7 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>危险品备案单</title>
-<!-- 备案单打印表格		LTJ修改于2015年5月12日14:58:57 -->
 <style type="text/css">
 body{
 	font-size: 16px;
@@ -14,12 +13,12 @@ function preview(oper)
 {
 if (oper < 10)
 {
-	bdhtml=window.document.body.innerHTML;					//获取当前页的html代码
-	sprnstr="<!--startprint"+oper+"-->";								//设置打印开始区域
-	eprnstr="<!--endprint"+oper+"-->";									//设置打印结束区域
-	prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18);	//从开始代码向后取html
+	bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+	sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+	eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+	prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
  
-	prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));	//从结束代码向前取html
+	prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
 	window.document.body.innerHTML=prnhtml;
 	window.print();
 	window.document.body.innerHTML=bdhtml;
@@ -58,28 +57,17 @@ else
       <td width="178" valign="center" ><p >包装 </p></td>
       <td width="215" valign="center" ><p >申购数量 </p></td>
     </tr>
-
+<?php
+$achieve_info = json_decode($model->achieve_info,true);
+?>
     <tr >
-      <td width="211" valign="center" ><p ><?php echo $model->purchasing->chemlist->chem_name; ?></p></td>
-      <td width="178" valign="center" ><p ><?php echo $model->purchasing->chemlist->quality->quality_name; ?></p></td>
-      <td width="178" valign="center" ><p ><?php echo $model->purchasing->chemlist->unit->unit_name; ?></p></td>
-      <td width="215" valign="center" ><p ><?php echo $model->purchasing->chemlist->nums; ?></p></td>
+      <td width="211" valign="center" ><p ><?php echo $achieve_info['chem_name'] ?></p></td>
+      <td width="178" valign="center" ><p ><?php echo $achieve_info['quality'] ?></p></td>
+      <td width="178" valign="center" ><p ><?php echo $achieve_info['unit'] ?></p></td>
+      <td width="215" valign="center" ><p ><?php echo $achieve_info['nums'] ?></p></td>
     </tr>
 
-	<tr >
-		<td width="211" valign="center" ><p ><?php echo '购买用途'; ?></p></td>
-		<td width="178" valign="center" ><p ><?php echo $model->purpose; ?></p></td>
-		<td width="178" valign="center" ><p ><?php echo '购销合同号'; ?></p></td>
-		<td width="178" valign="center" ><p ><?php echo $model->contractID; ?></p></td>
-	</tr>
-
-	<tr >
-		<td width="211" valign="center" ><p ><?php echo '证书号'; ?></p></td>
-		<td width="178" valign="center" ><p ><?php echo $model->certificate; ?></p></td>
-		<td width="178" valign="center" ><p ><?php echo '公文号'; ?></p></td>
-		<td width="178" valign="center" ><p ><?php echo $model->document; ?></p></td>
-	</tr>
-
+    
   </table>
   
   <p ></p>

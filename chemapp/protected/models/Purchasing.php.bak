@@ -91,8 +91,8 @@ class Purchasing extends CActiveRecord
 		//有了这个就能方便的在一个类对象中存放多个表的字段信息
 		//例如$model->chemlist,$model是purchasing类对象
 		return array(
-			'chemlist'=>array(self::BELONGS_TO, 'Chemlist', 'chem_id'),
-			'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
+                    'chemlist'=>array(self::BELONGS_TO, 'Chemlist', 'chem_id'),
+                    'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -182,22 +182,4 @@ class Purchasing extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	
-	public function check($status){//检查是否有审批申请的函数
-	
-	$result = Yii::app()->db->createCommand()
-			->select('status')
-			->from('purchasing')
-			->where('status=:s',array(':s'=>$status))
-			->queryRow();
-			
-	if($result)
-		$need=true;
-	else
-		$need=false;
-	
-	return $need;
-	}
-	
 }

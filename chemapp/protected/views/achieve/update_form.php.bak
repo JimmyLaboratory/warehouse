@@ -22,13 +22,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'certificate');	//备案证书号?>
-		<?php echo $form->textField($model,'certificate',array('value'=>'','size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'certificate',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'certificate'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'document'); ?>
-		<?php echo $form->textField($model,'document',array('value'=>'','size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'document',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'document'); ?>
 	</div>
 
@@ -55,7 +55,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'license_issuing_authority'); ?>
-		<?php echo $form->textField($model,'license_issuing_authority',array('value'=>'','size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'license_issuing_authority',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'license_issuing_authority'); ?>
 	</div>
 

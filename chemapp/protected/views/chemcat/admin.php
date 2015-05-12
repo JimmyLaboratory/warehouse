@@ -38,10 +38,16 @@ function getName($parent_id){
 }
 ?>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php 
+	if($level<3)//药品分类等级，控制药品大类不可删，小类可以删
+	$visible = false;
+	else
+	$visible = true;
+
+	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'chemcat-grid',
 	'dataProvider'=>$model->searchByParentID($cur_parent_id),  //search()
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		//'cat_id',
 		array(
@@ -49,22 +55,36 @@ function getName($parent_id){
 			'header'=>'药品/分类名',
 			'labelExpression'=>'$data->chemcat_name',		//显示内容
 			'linkHtmlOptions'=>array('title'=>'点击进入下一级分类'),		//鼠标停留时显示字符框
-			'urlExpression'=>'Yii::app()->controller->createUrl("admin", array("cur_parent_id"=>$data->primaryKey,))'//显示URL
+			'urlExpression'=>'Yii::app()->controller->createUrl("admin", array("cur_parent_id"=>$data->primaryKey,"level"=>$data->level))'//显示URL
 		),
 		array(
 			'class'=>'CButtonColumn',
-			'header'=>'可选操作',
-			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'visible' => $visible,
+			'header'=>'操作',
 			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
-			'template'=>' {delete}{update}',
+			'template'=>' {delete} ',
+			'buttons'=>array(
+				'delete'=>array(
+				'label'=>'删除',
+					'visible' => '$data->primaryKey>100',
+				)
+			)
+			/*,
+			
+			'htmlOptions'=>array(//设置单元格宽度
+				'width'=>'10',
+			)*/
+		),
+		
+		array(
+			'class'=>'CButtonColumn',
+			'header'=>'操作',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{update}',
 			'buttons'=>array(
 				'update'=>array(
 				'label'=>'更正',
 					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
-				),
-				'delete'=>array(
-				'label'=>'删除',
-					'visible' => '$data->primaryKey>100',
 				)
 			)
 		)

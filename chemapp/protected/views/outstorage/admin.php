@@ -34,33 +34,50 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'outstorage-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		'outstorage_id',
 		array('header'=>'申请单编号', 'name'=>'using_id'),
 		array('header'=>'领用人', 'name'=>'apply_user_id'),
 		'duty_user_id',
-		'datetime',
-		'note',
+		array(
+		'header'=>'领用时间', 'name'=>'datetime',
+		'htmlOptions'=>array(//设置单元格宽度
+				'width'=>'100',
+			),
+		),
+		//'datetime',
 		array(
 			'class'=>'CButtonColumn',
-			'header'=>'可 选 操 作',
-			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'header'=>'操作',
 			'viewButtonImageUrl'=>array('style'=>'display:none'), 
-			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
-			'template'=>'{view} {delete} {update}',
+			'template'=>'{view}',
 			'buttons'=>array(
-			
-				'update'=>array(
-				'label'=>'改',
-				),
-				
 				'view'=>array(
-				'label'=>'查',
-				),
-				
+				'label'=>'查看',
+				)
+			)
+		),
+		array(
+			'class'=>'CButtonColumn',
+			'header'=>'操作',
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{delete}',
+			'buttons'=>array(
 				'delete'=>array(
-				'label'=>'删',
+				'label'=>'删除',
+				)
+			)
+		),
+		
+		array(
+			'class'=>'CButtonColumn',
+			'header'=>'操作',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{update}',
+			'buttons'=>array(
+				'update'=>array(
+				'label'=>'修改',
 				)
 			)
 		),

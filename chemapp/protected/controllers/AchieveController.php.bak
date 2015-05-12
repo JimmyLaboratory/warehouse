@@ -119,7 +119,7 @@ class AchieveController extends Controller
     public function actionPrint($id){			//打印备案单
         $this->layout = '//layouts/column0';
         $this->render('print',array(
-			'model'=>$this->loadModel($id),
+		'model'=>$this->loadModel($id),
 	));
     }
 

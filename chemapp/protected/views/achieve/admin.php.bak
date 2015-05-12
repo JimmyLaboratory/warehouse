@@ -34,7 +34,7 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<?php	$action=($status==1)? 'view':'update';	//TJ:通过要查看的备案单的状态设置接下来查看备案单详情时调用的行为（view包含备案成功的信息）
+<?php	$action=if($status==1)? 'view':'update';	//TJ:通过要查看的备案单的状态设置接下来查看备案单详情时调用的行为（view包含备案成功的信息）
 	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'achieve-grid',
 	'dataProvider'=>$model->searchByStatus($status),
@@ -55,9 +55,7 @@ $('.search-form form').submit(function(){
 		array('name'=>'status','value'=>'Achieve::getStatusInfo($data->status)'),
 		array(
 			'class'=>'CButtonColumn',
-			'header'=>'操作',
-			'viewButtonImageUrl'=>array('style'=>'display:none'), 
-            'template'=>'{view}',
+            'template'=>'{view}{delete}',
             'buttons'=>array(
             	'view'=>array('label'=>'打印','url'=>'Yii::app()->createUrl("achieve/print",array("id"=>$data->id))','options'=>array('target'=>'_blank')),
             )
