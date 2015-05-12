@@ -49,23 +49,37 @@ $('.search-form form').submit(function(){
 		*/
 		array(
 			'class'=>'CButtonColumn',
-			'header'=>'可 选 操 作',
-			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'header'=>'操作',
 			'viewButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{view}',
+			'buttons'=>array(			
+				'view'=>array(
+				'label'=>'查看',
+				)
+			)
+		),
+		
+		array(
+			'class'=>'CButtonColumn',
+			'header'=>'操作',
 			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
-			'template'=>'{view} {delete} {update}',
+			'template'=>'{delete}',
+			'buttons'=>array(
+				'delete'=>array(
+				'label'=>'删除',
+				)
+			)
+		),
+		
+		array(
+			'class'=>'CButtonColumn',
+			'header'=>'操作',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{update}',
 			'buttons'=>array(
 			
 				'update'=>array(
-				'label'=>'改',
-				),
-				
-				'view'=>array(
-				'label'=>'查',
-				),
-				
-				'delete'=>array(
-				'label'=>'删',
+				'label'=>'修改',
 				)
 			)
 		),

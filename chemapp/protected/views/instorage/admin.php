@@ -34,7 +34,7 @@ $('.search-form form').submit(function(){
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'instorage-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	//'filter'=>$model,
 	'columns'=>array(
 		array(
 			'class'=>'CLinkColumn',
@@ -55,13 +55,20 @@ $('.search-form form').submit(function(){
 			'header'=>'操作',
 			'class'=>'CButtonColumn',
 			'updateButtonImageUrl'=>array('style'=>'display:none'), 
-			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
-			'template'=>'{update}{delete}',
-			
+			'template'=>'{update}',
 			 'buttons'=>array(
                 'update' => array(
-                    'label'=>'更新',
-                ),
+                    'label'=>'更新',
+                )
+            ),
+		),
+		
+		array(
+			'header'=>'操作',
+			'class'=>'CButtonColumn',
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>'{delete}',
+			 'buttons'=>array(
                 'delete'=>array(
                     'label'=>'删除',
                 )
