@@ -64,14 +64,29 @@ $('.search-form form').submit(function(){
                         Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
             'header'=>'操作',
             'class'=>'CButtonColumn',
-            'deleteConfirmation'=>"确定要终止这个采购申请吗?",
-            'template'=>'{update}{delete}',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+            'template'=>'{update}',
             'buttons'=>array(
                 'update' => array(
                     'label'=>'入库',
                     'visible'=>'Yii::app()->authManager->checkAccess("school",Yii::app()->user->getId())',
                     'options'=>array('target'=>'_blank'),
                     'url'=>'Yii::app()->createUrl("instorage/create",array("id"=>$data->purchasing_id))',
+                ),
+            )
+        ),
+		
+		array(
+            'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
+                        Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
+            'header'=>'操作',
+            'class'=>'CButtonColumn',
+            'deleteConfirmation'=>"确定要终止这个采购申请吗?",
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+            'template'=>'{delete}',
+            'buttons'=>array(
+                'update' => array(
+                    'label'=>'删除',
                 ),
             )
         ),

@@ -54,6 +54,8 @@ $('.search-form form').submit(function(){
 		array('name'=>'status','value'=>'Achieve::getStatusInfo($data->status)'),
 		array(
 			'class'=>'CButtonColumn',
+			'header'=>'操作',
+			'viewButtonImageUrl'=>array('style'=>'display:none'), 
             'template'=>'{view}',
             'buttons'=>array(
             	'view'=>array('label'=>'打印','url'=>'Yii::app()->createUrl("achieve/print",array("id"=>$data->id))','options'=>array('target'=>'_blank')),

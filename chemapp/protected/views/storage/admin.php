@@ -52,10 +52,12 @@ $('.search-form form').submit(function(){
 		
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>' {delete}{update}',
+			'header'=>'操作',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'template'=>' {update}',
 			'buttons'=>array(
 				'update'=>array(
-					'label'=>'修改仓库/架',
+					'label'=>'修改',
 					'url'=>'Yii::app()->controller->createUrl("update", array("id"=>$data->primaryKey,))'
 				)
 			)

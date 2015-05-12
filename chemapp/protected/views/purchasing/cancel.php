@@ -18,4 +18,4 @@ $this->menu[] = array('label'=>'修改用户密码', 'url'=>array('passwd', 'id'
 
 <h1>修改用户信息</h1>
 
-<?php echo $this->renderPartial('view', array('id'=>$model->id)); ?>
+<?php echo $this->renderPartial('view', array('id'=>$model->purchasing_id)); ?>

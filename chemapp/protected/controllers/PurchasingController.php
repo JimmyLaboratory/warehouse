@@ -45,7 +45,7 @@ class PurchasingController extends Controller
                     'roles'=>array('college')
             ),
             array('allow',
-                    'actions'=>array('topurchase','toachieve','purchasePrint','no'),
+                    'actions'=>array('topurchase','toachieve','purchasePrint','no','cancel'),
                     'roles'=>array('school')
             ),
 			array('deny',  // deny all users
@@ -162,7 +162,7 @@ class PurchasingController extends Controller
                     case Purchasing::STATUS_PASS_SECURE:;
                     case Purchasing::STATUS_PASS_SCHOOL:;
                     case Purchasing::STATUS_PASS_FINAL:break;
-                    case Defaults:throw new CHttpException(403,'采购单当前状态不允许取消采购');
+                  //  case Defaults:throw new CHttpException(403,'采购单当前状态不允许取消采购');
                 }
                 if(isset($_POST['reason'])){
                     $information = json_decode($model->information, true);

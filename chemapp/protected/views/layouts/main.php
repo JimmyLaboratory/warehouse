@@ -34,35 +34,37 @@
 					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) && !Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) &&
 					!Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) 
 				),
-				array('label'=>'采购申请审批', 'url'=>array('/purchasing/admin','status'=>'APPROVE'),'visible'=>
+				array('label'=>'采购管理', 'url'=>array('/purchasing/admin','status'=>'APPROVE'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 				),
 				//array('label'=>'使用申请', 'url'=>array('/using/create'),'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())),
-				array('label'=>'使用申请审批', 'url'=>array('/using/admin','status'=>'APPROVE'),'visible'=>
+				array('label'=>'使用管理', 'url'=>array('/using/admin','status'=>'APPROVE'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 					),
 
-				array('label'=>'采购单', 'url'=>array('/purchasing/no'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				//array('label'=>'采购单', 'url'=>array('/purchasing/no'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array('label'=>'入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				//array('label'=>'入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
 				array('label'=>'备案', 'url'=>array('/achieve/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array(
+				/*array(
 					'label'=>'出库',
 					'url'=>array('/outstorage/create'),
 					'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
-				),
+				),*/
+				
+				array('label'=>'出入库', 'url'=>array(''),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
 				array('label'=>'查看申领化学品',
 					'url'=>array('/chemlist/admin&Chemlist[status]=3'),
 					'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
 				),
 				array(
-					'label'=>'查看化学品',
+					'label'=>'化学品库',
 					'url'=>array('/chemlist/admin'),
 					'visible'=>!Yii::app()->user->isGuest && !Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
 				),
