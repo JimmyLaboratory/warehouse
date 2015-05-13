@@ -18,22 +18,24 @@ $this->menu=array(
 if(Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()))
 $this->menu=array(
     //学院用户查看申请采购页面左边快捷链接
-    array('label'=>'学院审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_FIRST)),
+    array('label'=>'已审批', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_FIRST)),
 );
 if(Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()))
 $this->menu=array(
     //保卫处用户查看...
-    array('label'=>'保卫处审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_SECURE)),
+    array('label'=>'已审批', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_SECURE)),
 );
 if(Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()))
 $this->menu=array(
     //学校用户查看申请采购页面左边快捷链接 
-    array('label'=>'学校审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_SCHOOL)),
+    array('label'=>'已审批', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_SCHOOL)),
 );
-$this->menu[]=array('label'=>'最终审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL));
+//$this->menu[]=array('label'=>'最终审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL));
 $this->menu[]=array('label'=>'采购中', 'url'=>array('/purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING));
-$this->menu[]= array('label'=>'被拒申请', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT)));
-$this->menu[]= array('label'=>'所有申请', 'url'=>array('/purchasing/admin'));
+$this->menu[]= array('label'=>'采购单', 'url'=>array(''));//路径未写
+$this->menu[]= array('label'=>'待审申请', 'url'=>array('/purchasing/admin','status'=>'APPROVE'));
+//$this->menu[]= array('label'=>'被拒申请', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT)));
+$this->menu[]= array('label'=>'全部申请', 'url'=>array('/purchasing/admin'));
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){

@@ -18,12 +18,12 @@
  */
 class Using extends CActiveRecord
 {
-        const STATUS_APPLY = 1;//申请提交，未审批
-        const STATUS_CANCEL = -1;//取消申请
-        const STATUS_REJECT = 0;//审批被拒绝
-        const STATUS_APPROVE_FIRST = 2;//初审完成（学院）
-        const STATUS_APPROVE_FINAL = 3;//审批完成（学校）
-        const STATUS_FINISHED = 4;//已领用
+        const STATUS_APPLY = 1;//申请提交，未审批			00000	
+        const STATUS_CANCEL = -1;//取消申请					01xxx
+        const STATUS_REJECT = 0;//审批被拒绝				001xx
+        const STATUS_APPROVE_FIRST = 2;//初审完成（学院）	00010
+        const STATUS_APPROVE_FINAL = 3;//审批完成（学校）	00001	
+        const STATUS_FINISHED = 4;//已领用					1xxxx
         
         public static function getStatusInfo($id){
                 switch($id){

@@ -17,8 +17,8 @@ class Purchasing extends CActiveRecord
         const STATUS_EDIT = -1;//申请撤消，重新编辑后可以再次递交审批
         const STATUS_APPLY = 1;//提交申请，未进行任何审批
         const STATUS_REJECT = 0;//审批被拒绝
-        const STATUS_PASS_FIRST = 2;//学院初审通过
-        const STATUS_PASS_SECURE = 3;//保卫处审核通过
+        const STATUS_PASS_FIRST = 2;//学院初审通过								100
+        const STATUS_PASS_SECURE = 3;//保卫处审核通过							
         const STATUS_PASS_SCHOOL = 4;//学校审核通过
         const STATUS_PASS_FINAL = 5;//学院和学校和保卫处均审核通过
         const STATUS_ARCHIVES = 6;//备案中
@@ -26,7 +26,7 @@ class Purchasing extends CActiveRecord
         const STATUS_ARCHIVES_FAILED = -3;//备案失败
         const STATUS_PURCHASING = 10;//采购中
         const STATUS_INSTOCK = 11;//化学品采购完毕在库
-        const STATUS_LOCK = -99;//采购申请单被冻结，不能进行任何操作
+        const STATUS_LOCK = -99;//采购申请单被冻结，不能进行任何操作			
 
         public static function getStatusInfo($id){
                 switch($id){

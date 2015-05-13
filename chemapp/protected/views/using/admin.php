@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'所有申请', 'url'=>array('/using/admin')),
-	array('label'=>'待审批申请', 'url'=>array('/using/admin','status'=>'APPROVE')),
+	array('label'=>'全部申请', 'url'=>array('/using/admin')),
+	//array('label'=>'待审批申请', 'url'=>array('/using/admin','status'=>'APPROVE')),
     array('label'=>'可领取申请', 'url'=>array('/using/admin','status'=>'BEPICK')),
 );
 
