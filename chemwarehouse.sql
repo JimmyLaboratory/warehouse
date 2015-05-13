@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-05-12 14:28:08
+-- Generation Time: 2015-05-13 06:01:08
 -- 服务器版本： 5.6.24
 -- PHP Version: 5.6.8
 
@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `chemwarehouse`
 --
-DROP DATABASE `chemwarehouse`;
+CREATE DATABASE IF NOT EXISTS `chemwarehouse` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `chemwarehouse`;
 
 -- --------------------------------------------------------
 
