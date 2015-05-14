@@ -54,7 +54,7 @@ else
   foreach($purchasing_ids as $purchasing){
           if(isset($showed[$purchasing -> chemlist -> supplier -> supplier_id]))continue;*/
   ?>
-    <tr>
+    < tr>
       <td width="45%">供应商：<?php //echo $purchasing -> chemlist -> supplier -> supplier_name; ?></td>
       <td width="30%">供应商联系人：<?php //echo $purchasing -> chemlist -> supplier -> contact; ?></td>
       <td width="25%">联系电话：<?php //echo $purchasing -> chemlist -> supplier -> tel; ?></td>

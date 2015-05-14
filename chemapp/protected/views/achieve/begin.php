@@ -62,7 +62,7 @@ $('.search-form form').submit(function(){
             'value'=>'Purchasing::getStatusInfo($data->status)'
         ),
 		//'information',
-		array(
+		/*array(
             'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
                         Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
             'header'=>'操作',
@@ -92,6 +92,6 @@ $('.search-form form').submit(function(){
                     'label'=>'删除',
                 ),
             )
-        ),
+        ),*/
 	),
 )); ?>

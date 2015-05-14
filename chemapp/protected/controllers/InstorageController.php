@@ -61,15 +61,15 @@ class InstorageController extends Controller
 		if(isset($_POST['Instorage']))
 		{
 			$model->attributes=$_POST['Instorage'];
-                        $userInfo = User::getInfo();
-                        $model->user_id = $userInfo->user_id;
-                        $image = CUploadedFile::getInstance($model, 'pics');		//获取图片信息
-                        if( is_object($image) && get_class($image) === 'CUploadedFile' ){  
-                                $model->pics = uniqid().'.jpg';  					//随机改名
-                                $image->saveAs(Yii::app()->basePath.'/../upload/'.$model->pics);  //保存到upload文件夹
-                        }else{  
-                                $model->pics = 'NoPic.jpg';  
-                        } 
+			$userInfo = User::getInfo();
+			$model->user_id = $userInfo->user_id;
+			$image = CUploadedFile::getInstance($model, 'pics');		//获取图片信息
+			if( is_object($image) && get_class($image) === 'CUploadedFile' ){  
+					$model->pics = uniqid().'.jpg';  					//随机改名
+					$image->saveAs(Yii::app()->basePath.'/../upload/'.$model->pics);  //保存到upload文件夹
+			}else{  
+					$model->pics = 'NoPic.jpg';  
+			} 
 			if($model->save()){
                 $modelPurchasing = Purchasing::model() ->findByPk($model->purchasing_id);
                 $modelChemlist = Chemlist::model() ->findByPk($modelPurchasing -> chem_id);

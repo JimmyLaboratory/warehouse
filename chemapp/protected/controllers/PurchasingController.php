@@ -46,11 +46,11 @@ class PurchasingController extends Controller
                     'roles'=>array('teacher')
             ),
             array('allow',
-                    'actions'=>array('cancel'),//终止
+                    'actions'=>array('topurchase','purchasePrint','no','cancel'),//终止
                     'roles'=>array('college')
             ),
             array('allow',
-                    'actions'=>array('topurchase','toachieve','purchasePrint','no','cancel'),
+                    'actions'=>array('toachieve','cancel'),
                     'roles'=>array('school')
             ),
 			array('deny',  // deny all users
@@ -116,27 +116,30 @@ class PurchasingController extends Controller
 		'model'=>$model,
 	));
 	}
-        
-        public function actionTopurchase(){
-                $ids = isset($_POST['ids']) ? $_POST['ids'] : '';
-                if(empty($ids)) throw new CHttpException('400','你没有选择任何采购单哦。');
-                $model = new Purchasing;
-                
-                if(isset($_GET['confirm']) && $_GET['confirm'] == 'true'){
-                        $criteria = new CDbCriteria;
-                        $criteria ->addInCondition('purchasing_id', explode(',',$ids));
-                        $criteria ->compare('status', Purchasing::STATUS_PASS_FINAL);
-                        Purchasing::model() ->updateAll(array('status'=>  Purchasing::STATUS_PURCHASING, 'purchasing_no'=>$_POST['purchasing_no']),$criteria);
-                        $this->redirect(array('purchasing/admin','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING));
-                }
-                
-                $this->render('topurchase',array(
-                        'ids'=>$ids,
-			'model'=>$model,
-		));
-        }
-        
-        public function actionNo()
+        //TJ:原来的 生成采购单
+	public function actionTopurchase($id){
+			//if(empty($id)) throw new CHttpException('400','你没有选择任何采购单哦。');
+			$model = Purchasing::model()->findByPk($id);
+			$archive=Achieve::model()->findByPk($id);
+			if(isset($_GET['confirm']) && $_GET['confirm'] == 'true'){
+				//$this->redirect(array('purchasing/admin'));
+					$model->purchasing_no=$_POST['purchasing_no'];
+					$model->status=Purchasing::STATUS_PURCHASING;
+					if($model->save())
+						$this->redirect(array('purchasing/purchasePrint','id'=>$id,'no'=>$model->purchasing_no));
+					else
+						throw new CHttpException('400','生成采购单失败。');
+					//Purchasing::model() ->updateAll(array('status'=>  Purchasing::STATUS_PURCHASING, 'purchasing_no'=>$_POST['purchasing_no']),$criteria);  
+			}
+			
+			$this->render('topurchase',array(
+					'id'=>$id,
+					'model'=>$model,
+					'archive'=>$archive,
+	));
+	}
+	
+	public function actionNo()
 	{
 		
                 $datas = Yii::app() -> db ->createCommand('SELECT DISTINCT  `purchasing_no` FROM  `purchasing` WHERE status = 10')
@@ -147,15 +150,16 @@ class PurchasingController extends Controller
 		));
 	}
         
-        public function actionPurchasePrint(){
+        public function actionPurchasePrint($id){
                 $this -> layout = '//layouts/column0';
                 $no = isset($_GET['no']) ? $_GET['no'] : '';
                 
                 $model = new Purchasing;
-                
+                $purchasing=Purchasing::model()->findByPk($id);
                 $this->render('purchase_print',array(
                         'no'=>$no,
-			'model'=>$model,
+						'model'=>$model,
+						'purchasing'=>$purchasing
 		));
         }
         

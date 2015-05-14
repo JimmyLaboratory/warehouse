@@ -150,7 +150,7 @@ jQuery(document).ready(function(){
 		<?php echo $form->error($model,'expired'); ?>
 	</div>
 
-	<!-- div class="row">		TJ:生产商去掉
+	<!-- div class="row">
 		<?php echo $form->labelEx($model,'producer'); ?>
 		<?php echo $form->textField($model,'producer',array('size'=>60,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'producer'); ?>

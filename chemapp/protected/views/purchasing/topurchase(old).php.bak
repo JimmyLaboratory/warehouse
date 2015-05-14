@@ -25,7 +25,7 @@ $this->menu2=array(
 <h1>生成采购清单</h1>
 
 <p>
-<form action="<?php echo Yii::app()->createUrl('purchasing/topurchase',array('confirm'=>'true','id'=>$id)) ?>" method="post">
+<form action="<?php echo Yii::app()->createUrl('purchasing/topurchase',array('confirm'=>'false','id'=>$id)) ?>" method="post">
 <input type="hidden" name="id" value="<?php echo $id ?>" />
 
 采购清单编号：<?php echo $cg='CG'.date('YmdHi').mt_rand(0, 999) ?>

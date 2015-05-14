@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 	'Achieves'=>array('index'),
 	'Manage',
 );
-//下面链接处和“正在备案”、“完成。。。”“失败”的参数不同原因就是
+//【TJ 】下面链接处和“正在备案”、“完成。。。”“失败”的参数不同原因就是
 //传来开始备案页面的model是purchasing类的对象，检索记录的条件为审批申请状态为全部通过，所以传来的是校内已批准的采购申请。
 //而传给其他三个页面的model是备案类的对象，检索记录的条件是备案状态进行中/完成/失败
 $this->menu=array(
@@ -38,7 +38,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'purchasing-grid',
+	'id'=>'purchasing-grid',				//TJ注意这里用的是purchasing的表
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
@@ -67,8 +67,8 @@ $('.search-form form').submit(function(){
                         Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
             'header'=>'操作',
             'class'=>'CButtonColumn',
-            'deleteConfirmation'=>"确定要终止这个采购申请吗?",
-            'template'=>'{update}{delete}',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+            'template'=>'{update}',
             'buttons'=>array(
                 'update' => array(
                     'label'=>'入库',
@@ -78,5 +78,20 @@ $('.search-form form').submit(function(){
                 ),
             )
         ),
+		
+		/*array(
+            'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
+                        Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
+            'header'=>'操作',
+            'class'=>'CButtonColumn',
+            'deleteConfirmation'=>"确定要终止这个采购申请吗?",
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+            'template'=>'{delete}',
+            'buttons'=>array(
+                'update' => array(
+                    'label'=>'删除',
+                ),
+            )
+        ),*/
 	),
 )); ?>

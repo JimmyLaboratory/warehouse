@@ -77,7 +77,7 @@ class Chemlist extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status, user_id, chemcat_id, quality_id, unit_package, unit_id, nums, production_date, expired, useway, chem_name', 'required'),
+			array('status, user_id, chemcat_id, quality_id, unit_package, unit_id, nums, production_date, expired, producer, useway, chem_name', 'required'),
 			array('status, user_id, chemcat_id, quality_id, unit_id, nums, useway, supplier_id, storage_id', 'numerical', 'integerOnly'=>true),
 			array('unit_package, supplier_id,used',  'numerical'),
             array('expired', 'length', 'max'=>10),

@@ -47,6 +47,7 @@ endif;
 	'data'=>$model,
 	'attributes'=>array(
 		'purchasing_id',
+		'chem_id',
 		array(
             'name'=>'user_id',
             'value'=>$model->user->user_name.'【'.$model->user->realname.'】'
