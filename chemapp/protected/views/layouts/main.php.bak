@@ -34,7 +34,7 @@
 					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) && !Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) &&
 					!Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) 
 				),
-				array('label'=>'采购管理', 'url'=>array('/purchasing/admin'),'visible'=>
+				array('label'=>'采购管理', 'url'=>array('/purchasing/admin','status'=>'APPROVE'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())

@@ -1,18 +1,18 @@
-body
+﻿body
 {
 	margin: 0;
 	padding: 0;
 	color: #555;
 	/*font: normal 10pt Arial,Helvetica,sans-serif;*/
-	background: url(2.jpg);
-	FILTER:progid:DXImageTransform.Microsoft.Alpha(opacity=95);
+	background: #DDF;
+	/*FILTER:progid:DXImageTransform.Microsoft.Alpha(opacity=95);
 	*FILTER: Alpha(opacity=95);
 	-o-opacity: 0.95;
 	-ms-opacity: 0.95;
 	-moz-opacity: 0.95;
 	-khtml-opacity: 0.95;
 	-webkit-opacity: 0.95;
-	opacity: 0.95;
+	opacity: 0.95;*/
 	font: normal 100% "Microsoft YaHei", "微软雅黑", "黑体", "宋体",Arial,Helvetica,sans-serif;
 }
 @media only screen and (min-width:1000px) {

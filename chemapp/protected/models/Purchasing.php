@@ -30,14 +30,15 @@ class Purchasing extends CActiveRecord
 
         public static function getStatusInfo($id){
                 switch($id){
-                        case self::STATUS_CANCEL:return '采购特殊情况被拒绝';
+                        case self::STATUS_CANCEL:return '特殊情况被终止';
                         case self::STATUS_EDIT:return '申请撤消';
                         case self::STATUS_APPLY:return '提交申请，尚未审批';
                         case self::STATUS_REJECT:return '审批被拒绝';
                         case self::STATUS_PASS_FIRST:return '学院初审通过';
                         case self::STATUS_PASS_SECURE:return '保卫处审核通过';
                         case self::STATUS_PASS_SCHOOL:return '学校审核通过';
-                        case self::STATUS_PASS_FINAL:return '审批已完成';
+                        case self::STATUS_PASS_FINAL:return '已完成审批';
+						case self::STATUS_ARCHIVES_SUCCESS:return '已完成备案';
                         case self::STATUS_PURCHASING:return '采购中';
                         case self::STATUS_INSTOCK:return '采购完毕在库';
                         case self::STATUS_LOCK:return '冻结，不能进行任何操作';
@@ -164,8 +165,22 @@ class Purchasing extends CActiveRecord
                                                 $criteria ->addInCondition('status', array(Purchasing::STATUS_APPLY, Purchasing::STATUS_PASS_FIRST,  Purchasing::STATUS_PASS_SECURE));
                                         }
                                         break;
-                                case 'BEPURCHASING':
-                                        $criteria ->addInCondition('status', array(Purchasing::STATUS_PASS_FINAL));
+								case 'PASS':
+										if($userInfo->user_role == 'college'){
+                                                $criteria ->addInCondition('status', array(Purchasing::STATUS_PASS_FIRST));
+                                        }
+                                        if($userInfo->user_role == 'secure'){
+                                                $criteria ->addInCondition('status', array(Purchasing::STATUS_PASS_SECURE,  Purchasing::STATUS_PASS_SCHOOL));
+                                        }
+                                        if($userInfo->user_role == 'school'){
+                                                $criteria ->addInCondition('status', array(Purchasing::STATUS_PASS_SCHOOL,  Purchasing::STATUS_PASS_SECURE));
+                                        }
+                                        if($userInfo->user_role == 'teacher'){
+                                                $criteria ->addInCondition('status', array(Purchasing::STATUS_APPLY, Purchasing::STATUS_PASS_FIRST,  Purchasing::STATUS_PASS_SECURE));
+                                        }
+                                        break;
+								case 'PURCHASING':
+                                        $criteria ->addInCondition('status', array(Purchasing::STATUS_ARCHIVES_SUCCESS));
                                         break;
                         }
                 }

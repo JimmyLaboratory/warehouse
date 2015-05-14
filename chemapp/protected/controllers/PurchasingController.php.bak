@@ -12,6 +12,7 @@ class PurchasingController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	public $menu2=array();
 	/**
 	 * @return array action filters
 	 */
@@ -49,7 +50,7 @@ class PurchasingController extends Controller
                     'roles'=>array('college')
             ),
             array('allow',
-                    'actions'=>array('topurchase','toachieve','purchasePrint','no'),
+                    'actions'=>array('topurchase','toachieve','purchasePrint','no','cancel'),
                     'roles'=>array('school')
             ),
 			array('deny',  // deny all users
@@ -78,7 +79,7 @@ class PurchasingController extends Controller
 	}
     
 	
-	public function actionToachieve(){			//原备案功能
+	public function actionToachieve(){			//TJ:原备案功能
 			$ids = isset($_POST['ids']) ? $_POST['ids'] : '';
 			if(empty($ids)) throw new CHttpException('400','你没有选择任何采购单哦。');
 			$model = new Purchasing;
@@ -158,8 +159,8 @@ class PurchasingController extends Controller
 		));
         }
         
-        public function actionCancel($id){
-            //终止采购
+        public function actionCancel($id,$uid,$reason){
+            //TJ:终止采购
                 $model = $this->loadModel($id);       
                 switch($model->status){
                     case Purchasing::STATUS_APPLY:;
@@ -167,20 +168,20 @@ class PurchasingController extends Controller
                     case Purchasing::STATUS_PASS_SECURE:;
                     case Purchasing::STATUS_PASS_SCHOOL:;
                     case Purchasing::STATUS_PASS_FINAL:break;
-                    case Defaults:throw new CHttpException(403,'采购单当前状态不允许取消采购');
+                    default:throw new CHttpException(403,'采购单当前状态不允许取消采购');
                 }
-                if(isset($_POST['reason'])){
+                if(isset($_GET['reason'])){
                     $information = json_decode($model->information, true);
-                    $information[] = '学院【'.'】于'.date('Y-m-d H:i:s').'终止采购申请，理由'.$_POST['reason'];
+                    $information[] = '学院【'.$uid.'】于'.date('Y-m-d H:i:s').'终止采购申请，理由:'.$reason;
                     $model->information = json_encode($information);
                     $model->status = Purchasing::STATUS_CANCEL;
                     $model->save();
                     $this->redirect(array('view','id'=>$model->purchasing_id));
                 }
-                $this->render('cancel',array('model'=>$model));
         }
+
         private function getInformation($model,$userInfo,$department){
-            //从审批页面获取审批信息,参数为部门,例如'学院''保卫处''学校'
+            //TJ:从审批页面获取审批信息,参数为部门,例如'学院''保卫处''学校'
             $information = json_decode($model -> information,true);
             if($_POST['Purchasing']['approve'] == '1'){
                 $information[] = $department.'【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
@@ -204,7 +205,7 @@ class PurchasingController extends Controller
             if(isset($_POST['Purchasing'])){
                     $userInfo = User::getInfo();
 		            if(($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId()))){
-                        //学院审批
+                        //TJ:学院审批
                         if($model->user->department_id != $userInfo->department_id) return false;
                         
                         if($_POST['Purchasing']['approve'] == '1'){
@@ -257,9 +258,9 @@ class PurchasingController extends Controller
             $this->redirect(array('view','id'=>$model->purchasing_id));
         }
 
-     //这里删掉了ActionCreate(),因为用不到了
+     //TJ:这里删掉了ActionCreate(),因为用不到了
 
-    public function actionApply()		//创建新申购的控制器
+    public function actionApply()		//TJ:创建新申购的控制器
 	{
 		$model=new Chemlist;
 		// Uncomment the following line if AJAX validation is needed
@@ -267,7 +268,7 @@ class PurchasingController extends Controller
 
 		if(isset($_POST['Chemlist']))
 		{
-			$model->attributes=$_POST['Chemlist'];		//注意这里表示chemlist类信息
+			$model->attributes=$_POST['Chemlist'];		//TJ:注意这里表示chemlist类信息
             $model->production_date = date('Y-m-d');
             $userInfo = User::getInfo();							//通过框架功能获取用户信息
             $model->user_id = $userInfo -> user_id;		//填入用户ID
@@ -281,7 +282,7 @@ class PurchasingController extends Controller
             } 
 			if($model->save())
             {
-                    $model2=new Purchasing;			//这里新建采购单类
+                    $model2=new Purchasing;			//TJ:这里新建采购单类
                     $model2->purchasing_id = $_POST['Chemlist']['purchasing_id'];
                     $model2->chem_id = $model->chem_id;
                     $model2->user_id = $model->user_id;
@@ -345,20 +346,19 @@ class PurchasingController extends Controller
 
 	/**
 	 * Lists all models.
-	 */
+	
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Purchasing');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
-	}
+	} */
 
-	/**
-	 * Manages all models.
-	 */
 	public function actionAdmin()
 	{
+		$this->layout='//layouts/purchasing_admin';			//这里重设layout来显示两个左边快捷列表
+		if(!isset($_GET['status'])) $_GET['status']='APPROVE';	//如果没设status，默认为查看“待审”
 		$model=new Purchasing('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Purchasing']))

@@ -28,7 +28,7 @@ class InstorageController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view','create','admin'),
-				'roles'=>array('school','college'),
+				'roles'=>array('school'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

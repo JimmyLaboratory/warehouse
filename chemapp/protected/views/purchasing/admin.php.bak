@@ -25,7 +25,7 @@ $this->menu[]= array('label'=>'全部申请', 'url'=>array('/purchasing/admin'))
 
 //TJ:menu2是采购
 $this->menu2[]= array('label'=>'待采购', 'url'=>array('/purchasing/admin','status'=>'PURCHASING','Purchasing'=>array('status'=>  Purchasing::STATUS_ARCHIVES_SUCCESS)));
-$this->menu2[]=array('label'=>'采购中', 'url'=>array('/purchasing/admin','ING'=>'t','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING));
+$this->menu2[]=array('label'=>'采购中', 'url'=>array('/purchasing/admin','status'=>'ING','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING));
 $this->menu2[]= array('label'=>'已采购', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_INSTOCK)));
 
 

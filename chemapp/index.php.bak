@@ -9,9 +9,9 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 // specify how many levels of call stack should be shown in each log message
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 /*
-* TJ:æ­¤å¤„è®¾ç½®æ—¶åŒºï¼Œä¿®æ­£å‡ºç°çš„echo date(â€˜Yâ€™);æŠ¥é”™
+* TJ:´Ë´¦ÉèÖÃÊ±Çø£¬ĞŞÕı³öÏÖµÄecho date(¡®Y¡¯);±¨´í
 */
-date_default_timezone_set("PRC");
+date_default_timezone_set(¡°PRC¡±);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();

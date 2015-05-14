@@ -12,6 +12,7 @@ class PurchasingController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	public $menu2=array();
 	/**
 	 * @return array action filters
 	 */
@@ -158,7 +159,7 @@ class PurchasingController extends Controller
 		));
         }
         
-        public function actionCancel($id){
+        public function actionCancel($id,$uid,$reason){
             //TJ:终止采购
                 $model = $this->loadModel($id);       
                 switch($model->status){
@@ -167,18 +168,18 @@ class PurchasingController extends Controller
                     case Purchasing::STATUS_PASS_SECURE:;
                     case Purchasing::STATUS_PASS_SCHOOL:;
                     case Purchasing::STATUS_PASS_FINAL:break;
-                  //  case Defaults:throw new CHttpException(403,'采购单当前状态不允许取消采购');
+                    default:throw new CHttpException(403,'采购单当前状态不允许取消采购');
                 }
-                if(isset($_POST['reason'])){
+                if(isset($_GET['reason'])){
                     $information = json_decode($model->information, true);
-                    $information[] = '学院【'.'】于'.date('Y-m-d H:i:s').'终止采购申请，理由'.$_POST['reason'];
+                    $information[] = '学院【'.$uid.'】于'.date('Y-m-d H:i:s').'终止采购申请，理由:'.$reason;
                     $model->information = json_encode($information);
                     $model->status = Purchasing::STATUS_CANCEL;
                     $model->save();
                     $this->redirect(array('view','id'=>$model->purchasing_id));
                 }
-                $this->render('cancel',array('model'=>$model));
         }
+
         private function getInformation($model,$userInfo,$department){
             //TJ:从审批页面获取审批信息,参数为部门,例如'学院''保卫处''学校'
             $information = json_decode($model -> information,true);
@@ -345,20 +346,19 @@ class PurchasingController extends Controller
 
 	/**
 	 * Lists all models.
-	 */
+	
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Purchasing');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
-	}
+	} */
 
-	/**
-	 * Manages all models.
-	 */
 	public function actionAdmin()
 	{
+		$this->layout='//layouts/purchasing_admin';			//这里重设layout来显示两个左边快捷列表
+		//if(!isset($_GET['status'])) $_GET['status']='APPROVE';	//如果没设status，默认为查看“待审”
 		$model=new Purchasing('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Purchasing']))
