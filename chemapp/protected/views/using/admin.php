@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'全部申请', 'url'=>array('/using/admin')),
-	//array('label'=>'待审批申请', 'url'=>array('/using/admin','status'=>'APPROVE')),
+	array('label'=>'待审申请', 'url'=>array('/using/admin','status'=>'APPROVE')),
     array('label'=>'可领取申请', 'url'=>array('/using/admin','status'=>'BEPICK')),
 );
 
@@ -73,5 +73,35 @@ $('.search-form form').submit(function(){
             'name'=>'status',			//审批状态
             'value'=>'Using::getStatusInfo($data->status)'
         ),
+		
+		
+			array(
+            'visible'=> Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()) &&
+			isset($_GET['status']),
+            'header'=>'操作',
+            'class'=>'CButtonColumn',
+            'deleteConfirmation'=>"确定要终止这个采购申请吗?",
+			'deleteButtonImageUrl'=>array('style'=>'display:none'), 
+            'template'=>'{delete}',
+            'buttons'=>array(
+                'delete'=>array(
+                    'label'=>'终止',
+                    'url'=>'Yii::app()->createUrl("using/cancel",array("id"=>$data->using_id,"uid"=>Yii::app()->user->getId(),"time"=>time(),"reason"=>""))',
+					//TJ:下面是jQuery的click()函数，点击链接触发对话框要求输入终止理由，然后确定才能终止
+					//缺陷是传值方式为GET，需要改为POST
+                    'click'=>'function(){
+							var reason=prompt("请输入终止理由","");
+                            if(reason){
+								$(this).attr("href",$(this).attr("href")+reason);
+                            }
+                            else{
+								alert("终止失败：已被取消或未写理由");
+								$(this).attr("href","#");
+								return false;
+							}
+                    }'
+                )
+            ),
+		),
 	),
 )); ?>

@@ -131,6 +131,25 @@ class UsingController extends Controller
                 
                 $this->redirect(array('view','id'=>$model->using_id));
         }
+		
+	 public function actionCancel($id,$uid,$reason){
+            //ZT:终止采购
+                $model = $this->loadModel($id);       
+                switch($model->status){
+                    case Using::STATUS_APPLY:;
+                    case Using::STATUS_PASS_FIRST:;
+                    case Using::STATUS_PASS_FINAL:break;
+                    default:throw new CHttpException(403,'当前状态不允许取消采购');
+                }
+                if(isset($_GET['reason'])){
+                    $information = json_decode($model->information, true);
+                    $information[] = '学院【'.$uid.'】于'.date('Y-m-d H:i:s').'终止使用申请，理由:'.$reason;
+                    $model->information = json_encode($information);
+                    $model->status = Using::STATUS_CANCEL;
+                    $model->save();
+                    $this->redirect(array('view','id'=>$model->using_id));
+                }
+        }	
         
 	/**
 	 * Creates a new model.
