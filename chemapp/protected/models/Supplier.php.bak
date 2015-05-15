@@ -10,8 +10,8 @@
  * @property string $email
  * @property string $contact
  * @property string $tel
- * @property string $representative
- * @property string $com_tel
+ * @property string $person
+ * @property string $personaltel
  * @property string $note
  */
 class Supplier extends CActiveRecord
@@ -46,11 +46,11 @@ class Supplier extends CActiveRecord
 			array('supplier_name', 'length', 'max'=>60),
 			array('website', 'length', 'max'=>200),
 			array('email', 'length', 'max'=>100),
-			array('contact, representative', 'length', 'max'=>30),
+			array('contact, person', 'length', 'max'=>30),
 			array('tel, com_tel', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('supplier_id, supplier_name, website, email, contact, tel, representative, com_tel, note', 'safe', 'on'=>'search'),
+			array('supplier_id, supplier_name, website, email, contact, tel, person, personaltel, note', 'safe', 'on'=>'search'),
 		);
 	}
 

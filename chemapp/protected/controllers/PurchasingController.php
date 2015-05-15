@@ -32,7 +32,7 @@ class PurchasingController extends Controller
 	{
 		return array(
             array('allow',
-                    'actions'=>array('apply'),	//申请
+                    'actions'=>array('apply','index'),	//申请
                     'roles'=>array('teacher')),
             array('allow',
                     'actions'=>array('approve'),//审批
@@ -348,16 +348,11 @@ class PurchasingController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	/**
-	 * Lists all models.
-	
+	//TJ：这是教师点击采购申请后的处理函数，默认应该跳转到admin页面
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Purchasing');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	} */
+		$this->redirect(array('purchasing/admin'));
+	} 
 
 	public function actionAdmin()
 	{

@@ -21,6 +21,11 @@ $this->menu=array(
 		'supplier_id',
 		'supplier_name',
 		'website',
-
+		'email',
+		'contact',
+		'tel',
+		'person',
+		'personaltel',
+		'note',
 	),
 )); ?>

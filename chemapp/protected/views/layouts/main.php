@@ -29,10 +29,9 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'首页', 'url'=>array('/site/index')),
-				array('label'=>'采购申请', 'url'=>array('/purchasing/apply'),
+				array('label'=>'采购申请', 'url'=>array('/purchasing/admin'),
 					'visible'=>
-					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) && !Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) &&
-					!Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) 
+					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) 
 				),
 				array('label'=>'采购管理', 'url'=>array('/purchasing/admin'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
@@ -60,7 +59,7 @@
 				array('label'=>'出入库', 'url'=>array(''),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
 				array('label'=>'查看申领化学品',
-					'url'=>array('/chemlist/admin&Chemlist[status]=3'),
+					'url'=>array('/chemlist/admin'),
 					'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
 				),
 				array(
@@ -70,6 +69,7 @@
 				),
 				
 				array('label'=>'系统管理', 'url'=>array('/site/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				array('label'=>'供货商管理', 'url'=>array('/supplier/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
 				
 				array('label'=>'用户管理', 'url'=>array('/user'),'visible'=>
 					//Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||

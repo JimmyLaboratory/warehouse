@@ -25,8 +25,6 @@ $this->menu2[]= array('label'=>'待采购', 'url'=>array('/purchasing/admin','st
 $this->menu2[]=array('label'=>'采购中', 'url'=>array('/purchasing/admin','ING'=>'t','Purchasing[status]'=>  Purchasing::STATUS_PURCHASING));
 $this->menu2[]= array('label'=>'已采购', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_INSTOCK)));
 
-
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -107,20 +105,6 @@ $('.search-form form').submit(function(){
             ),
 		),
 		array(
-            'visible'=>Yii::app()->authManager->checkAccess("college",Yii::app()->user->getId())&&isset($_GET['ING']),
-            'header'=>'操作',
-            'class'=>'CButtonColumn',
-			'updateButtonImageUrl'=>array('style'=>'display:none'), 
-            'template'=>'{update}',
-            'buttons'=>array(
-                'update' => array(
-                    'label'=>'入库',
-                    'options'=>array('target'=>'_blank'),
-                    'url'=>'Yii::app()->createUrl("instorage/create",array("id"=>$data->purchasing_id))',
-				)
-			)
-        ),
-		array(
             'visible'=>Yii::app()->authManager->checkAccess("teacher",Yii::app()->user->getId())&&isset($_GET['status'])&&$_GET['status']=='APPROVE',
             'header'=>'操作',
             'class'=>'CButtonColumn',
@@ -149,6 +133,35 @@ $('.search-form form').submit(function(){
 				)
 			)
         ),
+		array(
+            'visible'=>isset($_GET['ING']),
+            'header'=>'操作',
+            'class'=>'CButtonColumn',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+			'htmlOptions'=>array('width'=>'70'),
+            'template'=>'{update}',
+            'buttons'=>array(
+                'update' => array(
+                    'label'=>'打印采购单',
+                    'options'=>array('target'=>'_blank'),
+                    'url'=>'Yii::app()->createUrl("purchasing/purchasePrint",array("id"=>$data->purchasing_id))',
+				)
+			)
+        ),
+		array(
+            'visible'=>Yii::app()->authManager->checkAccess("college",Yii::app()->user->getId())&&isset($_GET['ING']),
+            'header'=>'操作',
+            'class'=>'CButtonColumn',
+			'updateButtonImageUrl'=>array('style'=>'display:none'), 
+            'template'=>'{update}',
+            'buttons'=>array(
+                'update' => array(
+                    'label'=>'入库',
+                    'options'=>array('target'=>'_blank'),
+                    'url'=>'Yii::app()->createUrl("instorage/create",array("id"=>$data->purchasing_id))',
+				)
+			)
+        ),
 	),
 )); ?>
 
@@ -161,48 +174,7 @@ $('.search-form form').submit(function(){
 	)
 ): ?>
 <p style="text-align:center">温馨提示：通过审批的采购，才能生成采购单！！！</p>
-<!--
 
-<div>操作选中项<select class="handerSelection"><option value="0">请选择操作</option><option value="1">生成备案单</option><option value="2">生成采购单</option><option value="3">打印采购单</option></select></div>
-<form method="post" id="hander" action=""><input type="hidden" id="ids" name="ids"></input></form>
- <script>
-        $(function(){
-                $('.handerSelection').change(function(){
-                        if($(this).val() == '0') return false;
-                        if($(this).val() == '1'){
-                                //生成备案单
-                                $('#hander').attr('action','index.php?r=purchasing/toachieve');
-                                var ids = '';
-                                $('[name="purchasing-grid_c0[]"]:checked').each(function(){
-                                        ids += $(this).val()+',';
-                                })
-                                $('#ids').val(ids);
-                                $('#hander').submit();
-                        }
-                        if($(this).val() == '2'){
-                                //生成采购单
-                                $('#hander').attr('action','index.php?r=purchasing/topurchase');
-                                var ids = '';
-                                $('[name="purchasing-grid_c0[]"]:checked').each(function(){
-                                        ids += $(this).val()+',';
-                                })
-                                $('#ids').val(ids);
-                                $('#hander').submit();
-                        }
-                        if($(this).val() == '3'){
-                                //生成采购单
-                                $('#hander').attr('action','index.php?r=purchasing/purchasePrint');
-                                var ids = '';
-                                $('[name="purchasing-grid_c0[]"]:checked').each(function(){
-                                        ids += $(this).val()+',';
-                                })
-                                $('#ids').val(ids);
-                                $('#hander').submit();
-                        }
-                });
-        });
-</script>
--->
 <?php else: ?>
 <p style="text-align:center">温馨提示：只有<a href="index.php?r=purchasing/admin&Purchasing[status]=9">审批完成的采购单</a>，才能生成采购单。</p>
 <?php endif; ?>

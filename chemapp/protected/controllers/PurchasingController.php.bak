@@ -126,7 +126,7 @@ class PurchasingController extends Controller
 					$model->purchasing_no=$_POST['purchasing_no'];
 					$model->status=Purchasing::STATUS_PURCHASING;
 					if($model->save())
-						$this->redirect(array('purchasing/purchasePrint','id'=$id,'no'=>$model->purchasing_no));
+						$this->redirect(array('purchasing/purchasePrint','id'=>$id,'no'=>$model->purchasing_no));
 					else
 						throw new CHttpException('400','生成采购单失败。');
 					//Purchasing::model() ->updateAll(array('status'=>  Purchasing::STATUS_PURCHASING, 'purchasing_no'=>$_POST['purchasing_no']),$criteria);  
@@ -348,16 +348,11 @@ class PurchasingController extends Controller
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	/**
-	 * Lists all models.
-	
+	//TJ：这是教师点击采购申请后的处理函数，默认应该跳转到admin页面
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Purchasing');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	} */
+		$this->redirect(array('purchasing/admin'));
+	} 
 
 	public function actionAdmin()
 	{

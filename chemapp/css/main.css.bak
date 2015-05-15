@@ -4,7 +4,7 @@
 	padding: 0;
 	color: #555;
 	/*font: normal 10pt Arial,Helvetica,sans-serif;*/
-	background: #DDD;
+	background: #DDF;
 	/*FILTER:progid:DXImageTransform.Microsoft.Alpha(opacity=95);
 	*FILTER: Alpha(opacity=95);
 	-o-opacity: 0.95;

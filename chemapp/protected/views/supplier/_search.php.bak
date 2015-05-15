@@ -41,8 +41,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'com_tel'); ?>
-		<?php echo $form->textField($model,'com_tel',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->label($model,'comtel'); ?>
+		<?php echo $form->textField($model,'comtel',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">
