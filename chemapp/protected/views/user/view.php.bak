@@ -18,7 +18,10 @@ $this->menu=array(
 		'user_name',
 		'realname',
 		'user_role',
-		'dname',
+		array(
+                        'name'=>'department_id',
+                        'value'=>User::model()->findByPk($model->department_id)->dname
+                ),
 		'cardno',
 		'tel_long',
 		'tel_short',

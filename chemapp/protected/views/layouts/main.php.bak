@@ -69,13 +69,14 @@
 				),
 				
 				array('label'=>'系统管理', 'url'=>array('/site/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
+				array('label'=>'供货商管理', 'url'=>array('/supplier/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
 				
 				array('label'=>'用户管理', 'url'=>array('/user'),'visible'=>
 					//Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())||
 					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId())
 					),
-				array('label'=>'修改信息', 'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'修改用户信息', 'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),'visible'=>!Yii::app()->user->isGuest),
 				
 				
 				array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

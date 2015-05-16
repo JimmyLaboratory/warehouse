@@ -145,7 +145,7 @@ class User extends CActiveRecord
 		//$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('realname',$this->realname,true);
 		$criteria->compare('user_role',$this->user_role,true);
-		//$criteria->compare('department_id',Yii::app()->user->getID(),true);
+		$criteria->compare('department_id',Yii::app()->user->getID(),true);
 		$criteria->compare('lock',$this->lock);
 
 		return new CActiveDataProvider($this, array(

@@ -76,7 +76,7 @@
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())||
 					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId())
 					),
-				array('label'=>'修改信息', 'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'修改账户信息', 'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),'visible'=>!Yii::app()->user->isGuest),
 				
 				
 				array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

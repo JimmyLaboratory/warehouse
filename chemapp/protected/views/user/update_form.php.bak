@@ -45,7 +45,7 @@
 	</div>
 
 	<!--div class="row">
-		<?php /* echo $form->labelEx($model,'department_id'); ?>
+		<?php echo $form->labelEx($model,'department_id'); ?>
 		<?php 
                 if(Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId())){
                         echo $form->dropDownList($model,'department_id', Department::getUserOption());//学院用户只能创建本单位教师
@@ -53,19 +53,11 @@
                 else{
                         echo $form->dropDownList($model, 'department_id', Department::getOptions());
                 }
-                */?>
+                ?>
 		<?php echo $form->error($model,'department_id'); ?>
 	</div -->
         <?php } ?>
         
-		<?php $pUser=User::getInfo(); ?>
-				
-	<div class="row">
-		<?php echo $form->labelEx($model,'dname'); ?>
-		<?php echo $form->textField($model,'dname',array('size'=>20,'maxlength'=>30,'value'=>$pUser->dname)); ?>
-		<?php echo $form->error($model,'dname'); ?>
-	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'cardno'); ?>
 		<?php echo $form->textField($model,'cardno',array('size'=>20,'maxlength'=>30,

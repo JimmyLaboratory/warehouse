@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-05-15 07:18:41
+-- Generation Time: 2015-05-16 04:50:42
 -- 服务器版本： 5.6.24
 -- PHP Version: 5.6.8
 
@@ -4203,7 +4203,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '密码（HASH）',
   `realname` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '真实姓名',
   `user_role` varchar(10) COLLATE utf8_bin NOT NULL COMMENT '用户角色',
-  `department_id` int(3) NOT NULL COMMENT '归属学院ID',
+  `dname` varchar(30) COLLATE utf8_bin NOT NULL,
+  `department_id` int(5) NOT NULL COMMENT '归属学院ID',
   `cardno` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '卡号',
   `tel_long` bigint(11) NOT NULL COMMENT '电话长号',
   `tel_short` int(8) NOT NULL COMMENT '电话短号',
@@ -4211,18 +4212,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '邮箱',
   `note` text COLLATE utf8_bin COMMENT '备注',
   `lock` tinyint(2) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- 转存表中的数据 `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_name`, `password`, `realname`, `user_role`, `department_id`, `cardno`, `tel_long`, `tel_short`, `tel_office`, `email`, `note`, `lock`) VALUES
-(1, 'school', 'e10adc3949ba59abbe56e057f20f883e', '学校用户', 'school', 5, '2000111', 13922222222, 612222, '81511111', 'test@test.com', 'fsdfsdafsdfasdf', -1),
-(2, 'secure', 'e10adc3949ba59abbe56e057f20f883e', '保安', 'secure', 6, '123456', 13922222222, 612222, '13922424105', 'fasdf@123.com', 'fjkdsahlfksda', -1),
-(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', '测试用户', 'college', 2, '2000111', 64466, 5465, '564', 'dsf@ddd.com', 'kfjldhsdkajfhsd', -1),
-(4, 'lin', 'e10adc3949ba59abbe56e057f20f883e', '林老师', 'teacher', 2, '2000111', 13922222222, 612222, '13922424105', 'fasdfdsafsdaff@123.com', 'fdsfsdkjfhlasdkfha', -1),
-(5, 'li', 'e10adc3949ba59abbe56e057f20f883e', '李', 'teacher', 2, '2000111', 13922222222, 612222, '13922424105', 'test@test.com', 'gdsfgdsafasdf', -1);
+INSERT INTO `user` (`user_id`, `user_name`, `password`, `realname`, `user_role`, `dname`, `department_id`, `cardno`, `tel_long`, `tel_short`, `tel_office`, `email`, `note`, `lock`) VALUES
+(1, 'school', 'e10adc3949ba59abbe56e057f20f883e', '学校用户', 'school', '学校', 0, '2000111', 13922222222, 612222, '81511111', 'test@test.com', 'fsdfsdafsdfasdf', -1),
+(2, 'secure', 'e10adc3949ba59abbe56e057f20f883e', '保安', 'secure', '保卫处', 1, '123456', 13922222222, 612222, '13922424105', 'fasdf@123.com', 'fjkdsahlfksda', -1),
+(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', '测试用户', 'college', '化学院', 1, '2000111', 64466, 5465, '564', 'dsf@ddd.com', 'kfjldhsdkajfhsd', -1),
+(4, 'lin', 'e10adc3949ba59abbe56e057f20f883e', '林老师', 'teacher', '化学院', 3, '2000111', 13922222222, 612222, '13922424105', 'fasdfdsafsdaff@123.com', 'fdsfsdkjfhlasdkfha', -1),
+(5, 'li', 'e10adc3949ba59abbe56e057f20f883e', '李', 'teacher', '化学院', 3, '2000111', 13922222222, 612222, '13922424105', 'test@test.com', 'gdsfgdsafasdf', -1),
+(6, 'l', '202cb962ac59075b964b07152d234b70', '123', 'teacher', '化学院', 3, '123', 123, 123, '123', '123', '123', -1),
+(9, 'college', 'e10adc3949ba59abbe56e057f20f883e', '学院测试用户', 'college', '生物学院', 1, '123456', 123456, 12345, '123456', '123456', '123456', -1),
+(8, 'teacher1', 'e10adc3949ba59abbe56e057f20f883e', '教师测试账号', 'teacher', '生物学院', 9, '100000', 123456, 123456, '123456', '123456', '132456', -1);
 
 -- --------------------------------------------------------
 
@@ -4389,7 +4393,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=6;
+  MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

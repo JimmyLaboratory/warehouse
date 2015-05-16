@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
 		array(
             'class'=>'CLinkColumn',
             'header'=>'操作',
-		
+			'htmlOptions'=>array('text-align'=> 'center'),
             'label'=>'修改',
             'urlExpression'=>'Yii::app()->createUrl("user/update",array("id"=>$data->user_id))',
         ),

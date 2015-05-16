@@ -56,13 +56,11 @@
                 */?>
 		<?php echo $form->error($model,'department_id'); ?>
 	</div -->
-        <?php } ?>
+        <?php } echo 'sdf'//$model->dname;?>
         
-		<?php $pUser=User::getInfo(); ?>
-				
 	<div class="row">
 		<?php echo $form->labelEx($model,'dname'); ?>
-		<?php echo $form->textField($model,'dname',array('size'=>20,'maxlength'=>30,'value'=>$pUser->dname)); ?>
+		<?php echo $form->textField($model,'dname',array('size'=>20,'maxlength'=>30,'value'=>$model->dname)); ?>
 		<?php echo $form->error($model,'dname'); ?>
 	</div>
 
