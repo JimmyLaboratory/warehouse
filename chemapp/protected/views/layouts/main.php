@@ -33,9 +33,13 @@
 					'visible'=>
 					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) 
 				),
-				array('label'=>'采购管理', 'url'=>array('/purchasing/admin'),'visible'=>
+				array('label'=>'申购管理', 'url'=>array('/purchasing/admin'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) ||
+					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
+				),
+				array('label'=>'采购管理', 'url'=>array('/purchasing/admin2'),'visible'=>
+					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 				),
 				//array('label'=>'使用申请', 'url'=>array('/using/create'),'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())),
@@ -73,8 +77,7 @@
 				
 				array('label'=>'用户管理', 'url'=>array('/user'),'visible'=>
 					//Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
-					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())||
-					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId())
+					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 					),
 				array('label'=>'修改账户信息', 'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),'visible'=>!Yii::app()->user->isGuest),
 				

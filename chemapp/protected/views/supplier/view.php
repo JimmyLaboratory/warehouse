@@ -17,7 +17,10 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'supplier_id',
+		array(
+			'name'=>'所属学院',
+			'value'=>$model->user->dname,
+		),
 		'supplier_name',
 		'website',
 

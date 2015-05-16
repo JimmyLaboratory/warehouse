@@ -62,6 +62,7 @@ class Supplier extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'=>array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -72,7 +73,7 @@ class Supplier extends CActiveRecord
 	{
 		return array(
 			//'supplier_id' => '所属学院号',
-			'college_id' =>'所属学院',
+			'user_id' =>'所属学院',
 			'supplier_name' => '供应商名称',
 			'website' => '网站',
 			'email' => '邮箱',
@@ -97,7 +98,7 @@ class Supplier extends CActiveRecord
 
 		//$criteria->compare('supplier_id',$this->supplier_id);
 		//TJ：这个是分学院管理供应商的admin页面检索办法，通过搜索所属部门ID和本用户登陆ID相同的供应商找到本学院的供应商
-		$criteria->compare('college_id',User::getInfo()->user_id);
+		$criteria->compare('user_id',User::getInfo()->user_id);
 
 		$criteria->compare('supplier_name',$this->supplier_name,true);
 		$criteria->compare('website',$this->website,true);

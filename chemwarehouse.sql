@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-05-16 04:50:42
+-- Generation Time: 2015-05-16 06:53:27
 -- 服务器版本： 5.6.24
 -- PHP Version: 5.6.8
 
@@ -4075,6 +4075,7 @@ CREATE TABLE IF NOT EXISTS `purchasing` (
   `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '采购单编号',
   `chem_id` int(8) NOT NULL COMMENT '化学品编号',
   `user_id` int(6) NOT NULL COMMENT '用户ID',
+  `d_id` int(5) NOT NULL COMMENT '学院ID',
   `timestamp` int(10) NOT NULL COMMENT '申请时间',
   `status` int(3) NOT NULL COMMENT '当前状态',
   `information` text COLLATE utf8_bin NOT NULL COMMENT 'PHP格式化信息',
@@ -4085,18 +4086,18 @@ CREATE TABLE IF NOT EXISTS `purchasing` (
 -- 转存表中的数据 `purchasing`
 --
 
-INSERT INTO `purchasing` (`purchasing_id`, `chem_id`, `user_id`, `timestamp`, `status`, `information`, `purchasing_no`) VALUES
-('SG2T201210281500193', 2, 4, 1351407626, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 15:00:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 16:31:51\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a","\\u5b66\\u6821\\uff1apony\\u3010\\u5d14\\u5148\\u751f\\u3011\\u4e8e2012-10-28 16:37:34\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u5341\\u516b\\u5927\\u4e0d\\u5141\\u8bb8\\u91c7\\u8d2d"]', ''),
-('SG2T2012102816582', 3, 4, 1351414766, 11, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 16:59:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 17:00:50\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a","\\u5b66\\u6821\\uff1apony\\u3010\\u5d14\\u5148\\u751f\\u3011\\u4e8e2012-10-28 17:01:20\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u5b66\\u6821\\u540c\\u610f","\\u4fdd\\u536b\\u5904\\uff1aflymwy\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-10-28 17:02:18\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a"]', ''),
-('SG2T201210281703541', 4, 4, 1351415034, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 17:03:54\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 17:04:54\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u6709\\u6bd2\\u5316\\u5b66\\u54c1\\u4e0d\\u5141\\u8bb8\\u7533\\u8bf7"]', ''),
-('SG2T201211082309289', 6, 4, 1352387404, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-08 23:10:04\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:00:51\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:01:13\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 15:01:40\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5c0f\\u660e\\u3011\\u4e8e2012-11-10 15:34:09\\u53d6\\u6d88\\u91c7\\u8d2d\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\u4f9b\\u5e94\\u5546\\u65e0\\u8d27"]', ''),
-('SG2T201211102058838', 7, 4, 1352552355, 10, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-10 20:59:15\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:01:25\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 21:03:06\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:03:35\\u540c\\u610f\\u8be5\\u7533\\u8bf7"]', 'CG201212062245144'),
-('SG2T201504241744152', 8, 5, 1429892160, 10, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-24 18:16:00\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:45:59\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:bb\\u610f\\u89c1\\uff1abb","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:15:49\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:aaa \\u610f\\u89c1\\uff1aaaa"]', 'CG201505141928843'),
-('SG2T201504251814456', 9, 5, 1429978571, 0, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-25 18:16:11\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:46:17\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:cc\\u610f\\u89c1\\uff1acc"]', ''),
-('SG2T201504260504629', 12, 5, 1430017526, 2, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:06:19\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:ttt\\u610f\\u89c1\\uff1attt"]', ''),
-('SG2T201504260327859', 11, 5, 1430011689, -2, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010test\\u3011\\u4e8e2015-05-13 17:56:18\\u7ec8\\u6b62\\u91c7\\u8d2d\\u7533\\u8bf7\\uff0c\\u7406\\u7531:123"]', ''),
-('SG2T201504280553647', 13, 5, 1430193265, 1, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-28 05:54:25\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868"]', ''),
-('SG2T201505141030993', 14, 5, 1431570781, 7, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-05-14 10:33:01\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-05-14 10:37:54\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:\\u5b66\\u9662 \\u610f\\u89c1\\uff1a\\u5b66\\u9662\\u540c\\u610f\\u70e7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2015-05-14 10:39:02\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u5f55\\u5165\\u4eba:\\u4fdd\\u5b89","\\u4fdd\\u536b\\u5904\\u5ba1\\u6279\\u4eba:\\u4fdd\\u5b89 \\u610f\\u89c1\\uff1a\\u4fdd\\u5b89\\u5927\\u961f\\u5df2\\u5404\\u5c31\\u5404\\u4f4d","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-05-14 10:39:48\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:\\u5b66\\u6821 \\u610f\\u89c1\\uff1a\\u8d76\\u7d27\\u70e7\\u554a"]', 'CG201505141148626');
+INSERT INTO `purchasing` (`purchasing_id`, `chem_id`, `user_id`, `d_id`, `timestamp`, `status`, `information`, `purchasing_no`) VALUES
+('SG2T201210281500193', 2, 4, 3, 1351407626, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 15:00:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 16:31:51\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a","\\u5b66\\u6821\\uff1apony\\u3010\\u5d14\\u5148\\u751f\\u3011\\u4e8e2012-10-28 16:37:34\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u5341\\u516b\\u5927\\u4e0d\\u5141\\u8bb8\\u91c7\\u8d2d"]', ''),
+('SG2T2012102816582', 3, 4, 3, 1351414766, 11, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 16:59:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 17:00:50\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a","\\u5b66\\u6821\\uff1apony\\u3010\\u5d14\\u5148\\u751f\\u3011\\u4e8e2012-10-28 17:01:20\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u5b66\\u6821\\u540c\\u610f","\\u4fdd\\u536b\\u5904\\uff1aflymwy\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-10-28 17:02:18\\u540c\\u610f\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a"]', ''),
+('SG2T201210281703541', 4, 4, 3, 1351415034, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-10-28 17:03:54\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\uff1atest\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-10-28 17:04:54\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\uff1a\\u6709\\u6bd2\\u5316\\u5b66\\u54c1\\u4e0d\\u5141\\u8bb8\\u7533\\u8bf7"]', ''),
+('SG2T201211082309289', 6, 4, 3, 1352387404, 0, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-08 23:10:04\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:00:51\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 15:01:13\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 15:01:40\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5c0f\\u660e\\u3011\\u4e8e2012-11-10 15:34:09\\u53d6\\u6d88\\u91c7\\u8d2d\\u7533\\u8bf7\\uff0c\\u7406\\u7531\\u4f9b\\u5e94\\u5546\\u65e0\\u8d27"]', ''),
+('SG2T201211102058838', 7, 4, 3, 1352552355, 10, '["\\u6559\\u5e08\\uff1alin\\u3010\\u6797\\u8001\\u5e08\\u3011\\u4e8e2012-11-10 20:59:15\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:01:25\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2012-11-10 21:03:06\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2012-11-10 21:03:35\\u540c\\u610f\\u8be5\\u7533\\u8bf7"]', 'CG201212062245144'),
+('SG2T201504241744152', 8, 5, 3, 1429892160, 10, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-24 18:16:00\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:45:59\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:bb\\u610f\\u89c1\\uff1abb","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:15:49\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:aaa \\u610f\\u89c1\\uff1aaaa"]', 'CG201505141928843'),
+('SG2T201504251814456', 9, 5, 3, 1429978571, 0, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-25 18:16:11\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 04:46:17\\u62d2\\u7edd\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:cc\\u610f\\u89c1\\uff1acc"]', ''),
+('SG2T201504260504629', 12, 5, 3, 1430017526, 2, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-04-26 05:06:19\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:ttt\\u610f\\u89c1\\uff1attt"]', ''),
+('SG2T201504260327859', 11, 5, 3, 1430011689, -2, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-26 05:05:26\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010test\\u3011\\u4e8e2015-05-13 17:56:18\\u7ec8\\u6b62\\u91c7\\u8d2d\\u7533\\u8bf7\\uff0c\\u7406\\u7531:123"]', ''),
+('SG2T201504280553647', 13, 5, 3, 1430193265, 1, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-04-28 05:54:25\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868"]', ''),
+('SG2T201505141030993', 14, 5, 3, 1431570781, 7, '["\\u6559\\u5e08\\uff1ali\\u3010\\u674e\\u3011\\u4e8e2015-05-14 10:33:01\\u63d0\\u4ea4\\u91c7\\u8d2d\\u7533\\u8bf7\\u8868","\\u5b66\\u9662\\u3010\\u6d4b\\u8bd5\\u7528\\u6237\\u3011\\u4e8e2015-05-14 10:37:54\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u9662\\u5f55\\u5165\\u4eba:\\u6d4b\\u8bd5\\u7528\\u6237","\\u5b66\\u9662\\u5ba1\\u6279\\u4eba:\\u5b66\\u9662 \\u610f\\u89c1\\uff1a\\u5b66\\u9662\\u540c\\u610f\\u70e7","\\u4fdd\\u536b\\u5904\\u3010\\u4fdd\\u5b89\\u3011\\u4e8e2015-05-14 10:39:02\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u4fdd\\u536b\\u5904\\u5f55\\u5165\\u4eba:\\u4fdd\\u5b89","\\u4fdd\\u536b\\u5904\\u5ba1\\u6279\\u4eba:\\u4fdd\\u5b89 \\u610f\\u89c1\\uff1a\\u4fdd\\u5b89\\u5927\\u961f\\u5df2\\u5404\\u5c31\\u5404\\u4f4d","\\u5b66\\u6821\\u3010\\u5b66\\u6821\\u7528\\u6237\\u3011\\u4e8e2015-05-14 10:39:48\\u540c\\u610f\\u8be5\\u7533\\u8bf7","\\u5b66\\u6821\\u5f55\\u5165\\u4eba:\\u5b66\\u6821\\u7528\\u6237","\\u5b66\\u6821\\u5ba1\\u6279\\u4eba:\\u5b66\\u6821 \\u610f\\u89c1\\uff1a\\u8d76\\u7d27\\u70e7\\u554a"]', 'CG201505141148626');
 
 -- --------------------------------------------------------
 
@@ -4151,7 +4152,7 @@ INSERT INTO `storage` (`storage_id`, `storage_name`, `note`, `parent_id`, `test`
 
 CREATE TABLE IF NOT EXISTS `supplier` (
   `supplier_id` int(6) NOT NULL COMMENT '供应商ID',
-  `college_id` text COLLATE utf8_bin NOT NULL COMMENT '所属学院ID',
+  `user_id` int(5) NOT NULL COMMENT '所属学院ID',
   `supplier_name` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '供应商名称',
   `website` varchar(200) COLLATE utf8_bin NOT NULL COMMENT '网站',
   `email` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '邮箱',
@@ -4161,16 +4162,16 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `com_tel` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '单位电话',
   `address` text COLLATE utf8_bin NOT NULL COMMENT '地址',
   `note` text COLLATE utf8_bin NOT NULL COMMENT '备注'
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='供应商';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='供应商';
 
 --
 -- 转存表中的数据 `supplier`
 --
 
-INSERT INTO `supplier` (`supplier_id`, `college_id`, `supplier_name`, `website`, `email`, `contact`, `tel`, `representative`, `com_tel`, `address`, `note`) VALUES
-(1, '0', '天晴', 'http://www.skysun.com', 'skysun@sun.com', '小天', '123456', '小天', '123456', '', '没什么'),
-(2, '0', 'aa', '', '', 'aa', '11', '', '', '', ''),
-(3, 'test', 'll', '', '', 'll', 'll', '', '', '', '');
+INSERT INTO `supplier` (`supplier_id`, `user_id`, `supplier_name`, `website`, `email`, `contact`, `tel`, `representative`, `com_tel`, `address`, `note`) VALUES
+(1, 3, '天晴', 'http://www.skysun.com', 'skysun@sun.com', '小天', '123456', '小天', '123456', '', '没什么'),
+(2, 3, 'aa', '', '', 'aa', '11', '', '', '', ''),
+(3, 3, 'll', '', '', 'll', 'll', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -4383,7 +4384,7 @@ ALTER TABLE `storage`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplier_id` int(6) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',AUTO_INCREMENT=4;
+  MODIFY `supplier_id` int(6) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `unit`
 --

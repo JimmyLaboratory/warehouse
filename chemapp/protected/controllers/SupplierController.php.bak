@@ -61,7 +61,7 @@ class SupplierController extends Controller
 		if(isset($_POST['Supplier']))
 		{
 			$model->attributes=$_POST['Supplier'];
-			$model->college_id=Yii::app()->user->getID();
+			$model->college_id=User::getInfo()->user_id;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->supplier_id));
 		}

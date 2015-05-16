@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'供应商', 'url'=>array('index')),
 	array('label'=>'创建供应商', 'url'=>array('create')),
 );
 
@@ -44,6 +43,11 @@ $('.search-form form').submit(function(){
 		'contact',
 		'tel',
 		'com_tel',
+		array(
+			'name'=>'所属学院',
+			'value'=>
+			'htmlOptions'=>array('width'=>'100'),
+		),
 		/*'note',
 		*/
 		array(

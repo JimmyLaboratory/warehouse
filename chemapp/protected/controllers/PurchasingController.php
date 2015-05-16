@@ -38,7 +38,7 @@ class PurchasingController extends Controller
                     'actions'=>array('approve'),//审批
                     'roles'=>array('college','secure','school')),
             array('allow',
-                    'actions'=>array('admin','view','print'),//管理，查看，打印
+                    'actions'=>array('admin','admin2','view','print'),//管理，查看，打印
                     'roles'=>array('college','secure','school','teacher')
             ),
             array('allow',
@@ -274,8 +274,9 @@ class PurchasingController extends Controller
 		{
 			$model->attributes=$_POST['Chemlist'];		//TJ:注意这里表示chemlist类信息
             $model->production_date = date('Y-m-d');
-            $userInfo = User::getInfo();							//通过框架功能获取用户信息
+            $userInfo = User::getInfo();							//TJ:通过User类公共静态函数获取用户对象
             $model->user_id = $userInfo -> user_id;		//填入用户ID
+			$model->d_id=$userInfo->department_id;
             $model->status = Purchasing::STATUS_APPLY;
             $image = CUploadedFile::getInstance($model, 'pics');
             if( is_object($image) && get_class($image) === 'CUploadedFile' ){  
@@ -356,7 +357,7 @@ class PurchasingController extends Controller
 
 	public function actionAdmin()
 	{
-		$this->layout='//layouts/purchasing_admin';			//这里重设layout来显示两个左边快捷列表
+		//$this->layout='//layouts/purchasing_admin';			//这里重设layout来显示两个左边快捷列表
 		//if(!isset($_GET['status'])) $_GET['status']='APPROVE';	//如果没设status，默认为查看“待审”
 		$model=new Purchasing('search');
 		$model->unsetAttributes();  // clear any default values
@@ -364,6 +365,19 @@ class PurchasingController extends Controller
 			$model->attributes=$_GET['Purchasing'];
 
 		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+	public function actionAdmin2()//TJ：这是采购管理，暂时命名为2，因为这个要求很2
+	{
+		//$this->layout='//layouts/purchasing_admin';			//这里重设layout来显示两个左边快捷列表
+		//if(!isset($_GET['status'])) $_GET['status']='APPROVE';	//如果没设status，默认为查看“待审”
+		$model=new Purchasing('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Purchasing']))
+			$model->attributes=$_GET['Purchasing'];
+
+		$this->render('admin2',array(
 			'model'=>$model,
 		));
 	}

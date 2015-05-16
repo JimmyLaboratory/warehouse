@@ -47,14 +47,13 @@ endif;
 	'data'=>$model,
 	'attributes'=>array(
 		'purchasing_id',
-		'chem_id',
 		array(
             'name'=>'user_id',
             'value'=>$model->user->user_name.'【'.$model->user->realname.'】'
         ),
         array(
             'name'=>'学院',
-            'value'=>$model->user->department->department_name
+            'value'=>$model->user->dname
         ),
 		array(
             'name'=>'timestamp',

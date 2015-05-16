@@ -43,6 +43,11 @@ $('.search-form form').submit(function(){
 		'contact',
 		'tel',
 		'com_tel',
+		array(
+			'name'=>'所属学院',
+			'value'=>'$data->user->dname',
+			'htmlOptions'=>array('width'=>'100'),
+		),
 		/*'note',
 		*/
 		array(

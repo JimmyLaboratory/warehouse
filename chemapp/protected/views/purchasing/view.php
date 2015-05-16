@@ -53,7 +53,7 @@ endif;
         ),
         array(
             'name'=>'学院',
-            'value'=>$model->user->department->department_name
+            'value'=>$model->user->dname
         ),
 		array(
             'name'=>'timestamp',
@@ -88,7 +88,7 @@ endif;
         ),
         array(
             'name'=>'学院',
-            'value'=>$model->chemlist->user->department->department_name
+            'value'=>$model->chemlist->user->dname
         ),
         array(
             'name'=>'chemcat_id',

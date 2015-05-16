@@ -13,10 +13,15 @@ $this->menu=array();			//TJ:声明这个是数组类型，否则可能出错		//
 if(Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())){
     //教师用户查看采购申请的左边快捷链接
     $this->menu[]=array( 'label'=>'开始申请','url'=>array('/purchasing/apply'));
+	$this->menu[]=array( 'label'=>'申购中','url'=>array('/purchasing/admin','status'=>'MOVING'));
 }
-$this->menu[]=array('label'=>'待审申请', 'url'=>array('/purchasing/admin','status'=>'APPROVE'));
-//$this->menu[]=array('label'=>'最终审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL));
-$this->menu[]=array('label'=>'已审申请', 'url'=>array('/purchasing/admin','status'=>'PASS'));
+else{
+	$this->menu[]=array('label'=>'待审申请', 'url'=>array('/purchasing/admin','status'=>'APPROVE'));
+	//$this->menu[]=array('label'=>'最终审批完成的申请', 'url'=>array('/purchasing/admin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL));
+	$this->menu[]=array('label'=>'已审申请','url'=>array('/purchasing/admin','status'=>'PASS'));
+}
+
+
 $this->menu[]= array('label'=>'被拒申请', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT)));
 $this->menu[]= array('label'=>'全部申请', 'url'=>array('/purchasing/admin'));
 
