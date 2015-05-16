@@ -157,7 +157,7 @@ class Purchasing extends CActiveRecord
                         switch ($_GET['status']){
 								case 'MOVING':
 									//TJ:这个只有老师用，暂时不加角色检查，查看的的是所有未被拒绝的进行着的申购
-								$criteria ->addNotInCondition('status', array(Purchasing::REJECT,Purchasing::CANCEL));
+								$criteria ->addNotInCondition('status', array(Purchasing::STATUS_REJECT,Purchasing::STATUS_CANCEL));
 								break;
                                 case 'APPROVE':
                                         if($userInfo->user_role == 'college'){

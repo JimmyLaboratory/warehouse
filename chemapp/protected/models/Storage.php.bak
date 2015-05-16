@@ -148,7 +148,6 @@ class Storage extends CActiveRecord
         }
 
 		//TJ:获得上级仓库名（迭代）
-		//状态不好，写的很不清楚，2015年5月16日21:47:13，有空再修改了
 		public function getUpStorage(){
 			if($_GET['sid']==0) return "学院仓库";
 			$result="";	//返回结果初始化

@@ -39,7 +39,6 @@
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 				),
 				array('label'=>'采购管理', 'url'=>array('/purchasing/admin2'),'visible'=>
-					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 				),
 				//array('label'=>'使用申请', 'url'=>array('/using/create'),'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())),
@@ -53,12 +52,6 @@
 				//array('label'=>'入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
 				array('label'=>'备案', 'url'=>array('/achieve/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
-				
-				/*array(
-					'label'=>'出库',
-					'url'=>array('/outstorage/create'),
-					'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
-				),*/
 				
 				array('label'=>'出入库', 'url'=>array(''),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
@@ -74,7 +67,9 @@
 				
 				array('label'=>'系统管理', 'url'=>array('/site/admin'),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				array('label'=>'供货商管理', 'url'=>array('/supplier/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
-				
+				array('label'=>'仓库管理',
+					'url'=>array('/storage/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
+				),
 				array('label'=>'用户管理', 'url'=>array('/user'),'visible'=>
 					//Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())

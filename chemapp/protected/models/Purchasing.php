@@ -90,7 +90,7 @@ class Purchasing extends CActiveRecord
 		// 师兄这个混蛋，这么重要的地方竟然不写注释
 		// 害我找了半天
 		//有了这个就能方便的在一个类对象中存放多个表的字段信息
-		//例如$model->chemlist,$model是purchasing类对象
+		//例如$model->chemlist->chem_name,$model是purchasing类对象,chemlist是表，chem_name是chemlist表中的字段
 		return array(
 			'chemlist'=>array(self::BELONGS_TO, 'Chemlist', 'chem_id'),
 			'user'=>array(self::BELONGS_TO, 'User', 'user_id'),

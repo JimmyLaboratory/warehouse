@@ -61,7 +61,6 @@ class StorageController extends Controller
 		if(isset($_POST['Storage']))
 		{
 			$model->attributes=$_POST['Storage'];
-			$model->user_id=User::getInfo()->user_id;
 			if($model->save())
 				$this->redirect(array('admin','sid'=>$model->parent_id));
 		}

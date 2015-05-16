@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-05-16 06:53:27
+-- Generation Time: 2015-05-16 15:48:54
 -- 服务器版本： 5.6.24
 -- PHP Version: 5.6.8
 
@@ -4129,20 +4129,20 @@ CREATE TABLE IF NOT EXISTS `storage` (
   `storage_name` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '仓库名称',
   `note` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '备注',
   `parent_id` int(5) NOT NULL DEFAULT '0' COMMENT '父仓库（用存保存货架信息）',
-  `test` text CHARACTER SET utf8 COLLATE utf8_bin
+  `user_id` int(5) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1 COMMENT='仓库';
 
 --
 -- 转存表中的数据 `storage`
 --
 
-INSERT INTO `storage` (`storage_id`, `storage_name`, `note`, `parent_id`, `test`) VALUES
-(1, '药A101', '药科楼A栋', 0, NULL),
-(2, '药A102', '', 0, NULL),
-(3, '一层', '', 2, NULL),
-(4, 'A架', '', 1, NULL),
-(5, '1层', '', 4, NULL),
-(6, '2排', '', 5, NULL);
+INSERT INTO `storage` (`storage_id`, `storage_name`, `note`, `parent_id`, `user_id`) VALUES
+(1, '药A101', '药科楼A栋', 0, 3),
+(2, '药A102', '', 0, 3),
+(3, '一层', '', 2, 3),
+(4, 'A架', '', 1, 3),
+(5, '1层', '', 4, 3),
+(6, '2排', '', 5, 3);
 
 -- --------------------------------------------------------
 
