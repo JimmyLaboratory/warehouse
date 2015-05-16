@@ -10,8 +10,8 @@
  * @property string $email
  * @property string $contact
  * @property string $tel
- * @property string $person
- * @property string $personaltel
+ * @property string $representative
+ * @property string $com_tel
  * @property string $note
  */
 class Supplier extends CActiveRecord
@@ -46,11 +46,11 @@ class Supplier extends CActiveRecord
 			array('supplier_name', 'length', 'max'=>60),
 			array('website', 'length', 'max'=>200),
 			array('email', 'length', 'max'=>100),
-			array('contact, person', 'length', 'max'=>30),
+			array('contact, representative', 'length', 'max'=>30),
 			array('tel, com_tel', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('supplier_id, supplier_name, website, email, contact, tel, person, personaltel, note', 'safe', 'on'=>'search'),
+			array('supplier_id, supplier_name, website, email, contact, tel, representative, com_tel, note', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +96,9 @@ class Supplier extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		//$criteria->compare('supplier_id',$this->supplier_id);
-		//$criteria->compare('colleage_id',$this->colleage_name,true);
+		//TJ：这个是分学院管理供应商的admin页面检索办法，通过搜索所属部门ID和本用户登陆ID相同的供应商找到本学院的供应商
+		$criteria->compare('colleage_id',User::getInfo()->user_id);
+
 		$criteria->compare('supplier_name',$this->supplier_name,true);
 		$criteria->compare('website',$this->website,true);
 		$criteria->compare('email',$this->email,true);

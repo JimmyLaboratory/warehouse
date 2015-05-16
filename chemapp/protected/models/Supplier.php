@@ -96,7 +96,9 @@ class Supplier extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		//$criteria->compare('supplier_id',$this->supplier_id);
-		//$criteria->compare('colleage_id',$this->colleage_name,true);
+		//TJ：这个是分学院管理供应商的admin页面检索办法，通过搜索所属部门ID和本用户登陆ID相同的供应商找到本学院的供应商
+		$criteria->compare('college_id',User::getInfo()->user_id);
+
 		$criteria->compare('supplier_name',$this->supplier_name,true);
 		$criteria->compare('website',$this->website,true);
 		$criteria->compare('email',$this->email,true);
