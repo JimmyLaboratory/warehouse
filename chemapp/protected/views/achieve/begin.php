@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'开始备案','url'=>array('/achieve/begin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL)),
 	array('label'=>'正在备案','url'=>array('/achieve/admin','status'=>Achieve::STATUS_SENDING)),
-	array('label'=>'完成备案','url'=>array('/achieve/admin','status'=>Achieve::STATUS_SUCCESS)),
+	array('label'=>'备案成功','url'=>array('/achieve/admin','status'=>Achieve::STATUS_SUCCESS)),
 	array('label'=>'备案失败','url'=>array('/achieve/admin','status'=>Achieve::STATUS_FAILED)),
 );
 

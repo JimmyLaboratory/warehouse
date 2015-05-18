@@ -1,0 +1,219 @@
+
+html { background-color: #CCC; }
+
+.newcontainer {
+    margin: 0px auto;
+    width: 200%;
+}
+
+.menu, .menu ul {
+    list-style: none;/*把图像设置为列表中的列表项目标记*/
+    padding: 0;
+    margin: 0;
+	
+}
+
+
+
+.menu {
+
+    height: 18px;
+}
+.menu li {/*menu里面的li属性*/  
+    background: linear-gradient(#669999, #ffffff);/*不知道什么鬼*/
+    border-bottom: 2px;
+    border-top: 2px;
+    min-width: 100px;
+}
+.menu > li {/*menu里面的li属性*/ 
+    display: block;/*块状显示*/
+    float: left;/*从左到右排序？*/
+    position: relative;/*绝对定位？*/
+	
+}
+.menu > li:first-child {
+    border-radius: 5px 0 0;/*菜单栏边缘是否圆滑*/
+}
+.menu a {/*menu里面的a属性*/  
+    border-left: 3px solid rgba(0, 0, 0, 0);
+    color: #808080;
+    display: block;
+    font-size: 12px;
+    line-height: 50px;
+    padding: 0 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.menu li:hover {/*鼠标经过li时发生的变化*/ 
+    background: linear-gradient(#1c1c1c, #1b1b1b);
+    border-bottom: 2px;
+    border-top: 2px;
+}
+.menu li:hover > a {
+    border-radius: 5px 0 0 0;
+    border-left: 3px solid #C4302B;
+    color: #C4302B;
+}
+
+.submenu {/*submenu的属性*/ 
+    left: 0;
+    max-height: 0;
+    position: absolute;
+    top: 100%;
+    z-index: 0;
+    -webkit-perspective: 400px;
+    -moz-perspective: 400px;
+    -ms-perspective: 400px;
+    -o-perspective: 400px;
+    perspective: 400px;
+}
+.submenu li {/*子菜单默认是隐藏的,它的元素是旋转90度。当我们徘徊在顶级菜单,子菜单出现的孩子。*/
+    opacity: 0;
+	min-width: 200px;/*孩子块的长度*/
+    -webkit-transform: rotateY(90deg);/*转90度*/
+    -moz-transform: rotateY(90deg);/*转90度*/
+    -ms-transform: rotateY(90deg);/*转90度*/
+    -o-transform: rotateY(90deg);/*转90度*/
+    transform: rotateY(90deg);/*转90度*/
+
+    -webkit-transition: opacity .4s, -webkit-transform .5s;
+    -moz-transition: opacity .4s, -moz-transform .5s;
+    -ms-transition: opacity .4s, -ms-transform .5s;
+    -o-transition: opacity .4s, -o-transform .5s;
+    transition: opacity .4s, transform .5s;
+}
+.menu .submenu li:hover a {/*鼠标经过submenu的li时发生的变化*/
+    border-left: 3px;
+    border-radius: 0;
+    color: #ffffff;
+}
+.menu > li:hover .submenu, .menu > li:focus .submenu {
+    max-height: 2000px;
+    z-index: 10;
+}
+.menu > li:hover .submenu li, .menu > li:focus .submenu li {
+    opacity: 1;
+
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+
+/*添加独特性——让我们为每个子菜单项添加一个延迟,因此他们将会出现在不同的时间:*/
+
+.menu li:hover .submenu li:nth-child(1) {
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+}
+.menu li:hover .submenu li:nth-child(2) {
+    -webkit-transition-delay: 50ms;
+    -moz-transition-delay: 50ms;
+    -ms-transition-delay: 50ms;
+    -o-transition-delay: 50ms;
+    transition-delay: 50ms;
+}
+.menu li:hover .submenu li:nth-child(3) {
+    -webkit-transition-delay: 100ms;
+    -moz-transition-delay: 100ms;
+    -ms-transition-delay: 100ms;
+    -o-transition-delay: 100ms;
+    transition-delay: 100ms;
+}
+.menu li:hover .submenu li:nth-child(4) {
+    -webkit-transition-delay: 150ms;
+    -moz-transition-delay: 150ms;
+    -ms-transition-delay: 150ms;
+    -o-transition-delay: 150ms;
+    transition-delay: 150ms;
+}
+.menu li:hover .submenu li:nth-child(5) {
+    -webkit-transition-delay: 200ms;
+    -moz-transition-delay: 200ms;
+    -ms-transition-delay: 200ms;
+    -o-transition-delay: 200ms;
+    transition-delay: 200ms;
+}
+.menu li:hover .submenu li:nth-child(6) {
+    -webkit-transition-delay: 250ms;
+    -moz-transition-delay: 250ms;
+    -ms-transition-delay: 250ms;
+    -o-transition-delay: 250ms;
+    transition-delay: 250ms;
+}
+.menu li:hover .submenu li:nth-child(7) {
+    -webkit-transition-delay: 300ms;
+    -moz-transition-delay: 300ms;
+    -ms-transition-delay: 300ms;
+    -o-transition-delay: 300ms;
+    transition-delay: 300ms;
+}
+.menu li:hover .submenu li:nth-child(8) {
+    -webkit-transition-delay: 350ms;
+    -moz-transition-delay: 350ms;
+    -ms-transition-delay: 350ms;
+    -o-transition-delay: 350ms;
+    transition-delay: 350ms;
+}
+
+.submenu li:nth-child(1) {
+    -webkit-transition-delay: 350ms;
+    -moz-transition-delay: 350ms;
+    -ms-transition-delay: 350ms;
+    -o-transition-delay: 350ms;
+    transition-delay: 350ms;
+}
+.submenu li:nth-child(2) {
+    -webkit-transition-delay: 300ms;
+    -moz-transition-delay: 300ms;
+    -ms-transition-delay: 300ms;
+    -o-transition-delay: 300ms;
+    transition-delay: 300ms;
+}
+.submenu li:nth-child(3) {
+    -webkit-transition-delay: 250ms;
+    -moz-transition-delay: 250ms;
+    -ms-transition-delay: 250ms;
+    -o-transition-delay: 250ms;
+    transition-delay: 250ms;
+}
+.submenu li:nth-child(4) {
+    -webkit-transition-delay: 200ms;
+    -moz-transition-delay: 200ms;
+    -ms-transition-delay: 200ms;
+    -o-transition-delay: 200ms;
+    transition-delay: 200ms;
+}
+.submenu li:nth-child(5) {
+    -webkit-transition-delay: 150ms;
+    -moz-transition-delay: 150ms;
+    -ms-transition-delay: 150ms;
+    -o-transition-delay: 150ms;
+    transition-delay: 150ms;
+}
+.submenu li:nth-child(6) {
+    -webkit-transition-delay: 100ms;
+    -moz-transition-delay: 100ms;
+    -ms-transition-delay: 100ms;
+    -o-transition-delay: 100ms;
+    transition-delay: 100ms;
+}
+.submenu li:nth-child(7) {
+    -webkit-transition-delay: 50ms;
+    -moz-transition-delay: 50ms;
+    -ms-transition-delay: 50ms;
+    -o-transition-delay: 50ms;
+    transition-delay: 50ms;
+}
+.submenu li:nth-child(8) {
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+}

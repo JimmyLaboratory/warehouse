@@ -80,53 +80,76 @@
 	background: #c1eafe url('header.jpg') center no-repeat;
 }
 
-#mainmenu
+.mainmenu
 {
-	/* background:white url(bg.gif) repeat left top; */
-	background: #E0E0E0;
+	font-family:Verdana,Tahoma;
+	background:none #669900;/*标题栏背景颜色*/
+	z-index:10;
+	position:relative;
+	height:30px;
 }
 
-#mainmenu ul
+.mainmenu ul
 {
-	/* padding:6px 20px 5px 20px; */
-	margin: 0; padding: 0;
-	text-align: center;
+	class:menu;
+	background:none #ffffff;
+	position:absolute;
+	margin:0 0 0 30px;
+	padding:0 0 0 1px;
+	height:30px
 }
 
-#mainmenu ul li
+.mainmenu ul li
 {
-	/* display: inline; */
-	display: inline-block;
-	padding: 0; margin: 0 0 0 -4px;
-	text-align: center;
+	display:block;
+	float:left;
+	_width:100px;
 }
 
-#mainmenu ul li a
+.mainmenu ul li a
 {
-	/* color:#ffffff; */
-	color: #333;
-	display: inline-block;
-	background-color:transparent;
-	font-size: 100%;/*font-size:12px;*/
-	/* font-weight:bold; */
+	display:block;
+	font-size:14px;
+	font-weight:bold;
 	text-decoration:none;
-	padding: 14px 12px;
-	padding: 1em 0.9em;
-	margin: 0;
-	letter-spacing:1px;
-	border-right: 1px solid #F4F4F4;
+	margin-right:1px;
+	padding:6px 18px;
+	border:1px solid #669900;
+	background:none #669900;
+	color:#fff;
+	line-height:16px;*height:14px;
 }
 
-#mainmenu ul li:hover, #mainmenu ul li.active
+.mainmenu ul li ul
 {
-	/* background-color:#EFF4FA; */
+	display:none;
 }
-#mainmenu ul li a:hover, #mainmenu ul li.active a
+
+.mainmenu ul li:hover ul
 {
-	/* color: #6399cd; */
-	text-decoration:none;
-	color: #fff;
-	background: #19B4EA;
+	width:100px;
+	overflow:show;
+	display:block;
+	margin:0;
+	padding:0px 0;
+	z-index:10;
+	background:none #336699;
+}
+
+.mainmenu ul li:hover a
+{
+width:100%;
+	background:none #336699;
+	border:1px solid #336699
+}
+
+.mainmenu ul li a:hover,
+
+.mainmenu ul li.active a
+{
+color:#6399cd;
+background-color:#EFF4FA;
+text-decoration:none;
 }
 
 div.flash-error, div.flash-notice, div.flash-success

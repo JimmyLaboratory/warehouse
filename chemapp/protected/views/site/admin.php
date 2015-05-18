@@ -15,9 +15,6 @@ Yii::app()->getClientScript()->registerCssFile(Yii::app()->getAssetManager()->pu
 <div class="narrowPage grid-view" style="font-size: 1.6em">
 	<!--<table class="items"> -->
 		<table class="items">
-		<thead>
-			<tr><td></td><td></td><td></td><td></td><th>可选操作<th></tr>
-		</thead>
 		<tbody>
 			<tr><td></td></tr>
 			<tr><td></td></tr>	
