@@ -22,6 +22,12 @@
 	</div>
         <?php endif; ?>
 	<div class="row">
+		<?php echo $form->labelEx($model,'repassword'); ?>
+		<?php echo $form->passwordField($model,'repassword',array('size'=>20,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'repassword'); ?>
+	</div>
+        <?php endif; ?>
+	<div class="row">
 		<?php echo $form->labelEx($model,'realname'); ?>
 		<?php echo $form->textField($model,'realname',array('size'=>20,'maxlength'=>20,
                 'readonly'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()) ? 'readonly' : '')); ?>

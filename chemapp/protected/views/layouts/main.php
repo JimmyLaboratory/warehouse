@@ -115,7 +115,12 @@
 					'label'=>'账户信息',
 					'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),
 					'submenuOptions'=>array('class'=>'submenu'),
-					'visible'=>!Yii::app()->user->isGuest
+					'visible'=>!Yii::app()->user->isGuest,
+					'items'=>array(
+						
+						array('label'=>'用户列表', 'url'=>array('/user/admin')),
+						//array('label'=>'修改用户密码', 'url'=>array('/user/passwd', id=>$model->user_id')),			
+						),
 				),
 				
 				

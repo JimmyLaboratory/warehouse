@@ -78,7 +78,7 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_name, password, realname, user_role, cardno, tel_long, tel_short, tel_office, email, note, lock,dname', 'required'),
+			array('user_name, password, repassword,realname, user_role, cardno, tel_long, tel_short, tel_office, email, note, lock,dname', 'required'),
 			array(' tel_short, lock', 'numerical', 'integerOnly'=>true),
 			array('user_name, email', 'length', 'max'=>60),
 			array('password', 'length', 'max'=>32),
@@ -89,6 +89,7 @@ class User extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('user_id, user_name, password, realname, user_role, department_id, cardno, tel_long, tel_short, tel_office, email, note, lock', 'safe', 'on'=>'search'),
+			array('repassword', 'compare', 'compareAttribute'=>'password'),
 		);
 	}
 
@@ -113,6 +114,7 @@ class User extends CActiveRecord
 			'user_id' => '用户ID',
 			'user_name' => '用户名',
 			'password' => '密码',
+			'repassword' => '确认密码',
 			'realname' => '姓名',
 			'user_role' => '用户角色',
 			'dname' => '学院/部门',
