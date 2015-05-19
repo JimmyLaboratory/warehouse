@@ -150,7 +150,7 @@ if( ($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> 
     <form id="purchasing-form" action="index.php?r=purchasing/approve&id=<?php echo $model->purchasing_id ?>" method="post">
     <div class="row">
         <label for="Purchasing_purchasing_id" class="required">
-            <input size="20" maxlength="20" name="Purchasing[approve]" id="Purchasing_purchasing_id" type="radio" value="1" />同意采购
+            <input size="20" maxlength="20" name="Purchasing[approve]" id="Purchasing_purchasing_id" type="radio" value="1"  checked="checked"/>同意采购
         </label>
         <label for="Purchasing_chem_id" class="required">
             <input name="Purchasing[approve]" id="Purchasing_chem_id" type="radio" value="-1" />拒绝采购

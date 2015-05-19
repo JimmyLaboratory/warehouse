@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-05-16 15:48:54
--- 服务器版本： 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: 2015-05-19 12:38:13
+-- 服务器版本： 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `chemwarehouse`
 --
-CREATE DATABASE IF NOT EXISTS `chemwarehouse` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `chemwarehouse`;
 
 -- --------------------------------------------------------
 
@@ -60,7 +58,7 @@ INSERT INTO `achieve` (`id`, `achieve_id`, `timestamp`, `achiever`, `contractID`
 --
 
 CREATE TABLE IF NOT EXISTS `chemcat` (
-  `cat_id` int(5) NOT NULL COMMENT '分类ID',
+`cat_id` int(5) NOT NULL COMMENT '分类ID',
   `chemcat_name` varchar(400) COLLATE utf8_bin NOT NULL COMMENT '分类名称',
   `parent_id` int(5) NOT NULL COMMENT '父级分类ID',
   `level` int(3) NOT NULL
@@ -991,7 +989,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (33538362, '异丙(基)苯（枯烯\r）', 33, 0),
 (33539, '1-甲基-3-丙基苯（3-丙基甲苯\r）', 33, 3),
 (33539461, '1-甲基-4-丙基苯（4-丙基甲苯\r）', 33, 0),
-(33539442, '甲基异丙基苯（伞花烃\r）', 33, 0),
+(33539442, '甲基异丙基苯（伞花烃\r）', 33, 0);
+INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (33540, '正丁(基)苯（\r）', 33, 3),
 (33540279, '异丁(基)苯（\r）', 33, 0),
 (3354068, '仲丁(基)苯（\r）', 33, 0),
@@ -1564,8 +1563,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (43037, '磷化铝镁（\r）', 43, 3),
 (43038, '磷化锌（\r）', 43, 3),
 (43039, '磷化锶（\r）', 43, 3),
-(43040, '磷化锡（\r）', 43, 3);
-INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
+(43040, '磷化锡（\r）', 43, 3),
 (43041, '五硫化(二)磷（\r）', 43, 3),
 (43042, '氨基(化)锂（\r）', 43, 3),
 (43042482, '氨基(化)钙（\r）', 43, 0),
@@ -1880,7 +1878,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (52063, '4,4-双-(过氧化叔丁基)戊酸正丁酯[工业纯]（\r）', 52, 0),
 (52063503, '4,4-双-(过氧化叔丁基)戊酸正丁酯[含量≤52%,带有惰性固体]（\r）', 52, 0),
 (52064, '过氧化新戊酸叔丁酯[在溶液中,67%＜含量≤77%]（过氧化叔丁基新戊酸酯\r）', 52, 0),
-(52064264, '过氧化新戊酸叔丁酯[在溶液中,含量≤67%]（\r）', 52, 0),
+(52064264, '过氧化新戊酸叔丁酯[在溶液中,含量≤67%]（\r）', 52, 0);
+INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (52065, '过氧化新戊酸叔戊酯[在溶液中,含量≤77%]（过氧化叔戊基新戊酸酯\r）', 52, 0),
 (52066, '过氧化新戊酸异丙基苯酯[在溶液中,含量≤77%]（过氧化异丙苯基新戊酸酯;过氧化新戊酸枯基酯\r）', 52, 0),
 (52067, '过氧化-2-乙基己酸叔丁酯[工业纯]（过氧化叔丁基-2-乙基己酸酯\r）', 52, 0),
@@ -2715,7 +2714,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (61689615, '1-溴-2,4-二硝基苯（3,4-二硝基溴化苯;1,3-二硝基-4-溴化苯;2,4-二硝基溴化苯\r）', 61, 0),
 (61690, '4-硝基溴(化)苄（对硝基溴(化)苄,对硝基苯溴甲烷;对硝基苄基溴\r）', 61, 0),
 (61691, '2-硝基碘苯（2-碘硝基苯;邻硝基碘苯;邻碘硝基苯\r）', 61, 0),
-(61691864, '3-硝基碘苯（3-碘硝基苯;间硝基碘苯;间碘硝基苯\r）', 61, 0),
+(61691864, '3-硝基碘苯（3-碘硝基苯;间硝基碘苯;间碘硝基苯\r）', 61, 0);
+INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (61691411, '4-硝基碘苯（4-碘硝基苯;对硝基碘苯;对碘硝基苯\r）', 61, 0),
 (61692, '二硝基巯基苯（二硝基硫氢代苯\r）', 61, 0),
 (61693, '二硫代二甲基氟化苯（\r）', 61, 0),
@@ -2901,8 +2901,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (61785499, '3-乙氧基苯胺（间乙氧基苯胺;间氨基苯乙醚\r）', 61, 0),
 (61785294, '4-乙氧基苯胺（对乙氧基苯胺;对氨基苯乙醚\r）', 61, 0),
 (61786, '3-甲基-6-甲氧基苯胺（邻氨基对甲苯甲醚\r）', 61, 0),
-(61787, '4-硝基-2-甲氧基苯胺（5-硝基-2-氨基苯甲醚;对硝基邻甲氧基苯胺\r）', 61, 0);
-INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
+(61787, '4-硝基-2-甲氧基苯胺（5-硝基-2-氨基苯甲醚;对硝基邻甲氧基苯胺\r）', 61, 0),
 (61788, '2-氯-4-甲氧基苯胺（3-氯-4-氨基苯甲醚;间氯对氨基苯甲醚\r）', 61, 0),
 (61788780, '2-氯-6-甲氧基苯胺（3-氯-2-氨基苯甲醚\r）', 61, 0),
 (61788311, '3-氯-2-甲氧基苯胺（6-氯-2-氨基苯甲醚\r）', 61, 0),
@@ -3454,7 +3453,8 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (61891, '苯氧基液态农药，如：（\r）', 61, 0),
 (61891290, '2甲4氯乳剂[含量＞35%]（MCPA乳剂\r）', 61, 0),
 (61891159, '2甲4氯丙酸乳剂[含量＞30%]（\r）', 61, 0),
-(61891587, '2,4,5-涕乳剂[含量＞15%]（2,4,5-T乳剂\r）', 61, 0),
+(61891587, '2,4,5-涕乳剂[含量＞15%]（2,4,5-T乳剂\r）', 61, 0);
+INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 (61891182, '2,4-滴乳剂[含量＞15%]（2,4-D乳剂\r）', 61, 0),
 (61891420, '杀草畏乳剂[含量＞50%]（三氯茴香酸乳剂\r）', 61, 0),
 (61891896, '麦草畏乳剂[含量＞50%]（麦草丹乳剂;敌草平乳剂\r）', 61, 0),
@@ -3940,7 +3940,7 @@ INSERT INTO `chemcat` (`cat_id`, `chemcat_name`, `parent_id`, `level`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `chemlist` (
-  `chem_id` int(8) NOT NULL COMMENT '化学品ID',
+`chem_id` int(8) NOT NULL COMMENT '化学品ID',
   `status` tinyint(2) NOT NULL COMMENT '该品状态',
   `user_id` int(5) NOT NULL COMMENT '用户ID',
   `chemcat_id` int(5) NOT NULL COMMENT '分类ID',
@@ -3994,7 +3994,7 @@ INSERT INTO `chemlist` (`chem_id`, `status`, `user_id`, `chemcat_id`, `chem_name
 --
 
 CREATE TABLE IF NOT EXISTS `department` (
-  `department_id` int(5) NOT NULL COMMENT '学院ID',
+`department_id` int(5) NOT NULL COMMENT '学院ID',
   `department_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '学院名称'
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -4017,7 +4017,7 @@ INSERT INTO `department` (`department_id`, `department_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `instorage` (
-  `instorage_id` int(10) NOT NULL COMMENT '入库ID',
+`instorage_id` int(10) NOT NULL COMMENT '入库ID',
   `purchasing_id` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '采购申请单ID',
   `user_id` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '入库操作人ID',
   `verifydate` date NOT NULL COMMENT '验收日期',
@@ -4047,7 +4047,7 @@ INSERT INTO `instorage` (`instorage_id`, `purchasing_id`, `user_id`, `verifydate
 --
 
 CREATE TABLE IF NOT EXISTS `outstorage` (
-  `outstorage_id` int(10) NOT NULL COMMENT '出库ID',
+`outstorage_id` int(10) NOT NULL COMMENT '出库ID',
   `using_id` varchar(30) COLLATE utf8_bin NOT NULL,
   `apply_user_id` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '申请人用户ID',
   `duty_user_id` int(8) NOT NULL COMMENT '发放人用户ID',
@@ -4106,7 +4106,7 @@ INSERT INTO `purchasing` (`purchasing_id`, `chem_id`, `user_id`, `d_id`, `timest
 --
 
 CREATE TABLE IF NOT EXISTS `quality` (
-  `quality_id` int(5) NOT NULL COMMENT '规格ID',
+`quality_id` int(5) NOT NULL COMMENT '规格ID',
   `quality_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '规格名称'
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -4125,7 +4125,7 @@ INSERT INTO `quality` (`quality_id`, `quality_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `storage` (
-  `storage_id` int(5) NOT NULL COMMENT '仓库ID',
+`storage_id` int(5) NOT NULL COMMENT '仓库ID',
   `storage_name` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '仓库名称',
   `note` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '备注',
   `parent_id` int(5) NOT NULL DEFAULT '0' COMMENT '父仓库（用存保存货架信息）',
@@ -4151,7 +4151,7 @@ INSERT INTO `storage` (`storage_id`, `storage_name`, `note`, `parent_id`, `user_
 --
 
 CREATE TABLE IF NOT EXISTS `supplier` (
-  `supplier_id` int(6) NOT NULL COMMENT '供应商ID',
+`supplier_id` int(6) NOT NULL COMMENT '供应商ID',
   `user_id` int(5) NOT NULL COMMENT '所属学院ID',
   `supplier_name` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '供应商名称',
   `website` varchar(200) COLLATE utf8_bin NOT NULL COMMENT '网站',
@@ -4170,8 +4170,7 @@ CREATE TABLE IF NOT EXISTS `supplier` (
 
 INSERT INTO `supplier` (`supplier_id`, `user_id`, `supplier_name`, `website`, `email`, `contact`, `tel`, `representative`, `com_tel`, `address`, `note`) VALUES
 (1, 3, '天晴', 'http://www.skysun.com', 'skysun@sun.com', '小天', '123456', '小天', '123456', '', '没什么'),
-(2, 3, 'aa', '', '', 'aa', '11', '', '', '', ''),
-(3, 3, 'll', '', '', 'll', 'll', '', '', '', '');
+(2, 3, 'aa', '', '', 'aa', '11', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -4180,7 +4179,7 @@ INSERT INTO `supplier` (`supplier_id`, `user_id`, `supplier_name`, `website`, `e
 --
 
 CREATE TABLE IF NOT EXISTS `unit` (
-  `unit_id` int(5) NOT NULL COMMENT '商品单位ID',
+`unit_id` int(5) NOT NULL COMMENT '商品单位ID',
   `unit_name` varchar(25) COLLATE utf8_bin NOT NULL COMMENT '商品单位名称'
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -4199,9 +4198,10 @@ INSERT INTO `unit` (`unit_id`, `unit_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(10) unsigned NOT NULL COMMENT '用户ID',
+`user_id` int(10) unsigned NOT NULL COMMENT '用户ID',
   `user_name` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '用户名',
   `password` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '密码（HASH）',
+  `repassword` varchar(32) COLLATE utf8_bin NOT NULL,
   `realname` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '真实姓名',
   `user_role` varchar(10) COLLATE utf8_bin NOT NULL COMMENT '用户角色',
   `dname` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -4213,21 +4213,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '邮箱',
   `note` text COLLATE utf8_bin COMMENT '备注',
   `lock` tinyint(2) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- 转存表中的数据 `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_name`, `password`, `realname`, `user_role`, `dname`, `department_id`, `cardno`, `tel_long`, `tel_short`, `tel_office`, `email`, `note`, `lock`) VALUES
-(1, 'school', 'e10adc3949ba59abbe56e057f20f883e', '学校用户', 'school', '学校', 0, '2000111', 13922222222, 612222, '81511111', 'test@test.com', 'fsdfsdafsdfasdf', -1),
-(2, 'secure', 'e10adc3949ba59abbe56e057f20f883e', '保安', 'secure', '保卫处', 1, '123456', 13922222222, 612222, '13922424105', 'fasdf@123.com', 'fjkdsahlfksda', -1),
-(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', '测试用户', 'college', '化学院', 1, '2000111', 64466, 5465, '564', 'dsf@ddd.com', 'kfjldhsdkajfhsd', -1),
-(4, 'lin', 'e10adc3949ba59abbe56e057f20f883e', '林老师', 'teacher', '化学院', 3, '2000111', 13922222222, 612222, '13922424105', 'fasdfdsafsdaff@123.com', 'fdsfsdkjfhlasdkfha', -1),
-(5, 'li', 'e10adc3949ba59abbe56e057f20f883e', '李', 'teacher', '化学院', 3, '2000111', 13922222222, 612222, '13922424105', 'test@test.com', 'gdsfgdsafasdf', -1),
-(6, 'l', '202cb962ac59075b964b07152d234b70', '123', 'teacher', '化学院', 3, '123', 123, 123, '123', '123', '123', -1),
-(9, 'college', 'e10adc3949ba59abbe56e057f20f883e', '学院测试用户', 'college', '生物学院', 1, '123456', 123456, 12345, '123456', '123456', '123456', -1),
-(8, 'teacher1', 'e10adc3949ba59abbe56e057f20f883e', '教师测试账号', 'teacher', '生物学院', 9, '100000', 123456, 123456, '123456', '123456', '132456', -1);
+INSERT INTO `user` (`user_id`, `user_name`, `password`, `repassword`, `realname`, `user_role`, `dname`, `department_id`, `cardno`, `tel_long`, `tel_short`, `tel_office`, `email`, `note`, `lock`) VALUES
+(1, 'school', 'e10adc3949ba59abbe56e057f20f883e', '', '学校用户', 'school', '学校', 0, '2000111', 13922222222, 612222, '81511111', 'test@test.com', 'fsdfsdafsdfasdf', -1),
+(2, 'secure', 'e10adc3949ba59abbe56e057f20f883e', '', '保安', 'secure', '保卫处', 1, '123456', 13922222222, 612222, '13922424105', 'fasdf@123.com', 'fjkdsahlfksda', -1),
+(3, 'test', 'e10adc3949ba59abbe56e057f20f883e', '', '测试用户', 'college', '化学院', 1, '2000111', 64466, 5465, '564', 'dsf@ddd.com', 'kfjldhsdkajfhsd', -1),
+(4, 'lin', 'e10adc3949ba59abbe56e057f20f883e', '', '林老师', 'teacher', '化学院', 3, '2000111', 13922222222, 612222, '13922424105', 'fasdfdsafsdaff@123.com', 'fdsfsdkjfhlasdkfha', -1),
+(5, 'li', 'e10adc3949ba59abbe56e057f20f883e', '', '李', 'teacher', '化学院', 3, '2000111', 13922222222, 612222, '13922424105', 'test@test.com', 'gdsfgdsafasdf', -1),
+(6, 'l', '202cb962ac59075b964b07152d234b70', '', '123', 'teacher', '化学院', 3, '123', 123, 123, '123', '123', '123', -1),
+(9, 'college', 'e10adc3949ba59abbe56e057f20f883e', '', '学院测试用户', 'college', '生物学院', 1, '123456', 123456, 12345, '123456', '123456', '123456', -1),
+(8, 'teacher1', 'e10adc3949ba59abbe56e057f20f883e', '', '教师测试账号', 'teacher', '生物学院', 9, '100000', 123456, 123456, '123456', '123456', '132456', -1);
 
 -- --------------------------------------------------------
 
@@ -4267,79 +4267,79 @@ INSERT INTO `using` (`using_id`, `chem_id`, `user_id`, `timestamp`, `applyuse`, 
 -- Indexes for table `achieve`
 --
 ALTER TABLE `achieve`
-  ADD PRIMARY KEY (`purchasing_id`);
+ ADD PRIMARY KEY (`purchasing_id`);
 
 --
 -- Indexes for table `chemcat`
 --
 ALTER TABLE `chemcat`
-  ADD PRIMARY KEY (`cat_id`);
+ ADD PRIMARY KEY (`cat_id`);
 
 --
 -- Indexes for table `chemlist`
 --
 ALTER TABLE `chemlist`
-  ADD PRIMARY KEY (`chem_id`);
+ ADD PRIMARY KEY (`chem_id`);
 
 --
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`department_id`);
+ ADD PRIMARY KEY (`department_id`);
 
 --
 -- Indexes for table `instorage`
 --
 ALTER TABLE `instorage`
-  ADD PRIMARY KEY (`instorage_id`);
+ ADD PRIMARY KEY (`instorage_id`);
 
 --
 -- Indexes for table `outstorage`
 --
 ALTER TABLE `outstorage`
-  ADD PRIMARY KEY (`outstorage_id`);
+ ADD PRIMARY KEY (`outstorage_id`);
 
 --
 -- Indexes for table `purchasing`
 --
 ALTER TABLE `purchasing`
-  ADD PRIMARY KEY (`purchasing_id`), ADD KEY `purchasing_no` (`purchasing_no`);
+ ADD PRIMARY KEY (`purchasing_id`), ADD KEY `purchasing_no` (`purchasing_no`);
 
 --
 -- Indexes for table `quality`
 --
 ALTER TABLE `quality`
-  ADD PRIMARY KEY (`quality_id`);
+ ADD PRIMARY KEY (`quality_id`);
 
 --
 -- Indexes for table `storage`
 --
 ALTER TABLE `storage`
-  ADD PRIMARY KEY (`storage_id`);
+ ADD PRIMARY KEY (`storage_id`);
 
 --
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`supplier_id`);
+ ADD PRIMARY KEY (`supplier_id`);
 
 --
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
-  ADD PRIMARY KEY (`unit_id`);
+ ADD PRIMARY KEY (`unit_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`), ADD UNIQUE KEY `user_name` (`user_name`);
+ ADD PRIMARY KEY (`user_id`), ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
 -- Indexes for table `using`
 --
 ALTER TABLE `using`
-  ADD PRIMARY KEY (`using_id`);
+ ADD PRIMARY KEY (`using_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -4349,52 +4349,52 @@ ALTER TABLE `using`
 -- AUTO_INCREMENT for table `chemcat`
 --
 ALTER TABLE `chemcat`
-  MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '分类ID',AUTO_INCREMENT=618791023;
+MODIFY `cat_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '分类ID',AUTO_INCREMENT=618791023;
 --
 -- AUTO_INCREMENT for table `chemlist`
 --
 ALTER TABLE `chemlist`
-  MODIFY `chem_id` int(8) NOT NULL AUTO_INCREMENT COMMENT '化学品ID',AUTO_INCREMENT=15;
+MODIFY `chem_id` int(8) NOT NULL AUTO_INCREMENT COMMENT '化学品ID',AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `department_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '学院ID',AUTO_INCREMENT=7;
+MODIFY `department_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '学院ID',AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `instorage`
 --
 ALTER TABLE `instorage`
-  MODIFY `instorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '入库ID',AUTO_INCREMENT=3;
+MODIFY `instorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '入库ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `outstorage`
 --
 ALTER TABLE `outstorage`
-  MODIFY `outstorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '出库ID',AUTO_INCREMENT=5;
+MODIFY `outstorage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '出库ID',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `quality`
 --
 ALTER TABLE `quality`
-  MODIFY `quality_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '规格ID',AUTO_INCREMENT=3;
+MODIFY `quality_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '规格ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `storage_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '仓库ID',AUTO_INCREMENT=17;
+MODIFY `storage_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '仓库ID',AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplier_id` int(6) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',AUTO_INCREMENT=6;
+MODIFY `supplier_id` int(6) NOT NULL AUTO_INCREMENT COMMENT '供应商ID',AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-  MODIFY `unit_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '商品单位ID',AUTO_INCREMENT=3;
+MODIFY `unit_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '商品单位ID',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=10;
+MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

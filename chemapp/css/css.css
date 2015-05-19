@@ -1,4 +1,4 @@
-
+﻿
 html { background-color: #CCC; }
 
 .newcontainer {
@@ -17,7 +17,7 @@ html { background-color: #CCC; }
 
 .menu {
 
-    height: 18px;
+    height: 50px;
 }
 .menu li {/*menu里面的li属性*/  
     background: linear-gradient(#669999, #ffffff);/*不知道什么鬼*/
