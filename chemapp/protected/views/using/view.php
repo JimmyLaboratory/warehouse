@@ -187,7 +187,7 @@ $purchasing = Purchasing::model()->find('chem_id='.$model->chemlist->chem_id);
                 array(
                     'name'=>'information',
                     'type'=>'raw',
-                    'value'=>implode('<br />',json_decode($purchasing->information,true))
+                    'value'=>implode('<br />',array_reverse(json_decode($purchasing->information,true)))
                 ),
 	),
 )); ?>

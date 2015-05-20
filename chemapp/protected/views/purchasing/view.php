@@ -66,7 +66,7 @@ endif;
         array(
             'name'=>'information',
             'type'=>'raw',
-            'value'=>implode('<br />',json_decode($model->information,true))
+            'value'=>implode('<br />',array_reverse(json_decode($model->information,true)))//array_reverse为倒置数组函数
         ),
 	),
 )); ?>
