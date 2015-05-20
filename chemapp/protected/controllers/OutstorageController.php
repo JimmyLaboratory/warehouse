@@ -27,7 +27,7 @@ class OutstorageController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','admin'),
+				'actions'=>array('index','view','create','admin','update','delete'),
 				'roles'=>array('school'),
 			),
 			array('deny',  // deny all users
