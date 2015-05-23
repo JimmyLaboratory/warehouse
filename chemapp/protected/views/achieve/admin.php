@@ -59,7 +59,7 @@ $('.search-form form').submit(function(){
 			'viewButtonImageUrl'=>array('style'=>'display:none'), 
             'template'=>'{view}',
             'buttons'=>array(
-            	'view'=>array('label'=>'打印','url'=>'Yii::app()->createUrl("achieve/print",array("id"=>$data->id))','options'=>array('target'=>'_blank')),
+            	'view'=>array('label'=>'打印','url'=>'Yii::app()->createUrl("achieve/print",array("id"=>$data->purchasing_id))','options'=>array('target'=>'_blank')),
             )
 		),
 	),
