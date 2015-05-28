@@ -207,7 +207,7 @@ class Purchasing extends CActiveRecord
 	}
 	
 	
-	public function check($status){//检查是否有审批申请的函数
+	public static function check($status){//检查是否有审批申请的函数
 	
 	$result = Yii::app()->db->createCommand()
 			->select('status')
