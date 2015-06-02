@@ -210,8 +210,12 @@ class PurchasingController extends Controller
                     $userInfo = User::getInfo();
 		            if(($model->status == Purchasing::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId()))){
                         //TJ:学院审批
-                        if($model->user->department_id != $userInfo->department_id) return false;
-                        
+						//TJ:这里检查是不是本学院的申请，不是的话则不给看，有个bug就是当提交审批后回跳到空白页面
+						//TJ:2015年6月2日15:49:37已修复
+                        if($model->user->department_id != $userInfo->user_id) {
+							throw new CHttpException(400,'非本学院申请无法审批.正在请求审批申请属于'.$model->user->dname);
+							return false;
+                        }
                         if($_POST['Purchasing']['approve'] == '1'){
                             $model -> status = Purchasing::STATUS_PASS_FIRST;
                         }
@@ -346,7 +350,7 @@ class PurchasingController extends Controller
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400,'删除请求失败，请不要再打开此链接');
 	}
 
 	//TJ：这是教师点击采购申请后的处理函数，默认应该跳转到admin页面

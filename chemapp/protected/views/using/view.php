@@ -107,19 +107,10 @@ if( ($model->status == Using::STATUS_APPLY && Yii::app() -> authManager -> check
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model->chemlist,
 	'attributes'=>array(
-		'chem_id',
                 'chem_name',
 		array(
                     'name'=>'status',
                     'value'=>Chemlist::getStatusInfo($model->chemlist->status)
-                ),
-		array(
-                    'name'=>'user_id',
-                    'value'=>$model->chemlist->user->user_name.'【'.$model->user->realname.'】'
-                ),
-                array(
-                    'name'=>'学院',
-                    'value'=>$model->chemlist->user->department->department_name
                 ),
                 array(
                     'name'=>'chemcat_id',
@@ -167,14 +158,13 @@ $purchasing = Purchasing::model()->find('chem_id='.$model->chemlist->chem_id);
 	'data'=>$purchasing,
 	'attributes'=>array(
 		'purchasing_id',
-		'chem_id',
 		array(
                     'name'=>'user_id',
                     'value'=>$purchasing->user->user_name.'【'.$purchasing->user->realname.'】'
                 ),
                 array(
                     'name'=>'学院',
-                    'value'=>$purchasing->user->department->department_name
+                    'value'=>$purchasing->user->dname
                 ),
 		array(
                     'name'=>'timestamp',
