@@ -136,7 +136,6 @@
 				),
 				array('label'=>'用户管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>
-					//Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'管理用户', 'url'=>array('/user')),
@@ -147,10 +146,23 @@
 					'label'=>'用户('.Yii::app()->user->name.')',
 					'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),
 					'submenuOptions'=>array('class'=>'submenu'),
-					'visible'=>!Yii::app()->user->isGuest,
+					'visible'=>!Yii::app()->user->isGuest 
+								&& !Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
+								&& !Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()),
 					'items'=>array(
-						array('label'=>'用户列表', 'url'=>array('/user/admin')),
-						//array('label'=>'修改用户信息', 'url'=>array('/user/passwd', id=>$model->user_id')),			
+						array('label'=>'用户列表', 'url'=>array('/user/admin')),		
+						array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+						),
+				),
+				
+				array(
+					'label'=>'用户('.Yii::app()->user->name.')',
+					'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),
+					'submenuOptions'=>array('class'=>'submenu'),
+					'visible'=>!Yii::app()->user->isGuest 
+								&& !Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
+								&& !Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
+					'items'=>array(
 						array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 						),
 				),
