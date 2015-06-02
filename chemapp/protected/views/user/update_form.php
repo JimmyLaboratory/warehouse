@@ -14,19 +14,7 @@
 		<?php echo $form->textField($model,'user_name',array('size'=>20,'maxlength'=>60,'readonly'=>$model->isNewRecord ? '' : 'true')); ?>
 		<?php echo $form->error($model,'user_name'); ?>
 	</div>
-        <?php if($model->isNewRecord): ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>20,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'password'); ?>
-	</div>
-        <?php endif; ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'repassword'); ?>
-		<?php echo $form->passwordField($model,'repassword',array('size'=>20,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'repassword'); ?>
-	</div>
-        <?php endif; ?>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'realname'); ?>
 		<?php echo $form->textField($model,'realname',array('size'=>20,'maxlength'=>20,
@@ -44,15 +32,34 @@
                         echo $form->dropDownList($model,'user_role',  array('teacher'=>'教师'));//学院用户只能创建教师角色
                 }
                 else{
-                        echo $form->dropDownList($model,'user_role',  User::getRoleOptions());
+                        echo $form->dropDownList($model,'user_role',    User::getRoleOptions());
                 }
                 ?>
 		<?php echo $form->error($model,'user_role'); ?>
 	</div>
 
-
+	<!--div class="row">
+		<?php /* echo $form->labelEx($model,'department_id'); ?>
+		<?php 
+                if(Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId())){
+                        echo $form->dropDownList($model,'department_id', Department::getUserOption());//学院用户只能创建本单位教师
+                }
+                else{
+                        echo $form->dropDownList($model, 'department_id', Department::getOptions());
+                }
+                */?>
+		<?php echo $form->error($model,'department_id'); ?>
+	</div -->
         <?php } ?>
         
+		<?php $pUser=User::getInfo(); ?>
+				
+	<div class="row">
+		<?php echo $form->labelEx($model,'dname'); ?>
+		<?php echo $form->textField($model,'dname',array('size'=>20,'maxlength'=>30,'value'=>$pUser->dname)); ?>
+		<?php echo $form->error($model,'dname'); ?>
+	</div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'cardno'); ?>
 		<?php echo $form->textField($model,'cardno',array('size'=>20,'maxlength'=>30,

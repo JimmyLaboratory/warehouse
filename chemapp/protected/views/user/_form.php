@@ -1,4 +1,4 @@
-<div class="form">
+	<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'user-form',
@@ -129,24 +129,3 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
-
-
-
-<script>
-        $(function(){
-                $('#user-form').submit(function(){
-                        if($('#User_old_password').val() == ''){
-                                alert('旧密码不可为空，请检查输入');return false;
-                        }
-                        if($('#User_new_password').val() == ''){
-                                alert('新密码不可为空，请检查输入');return false;
-                        }
-                        if($('#User_new_password').val() != $('#User_new_password_confirm').val()){
-                                $('#User_new_password').val('');
-                                $('#User_new_password_confirm').val('');
-                                alert('新密码两次输入不唯一，请重新输入新密码');return false;
-                        }
-                        return true;
-                });
-        });
-</script>

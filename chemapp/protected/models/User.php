@@ -7,6 +7,7 @@
  * @property string $user_id
  * @property string $user_name
  * @property string $password
+ * @property string $repassword
  * @property string $realname
  * @property string $user_role
  * @property integer $department_id
@@ -43,6 +44,10 @@ class User extends CActiveRecord
                 if(strlen($this->password) != 32){
                         $this->password = md5($this->password);
                 }
+				
+				 if(strlen($this->repassword) != 32){
+                        $this->repassword = md5($this->repassword);
+                }
                 if(Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId())){
                         if($this->user_role != 'teacher') return false;
                         //$userData = User::model() -> find('user_name=:user_name',array(':user_name'=>Yii::app()->user->getId()));
@@ -78,10 +83,10 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_name, password, repassword,realname, user_role, cardno, tel_long, tel_short, tel_office, email, note, lock,dname', 'required'),
+			array('user_name, password,repassword ,realname, user_role, cardno, tel_long, tel_short, tel_office, email, note, lock,dname', 'required'),
 			array(' tel_short, lock', 'numerical', 'integerOnly'=>true),
 			array('user_name, email', 'length', 'max'=>60),
-			array('password', 'length', 'max'=>32),
+			array('password','length', 'max'=>32),
 			array('realname, tel_office', 'length', 'max'=>20),
 			array('user_role', 'length', 'max'=>10),
 			array('cardno', 'length', 'max'=>30),
@@ -161,7 +166,7 @@ class User extends CActiveRecord
                 'school' => '学校',
                 'secure' => '保卫处',
                 'college' => '学院',
-                'teacher' => '教师',
+                //'teacher' => '教师',教师由学院创建。
             );
     }
 
@@ -171,7 +176,7 @@ class User extends CActiveRecord
 			case 'school': $ret = '学校'; break;
 			case 'secure': $ret = '保卫处'; break;
 			case 'college': $ret = '学院'; break;
-			case 'teacher': $ret = '教师'; break;
+			//case 'teacher': $ret = '教师'; break;
 			default: $ret = '未知'; break;
 		} return $ret;
     }
