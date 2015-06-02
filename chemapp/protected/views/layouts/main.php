@@ -144,20 +144,17 @@
 						),
 					),
 				array(
-					'label'=>'账户信息',
+					'label'=>'用户('.Yii::app()->user->name.')',
 					'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),
 					'submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>!Yii::app()->user->isGuest,
 					'items'=>array(
-						
 						array('label'=>'用户列表', 'url'=>array('/user/admin')),
 						//array('label'=>'修改用户信息', 'url'=>array('/user/passwd', id=>$model->user_id')),			
+						array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 						),
 				),
-				
-				
 				array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
