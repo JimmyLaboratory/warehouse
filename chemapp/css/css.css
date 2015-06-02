@@ -3,7 +3,7 @@
 .newcontainer {
     margin: 0px auto;
     width: 100%;/*TJ:定义导航栏整体宽度填满外框*/
-    background: #3399FF;
+    background: #0033FF;
 }
 
 .menu, .menu ul {
@@ -17,7 +17,7 @@
     margin: 0; 	
 }
 .menu li {/*menu里面的li属性*/  
-    background: #3399FF;/*TJ:渐变很好玩吗，我要的是透明*/
+    background: #0033FF;/*TJ:渐变很好玩吗，我要的是透明*/
     border-bottom: 2px;
     border-top: 2px;
     		
@@ -32,19 +32,19 @@
 
 .menu a {/*menu里面的a属性*/  
     border-left: 3px solid rgba(0, 0, 0, 0);
-    color: #000000;
+    color: #FFFFFF;
     display: block;
     font-size: 14px;
     line-height: 50px;
-    padding: 0 25px;
+    padding: 0 20px;
     text-decoration: none;
     text-transform: uppercase;
 }
 
 
 .menu li:hover > a {
-	background:#0033FF;
-    color: #FFFFFF;
+	background:#33FFFF;
+    color: #000000;
 }
 
 .submenu {/*submenu的属性*/ 
@@ -78,7 +78,7 @@
     border-left: 3px;
     border-radius: 0;
 
-    color: #ffffff;
+    color: #000000;
 }
 .menu > li:hover .submenu, .menu > li:focus .submenu {
     max-height: 2000px;

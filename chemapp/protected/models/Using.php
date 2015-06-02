@@ -154,6 +154,14 @@ class Using extends CActiveRecord
                                                 $criteria ->addInCondition('status', array(Using::STATUS_APPLY,Using::STATUS_APPROVE_FIRST));
                                         }
                                         break;
+								case 'PASS':
+										if($userInfo->user_role == 'college'){
+                                                $criteria ->addInCondition('status', array(Using::STATUS_APPROVE_FIRST));
+                                        }
+                                        if($userInfo->user_role == 'school'){
+                                                $criteria ->addInCondition('status', array(Using::STATUS_APPROVE_FINAL));
+                                        }
+                                        break;
                                 case 'BEPICK':
                                         $criteria ->addInCondition('status', array(Using::STATUS_APPROVE_FINAL));
                                         break;

@@ -40,7 +40,7 @@
 					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'开始申请', 'url'=>array('/purchasing/apply')),
-						array('label'=>'采购中', 'url'=>array('/purchasing/admin','status'=>'MOVING')),
+						array('label'=>'申购中', 'url'=>array('/purchasing/admin','status'=>'MOVING')),
 						array('label'=>'被拒申请', 'url'=>array('/purchasing/admin','Purchasing'=>array('status'=>  Purchasing::STATUS_REJECT))),
 						array('label'=>'全部申请', 'url'=>array('/purchasing/admin'))					
 						),
@@ -56,6 +56,14 @@
 						array('label'=>'全部申请', 'url'=>array('/purchasing/admin'))					
 						),
 				),
+				array('label'=>'采购管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),'visible'=>
+					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
+					'items'=>array(
+						array('label'=>'新建采购', 'url'=>array('/purchasing/purchase_admin','status'=>'PURCHASING','Purchasing'=>array('status'=>Purchasing::STATUS_ARCHIVES_SUCCESS))),
+						array('label'=>'采购中', 'url'=>array('/purchasing/purchase_admin','ING'=>'t','Purchasing'=>array('status'=>Purchasing::STATUS_PURCHASING ))),
+						array('label'=>'采购完毕', 'url'=>array('/purchasing/purchase_admin','Purchasing'=>array('status'=>Purchasing::STATUS_INSTOCK))),			
+						),
+				),
 				/* array('label'=>'采购管理', 'url'=>array('/purchasing/admin2'),'visible'=>
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 				), */
@@ -64,8 +72,9 @@
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
 					'items'=>array(
-						array('label'=>'全部申请', 'url'=>array('/using/admin')),
-						array('label'=>'可领取申请', 'url'=>array('/using/admin&status=BEPICK')),					
+						array('label'=>'待审申请', 'url'=>array('/using/admin&status=APPROVE')),
+						array('label'=>'已审申请', 'url'=>array('/using/admin&status=PASS')),
+						array('label'=>'全部申请', 'url'=>array('/using/admin')),				
 						),
 					),
 
@@ -144,25 +153,11 @@
 					),
 				array(
 					'label'=>'用户('.Yii::app()->user->name.')',
-					'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),
+					'url'=>'#',
 					'submenuOptions'=>array('class'=>'submenu'),
-					'visible'=>!Yii::app()->user->isGuest 
-								&& !Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())
-								&& !Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()),
+					'visible'=>!Yii::app()->user->isGuest ,
 					'items'=>array(
-						array('label'=>'用户列表', 'url'=>array('/user/admin')),		
-						array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-						),
-				),
-				
-				array(
-					'label'=>'用户('.Yii::app()->user->name.')',
-					'url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : ''),
-					'submenuOptions'=>array('class'=>'submenu'),
-					'visible'=>!Yii::app()->user->isGuest 
-								&& !Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())
-								&& !Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
-					'items'=>array(
+						array('label'=>'修改用户信息','url'=>array('/user/update','id'=>User::getInfo() ? User::getInfo()->user_id : '')),	
 						array('label'=>'退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 						),
 				),
