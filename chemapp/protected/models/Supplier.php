@@ -91,11 +91,7 @@ class Supplier extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
-
 		//$criteria->compare('supplier_id',$this->supplier_id);
 		//TJ：这个是分学院管理供应商的admin页面检索办法，通过搜索所属部门ID和本用户登陆ID相同的供应商找到本学院的供应商
 		$criteria->compare('user_id',User::getInfo()->user_id);
@@ -112,5 +108,32 @@ class Supplier extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	//TJ:专用于生成采购单页面的选择采购商下拉菜单的数据数组
+	public function getSupplierDropListArray(){
+		$sql='select supplier_name,supplier_id from supplier where user_id in ('.User::getInfo()->user_id.',1)';
+		$command=Yii::app()->db->createCommand($sql);
+		$result=$command->queryAll();
+		$array=array();
+		foreach ($result as $row) {
+			$array[$row['supplier_id']]=$row['supplier_name'];
+		}
+		return $array;
+	}
+	// TJ：返回指定供应商详细信息数组
+	public function getSupplierInformation($user_id){
+		/*
+		$criteria=new CDbCriteria;
+		//$criteria->compare('user_id',User::getInfo()->user_id);
+		$criteria->addInCondition('user_id',array(1,User::getInfo()->user_id));
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+		*/
+		$sql='select * from supplier where user_id ='.$user_id;
+		$command=Yii::app()->db->createCommand($sql);
+
+		return $command->queryRow();
+
 	}
 }

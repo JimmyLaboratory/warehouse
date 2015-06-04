@@ -3,7 +3,7 @@
 .newcontainer {
     margin: 0px auto;
     width: 100%;/*TJ:定义导航栏整体宽度填满外框*/
-    background: #0033FF;
+    background: #E0E0E0;
 }
 
 .menu, .menu ul {
@@ -13,14 +13,13 @@
 }
 
 .menu {
+	border: 1px solid white;
     height: 50px;
     margin: 0; 	
 }
 .menu li {/*menu里面的li属性*/  
-    background: #0033FF;/*TJ:渐变很好玩吗，我要的是透明*/
-    border-bottom: 2px;
-    border-top: 2px;
-    		
+    background: #E0E0E0;/*TJ:渐变很好玩吗，我要的是透明*/
+   		
 }
 .menu > li {/*menu里面的li属性*/ 
     display: block;/*块状显示*/
@@ -31,8 +30,8 @@
 }
 
 .menu a {/*menu里面的a属性*/  
-    border-left: 3px solid rgba(0, 0, 0, 0);
-    color: #FFFFFF;
+	border-left: 1px solid #f4f4f4;
+    color: #000000;
     display: block;
     font-size: 14px;
     line-height: 50px;
@@ -43,8 +42,8 @@
 
 
 .menu li:hover > a {
-	background:#33FFFF;
-    color: #000000;
+	background:#19B4EA;
+    color: #FFFFFF;
 }
 
 .submenu {/*submenu的属性*/ 
@@ -75,17 +74,14 @@
     transition: opacity .4s, transform .5s;
 }
 .menu .submenu li:hover a {/*鼠标经过submenu的li时发生的变化*/
-    border-left: 3px;
     border-radius: 0;
-
-    color: #000000;
+    color: #FFFFFF;
 }
 .menu > li:hover .submenu, .menu > li:focus .submenu {
     max-height: 2000px;
     z-index: 10;
 }
 .menu > li:hover .submenu li, .menu > li:focus .submenu li {
-    opacity: 1;
 	/*TJ：透明度设定，这里直接引用网上代码，待测试BUG，欢哥看到请帮忙适当修改一下*/
 	filter:alpha(opacity=85);
 	-moz-opacity:0.85;

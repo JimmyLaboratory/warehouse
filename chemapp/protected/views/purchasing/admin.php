@@ -44,7 +44,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>查看采购申请</h1>
+<h1>申购管理</h1>
 <!--
 <p>
 你可以在这里查看到所有采购申请，单击<img src="assets/de002d6/gridview/view.png" alt="申请使用">可以进行审批和查看详细的采购单信息。

@@ -34,7 +34,7 @@
 			'items'=>array(
 				
 				array('label'=>'首页', 'url'=>array('/site/index'),),
-				array('label'=>'采购申请', 'url'=>array(''),
+				array('label'=>'采购申请', 'url'=>'#',
 					'submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>
 					Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
@@ -45,7 +45,7 @@
 						array('label'=>'全部申请', 'url'=>array('/purchasing/admin'))					
 						),
 				),
-				array('label'=>'申购管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),'visible'=>
+				array('label'=>'申购管理', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('secure',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
@@ -56,7 +56,7 @@
 						array('label'=>'全部申请', 'url'=>array('/purchasing/admin'))					
 						),
 				),
-				array('label'=>'采购管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),'visible'=>
+				array('label'=>'采购管理', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),'visible'=>
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'新建采购', 'url'=>array('/purchasing/purchase_admin','status'=>'PURCHASING','Purchasing'=>array('status'=>Purchasing::STATUS_ARCHIVES_SUCCESS))),
@@ -68,7 +68,7 @@
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())
 				), */
 				//array('label'=>'使用申请', 'url'=>array('/using/create'),'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId())),
-				array('label'=>'使用管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),'visible'=>
+				array('label'=>'使用管理', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),'visible'=>
 					Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()) ||
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
 					'items'=>array(
@@ -82,7 +82,7 @@
 				
 				//array('label'=>'入库', 'url'=>array('/instorage/admin'/*,'Purchasing[status]'=>  Purchasing::STATUS_PURCHASING*/),'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId())),
 				
-				array('label'=>'备案', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),'visible'=>
+				array('label'=>'备案', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),'visible'=>
 				Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()),
 				'items'=>array(
 						array('label'=>'开始备案', 'url'=>array('/achieve/begin','Purchasing[status]'=> Purchasing::STATUS_PASS_FINAL)),
@@ -91,7 +91,7 @@
 						array('label'=>'备案失败', 'url'=>array('/achieve/admin','status'=>Achieve::STATUS_FAILED)),						
 						),
 					),
-				array('label'=>'出入库', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
+				array('label'=>'出入库', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 				'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'入库', 'url'=>array('/instorage/admin')),
@@ -100,7 +100,7 @@
 				),
 				
 				array('label'=>'查看申领化学品',
-					'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
+					'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'所有化学品', 'url'=>array('/chemlist/admin')),
@@ -109,17 +109,18 @@
 				),
 				array(
 					'label'=>'化学品库',
-					'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
+					'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>!Yii::app()->user->isGuest && !Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'所有化学品', 'url'=>array('/chemlist/admin')),
 						array('label'=>'库存化学品', 'url'=>array('/chemlist/admin','Chemlist'=>array('status'=>  Chemlist::STATUS_INSTOCK))),					
+						array('label'=>'管理仓库', 'url'=>array('/storage/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
 						),
 				),
 				
 				array(
 					'label'=>'系统管理', 
-					'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
+					'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>Yii::app()->authManager->checkAccess('school',Yii::app()->user->getId()),
 					'items'=>array(
 						array('label'=>'用户管理', 'url'=>array('/user')),
@@ -129,21 +130,15 @@
 						array('label'=>'化学品分类管理', 'url'=>array('/chemcat/admin')),					
 						),
 				),
-				array('label'=>'供货商管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
+				array('label'=>'供货商管理', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 				'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
 				'items'=>array(
 						array('label'=>'管理供应商', 'url'=>array('/supplier/admin')),
 						array('label'=>'创建供应商', 'url'=>array('/supplier/create')),			
 						),
 				),
-				array('label'=>'仓库管理',
-					'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
-					'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
-					'items'=>array(
-						array('label'=>'管理仓库', 'url'=>array('/storage/admin')),
-						),
-				),
-				array('label'=>'用户管理', 'url'=>array(''),'submenuOptions'=>array('class'=>'submenu'),
+				
+				array('label'=>'用户管理', 'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>
 					Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId()),
 					'items'=>array(

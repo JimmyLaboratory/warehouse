@@ -116,14 +116,25 @@ class PurchasingController extends Controller
 		'model'=>$model,
 	));
 	}
-        //TJ:原来的 生成采购单
+        /*TJ:改造原来的 生成采购单
+		现在这个页面用来给学院用户选择这个采购的供应商
+		*/
 	public function actionTopurchase($id){
 			//if(empty($id)) throw new CHttpException('400','你没有选择任何采购单哦。');
-			$model = Purchasing::model()->findByPk($id);
-			$archive=Achieve::model()->findByPk($id);
-			if(isset($_GET['confirm']) && $_GET['confirm'] == 'true'){
+			if(!isset($_GET['supplier_id'])){
+				//$_GET['supplier_id']=0;
+				$supplier=new Supplier;
+			}
+			else
+				$supplier=Supplier::model()->findByPk($_GET['supplier_id']);
+
+			$model = Purchasing::model()->findByPk($id);	//采购单（包含化学品信息）
+			$archive=Achieve::model()->findByPk($id);		//备案单
+			
+			if(isset($_POST['Supplier'])){
 				//$this->redirect(array('purchasing/admin'));
-					$model->purchasing_no=$_POST['purchasing_no'];
+				
+					$model->purchasing_no=$_POST['no'];
 					$model->status=Purchasing::STATUS_PURCHASING;
 					if($model->save())
 						$this->redirect(array('purchasing/purchasePrint','id'=>$id,'no'=>$model->purchasing_no));
@@ -136,9 +147,18 @@ class PurchasingController extends Controller
 					'id'=>$id,
 					'model'=>$model,
 					'archive'=>$archive,
+					'supplier'=>$supplier
 	));
 	}
 	
+	public function actionAjaxGetSupplier(){
+		$data=Supplier::model()->findByPk((int)$_POST['chooseSupplier']);
+		$data=CHtml::listData($data,'id','value');
+		foreach ($data as $id=>$value) {
+			echo CHtml::tag('input',
+				array('id'=>$id,'value'=>$value),CHtml::encode($name),true);
+		}
+	}
 	public function actionNo()
 	{
 		
@@ -372,7 +392,7 @@ class PurchasingController extends Controller
 			'model'=>$model,
 		));
 	}
-	public function actionPurchase_admin()//TJ：这是采购管理，暂时命名为2，因为这个要求很2
+	public function actionPurchase_admin()//TJ：这是采购管理
 	{
 		//$this->layout='//layouts/purchasing_admin';			//这里重设layout来显示两个左边快捷列表
 		//if(!isset($_GET['status'])) $_GET['status']='APPROVE';	//如果没设status，默认为查看“待审”

@@ -17,21 +17,46 @@ $this->breadcrumbs=array(
 	'Manage',
 );
 
-$this->menu2=array(
-        array('label'=>'返回', 'url'=>array('/purchasing/admin')),
+$this->menu=array(
+        array('label'=>'返回', 'url'=>array('/purchasing/purchase_admin')),
 );
 ?>
 
 <h1>生成采购清单</h1>
 
-<p>
-<form action="<?php echo Yii::app()->createUrl('purchasing/topurchase',array('confirm'=>'true','id'=>$id)) ?>" method="post">
-<input type="hidden" name="id" value="<?php echo $id ?>" />
 
-采购清单编号：<?php echo $cg='CG'.date('YmdHi').mt_rand(0, 999) ?>
-<input type="hidden" name="purchasing_no" value="<?php echo $cg ?>" />
-<input type="submit" value="确认生成采购单" />
+
+<form action="<?php echo Yii::app()->createUrl('purchasing/topurchase',array('confirm'=>'true','id'=>$id)) ?>" method="post">
 </form>
+    <?php if(!isset($_GET['supplier_id'])): ?>
+    <div class="row">
+        <label >请选择供应商：</label>
+        <span>
+            <?php //测试下拉菜单选择供应商
+                echo CHtml::dropDownList('chooseSupplier','',$supplier->getSupplierDropListArray());
+            ?>
+        </span>
+    </div>
+    <?php 
+        else :{
+            $this->renderPartial('../supplier/_form',array(
+                'model'=>$supplier,'id'=>$id));
+        }   
+        endif; 
+    ?>
+
+    <!--TJ:Ajax来通过选择框的改变自动填写表格数据 -->
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('.form').css('id','supplierForm');
+        $('#chooseSupplier > option').click(function(){
+            location.href=window.location.href+"&supplier_id="+$(this).val();
+        });
+    });
+    </script>
+
+    <!--input type="submit" value="确认生成采购单" class="submitbutton"/ -->
+
 </p>
 
 <h1>备案单详情</h1>
@@ -57,7 +82,6 @@ $this->menu2=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'purchasing_id',
-		'chem_id',
 		array(
             'name'=>'user_id',
             'value'=>$model->user->user_name.'【'.$model->user->realname.'】'

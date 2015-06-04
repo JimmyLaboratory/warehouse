@@ -20,7 +20,7 @@ jQuery(document).ready(function(){
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'chemlist-form',
 	'enableAjaxValidation'=>false,
-    'htmlOptions'=>array('enctype'=>'multipart/form-data'),  
+    'htmlOptions'=>array('enctype'=>'multipart/form-data'),  //TJ:有图片附件上传必须加这行才能成功S
 )); ?>
 
 	<p class="note">标有<span class="required">*</span> 符号为必填项</p>

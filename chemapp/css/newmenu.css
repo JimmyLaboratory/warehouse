@@ -1,0 +1,82 @@
+#mainNav {
+    font-size: 14px;
+    height: 35px;
+    margin-bottom: 10px;
+}
+#mainNav ul.wrap {
+    background: #e0e0e0 url("images/main_nav_right.gif") no-repeat scroll right top;
+    position: relative;
+    z-index: 1000;
+}
+#mainNav ul li {
+    background-color: #e0e0e0;
+    float: left;
+}
+#mainNav ul li a {
+    border-right: 1px solid #f4f4f4;
+    color: #000000;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 12px;
+    text-align: center;
+    text-decoration: none;
+    width: 85.2px;
+}
+#mainNav ul li.hover, #mainNav ul li.cur {
+    background: #19b4ea none repeat scroll 0 0;
+    position: relative;
+}
+#mainNav ul li.hover a, #mainNav ul li.cur a {
+    color: #fff;
+}
+#mainNav ul li .first {
+    background: #e0e0e0 url("images/main_nav_left.gif") no-repeat scroll left top;
+    width: 74px;
+}
+#mainNav ul li.hover .first, #mainNav ul li.cur .first {
+    background: #19b4ea url("images/main_nav_left.gif") no-repeat scroll left bottom;
+}
+#mainNav ul li .last {
+    background: #e0e0e0 url("images/main_nav_right.gif") no-repeat scroll right top;
+    margin-right: -1px;
+}
+#mainNav ul li.hover .last, #mainNav ul li.cur .last {
+    background: #19b4ea url("images/main_nav_right.gif") no-repeat scroll right bottom;
+}
+#mainNav ul ul {
+    background: #e0e0e0 none repeat scroll 0 0;
+    border-top: 1px solid white;
+    display: none;
+    left: 0;
+    min-width: 125px;
+    position: absolute;
+    top: 100%;
+}
+#mainNav ul ul li {
+    background: #e0e0e0 none repeat scroll 0 0;
+    float: none;
+    font-weight: normal;
+}
+#mainNav ul li.hover ul li a {
+    border-right: medium none;
+    color: #24313c;
+    display: inline-block;
+}
+#mainNav ul li.hover ul li.hover a {
+    color: #fff;
+}
+#mainNav ul li.hover ul a.parent {
+    background: rgba(0, 0, 0, 0) url("images/icon_red.gif") no-repeat scroll 100px 50%;
+}
+#mainNav ul ul ul {
+    border-top: 0 none;
+    left: 100%;
+    top: 0;
+}
+#mainNav ul li.hover ul li.hover ul li a {
+    color: #24313c;
+}
+#mainNav ul li.hover ul li.hover ul li.hover a {
+    color: #fff;
+}
