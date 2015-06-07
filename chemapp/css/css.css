@@ -20,7 +20,7 @@
 .menu li {/*menu里面的li属性*/  
 	border-radius: 25px 25px 25px 25px;
     background: #E0E0E0;/*TJ:渐变很好玩吗，我要的是透明*/
-	 margin: 1px;
+	 margin: 0px 5px 0px 0px;
    		
 }
 .menu > li {/*menu里面的li属性*/ 
