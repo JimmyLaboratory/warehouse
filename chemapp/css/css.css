@@ -3,7 +3,7 @@
 .newcontainer {
     margin: 0px auto;
     width: 100%;/*TJ:定义导航栏整体宽度填满外框*/
-    background: #E0E0E0;
+    background: #FFFFFF;
 }
 
 .menu, .menu ul {
@@ -18,7 +18,9 @@
     margin: 0; 	
 }
 .menu li {/*menu里面的li属性*/  
+	border-radius: 25px 25px 25px 25px;
     background: #E0E0E0;/*TJ:渐变很好玩吗，我要的是透明*/
+	 margin: 1px;
    		
 }
 .menu > li {/*menu里面的li属性*/ 
@@ -30,10 +32,11 @@
 }
 
 .menu a {/*menu里面的a属性*/  
+border-radius: 50px 50px 50px 50px;
 	border-left: 1px solid #f4f4f4;
     color: #000000;
     display: block;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 50px;
     padding: 0 20px;
     text-decoration: none;
@@ -59,6 +62,7 @@
     perspective: 400px;
 }
 .submenu li {/*子菜单默认是隐藏的,它的元素是旋转90度。当我们徘徊在顶级菜单,子菜单出现的孩子。*/
+	border-radius: 35px 35px 35px 35px;
     opacity: 0;
 	min-width: 160px;/*孩子块的长度*/
     -webkit-transform: rotateY(90deg);/*转90度*/
@@ -74,10 +78,10 @@
     transition: opacity .4s, transform .5s;
 }
 .menu .submenu li:hover a {/*鼠标经过submenu的li时发生的变化*/
-    border-radius: 0;
     color: #FFFFFF;
 }
 .menu > li:hover .submenu, .menu > li:focus .submenu {
+	border-radius: 50px 50px 50px 50px;
     max-height: 2000px;
     z-index: 10;
 }
