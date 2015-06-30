@@ -133,8 +133,11 @@ class PurchasingController extends Controller
 			
 			if(isset($_POST['Supplier'])){
 				//$this->redirect(array('purchasing/admin'));
+				$chemlist=Chemlist::model()->findByPk($model->chem_id);
+				$chemlist->supplier_id=$_POST['Supplier']['supplier_id'];
+				$chemlist->save();
 				
-					$model->purchasing_no=$_POST['no'];
+					$model->purchasing_no='CG'.date('YmdHi').mt_rand(0, 999);	//TJ:CG开头的采购单号生成
 					$model->status=Purchasing::STATUS_PURCHASING;
 					if($model->save())
 						$this->redirect(array('purchasing/purchasePrint','id'=>$id,'no'=>$model->purchasing_no));

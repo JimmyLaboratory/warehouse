@@ -28,7 +28,9 @@
 	</div><!-- header -->
 
 	<div class="newcontainer">
-		<?php $this->widget('zii.widgets.CMenu',array(
+		<?php 
+
+		$this->widget('zii.widgets.CMenu',array(
 			'activeCssClass'=>'',
 			 'htmlOptions'=>array('class'=>'menu'),
 			'items'=>array(
@@ -112,6 +114,8 @@
 					'url'=>'#','submenuOptions'=>array('class'=>'submenu'),
 					'visible'=>!Yii::app()->user->isGuest && !Yii::app()->authManager->checkAccess('teacher',Yii::app()->user->getId()),
 					'items'=>array(
+						array('label'=>'入库', 'url'=>array('/instorage/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
+						array('label'=>'出库', 'url'=>array('/outstorage/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
 						array('label'=>'所有化学品', 'url'=>array('/chemlist/admin')),
 						array('label'=>'库存化学品', 'url'=>array('/chemlist/admin','Chemlist'=>array('status'=>  Chemlist::STATUS_INSTOCK))),					
 						array('label'=>'管理仓库', 'url'=>array('/storage/admin'),'visible'=>Yii::app()->authManager->checkAccess('college',Yii::app()->user->getId())),
@@ -160,8 +164,9 @@
 			),
 		)); ?>
 	</div><!-- mainmenu -->
-	
 
+<div class ="huanchongdai">
+</div>
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

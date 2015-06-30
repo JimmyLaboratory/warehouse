@@ -128,7 +128,7 @@ class Using extends CActiveRecord
                                         $criteria ->addInCondition('user_id', $teachers);
                                 }
                                 else{
-                                        $teachers = Yii::app()->db->createCommand('select user_id from user where department_id='.$userInfo->department_id)->queryColumn();
+                                        $teachers = Yii::app()->db->createCommand('select user_id from user where department_id='.$userInfo->user_id)->queryColumn();
                                         $criteria ->addInCondition('user_id', $teachers);
                                 }
                                 break;

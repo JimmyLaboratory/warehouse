@@ -79,7 +79,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? '提交' : '保存'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

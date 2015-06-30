@@ -54,83 +54,84 @@ class UsingController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-        
-        public function actionPrint($id)
-        {
-                $this->layout = '//layouts/column0';
-                $this->render('print',array(
+    
+    public function actionPrint($id)
+    {
+        $this->layout = '//layouts/column0';
+        $this->render('print',array(
 			'model'=>$this->loadModel($id),
 		));
-        }
+    }
 
-        public function actionApprove($id){
-                $model = $this->loadModel($id);
-                
-                if(isset($_POST['Using']))
-		{
-                        $userInfo = User::getInfo();
+    public function actionApprove($id){
+        $model = $this->loadModel($id);
+        if(isset($_POST['Using'])){
+            $userInfo = User::getInfo();
 			if(($model->status == Using::STATUS_APPLY && Yii::app() -> authManager -> checkAccess('college',Yii::app()->user->getId()))){
-                                if($model->user->department_id != $userInfo->department_id) return false;
-                                if($_POST['Using']['approve'] == '1'){
-                                        $model -> status = Using::STATUS_APPROVE_FIRST;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学院【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学院审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学院审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学院审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                                if($_POST['Using']['approve'] == '-1'){
-                                        $model -> status = Using::STATUS_REJECT;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学院【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学院审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学院审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学院审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                        }
-                        
-                        if( $model->status == Using::STATUS_APPROVE_FIRST && Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId())){
-                                if($_POST['Using']['approve'] == '1'){
-                                        $model -> status = Using::STATUS_APPROVE_FINAL;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学校【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学校审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学校审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学校审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                                if($_POST['Using']['approve'] == '-1'){
-                                        $model -> status = Using::STATUS_REJECT;
-                                        $information = json_decode($model -> information,true);
-                                        $information[] = '学校【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
-                                        if(!empty($_POST['Purchasing']['person1']))
-                                                $information[] = '学校审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
-                                        if(!empty($_POST['Purchasing']['person2']))
-                                                $information[] = '学校审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
-                                        if(!empty($_POST['Purchasing']['person3']))
-                                                $information[] = '学校审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
-                                        $model->information = json_encode($information);
-                                        $model->save();
-                                }
-                        }
-		}
+                if($model->user->department_id != $userInfo->user_id) 
+                	throw new CHttpException(404,"您不能查看此信息");
+
+                if($_POST['Using']['approve'] == '1'){
+                    $model -> status = Using::STATUS_APPROVE_FINAL;
+                    $information = json_decode($model -> information,true);
+                    $information[] = '学院【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
+                    
+                    if(!empty($_POST['Purchasing']['person1'])) 
+                    	$information[] = '学院审批人:'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
+					if(!empty($_POST['Purchasing']['person2']))
+                        $information[] = '学院审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
+                    if(!empty($_POST['Purchasing']['person3']))
+                        $information[] = '学院审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3']; 
+                    $model->information = json_encode($information);
+                    $model->save();
+                }   
                 
-                $this->redirect(array('view','id'=>$model->using_id));
-        }
+                if($_POST['Using']['approve'] == '-1'){
+                    $model -> status = Using::STATUS_REJECT;
+                    $information = json_decode($model -> information,true);
+                    $information[] = '学院【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
+                    if(!empty($_POST['Purchasing']['person1']))
+                        $information[] = '学院审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
+                    if(!empty($_POST['Purchasing']['person2']))
+                       	$information[] = '学院审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
+                    if(!empty($_POST['Purchasing']['person3']))
+                        $information[] = '学院审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
+                    $model->information = json_encode($information);
+                    $model->save();
+                }
+            }
+            
+            if( $model->status == Using::STATUS_APPROVE_FIRST && Yii::app() -> authManager -> checkAccess('school',Yii::app()->user->getId())){
+                if($_POST['Using']['approve'] == '1'){
+                    $model -> status = Using::STATUS_APPROVE_FINAL;
+                    $information = json_decode($model -> information,true);
+                    $information[] = '学校【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'同意该申请';
+                    if(!empty($_POST['Purchasing']['person1']))
+                            $information[] = '学校审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
+                    if(!empty($_POST['Purchasing']['person2']))
+                            $information[] = '学校审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
+                    if(!empty($_POST['Purchasing']['person3']))
+                            $information[] = '学校审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
+                    $model->information = json_encode($information);
+                    $model->save();
+                }
+                if($_POST['Using']['approve'] == '-1'){
+                    $model -> status = Using::STATUS_REJECT;
+                    $information = json_decode($model -> information,true);
+                    $information[] = '学校【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'拒绝该申请';
+                    if(!empty($_POST['Purchasing']['person1']))
+                        $information[] = '学校审批人'.$_POST['Using']['person1'].'意见：'.$_POST['Using']['reason1'];
+                    if(!empty($_POST['Purchasing']['person2']))
+                        $information[] = '学校审批人'.$_POST['Using']['person2'].'意见：'.$_POST['Using']['reason2'];
+                    if(!empty($_POST['Purchasing']['person3']))
+                        $information[] = '学校审批人'.$_POST['Using']['person3'].'意见：'.$_POST['Using']['reason3'];
+                    $model->information = json_encode($information);
+                    $model->save();
+                }
+            }
+		}              
+        $this->redirect(array('view','id'=>$model->using_id));
+    }
 		
 	 public function actionCancel($id,$uid,$reason){
             //ZT:终止采购

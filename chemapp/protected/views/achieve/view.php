@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'备案列表', 'url'=>array('admin')),
-    array('label'=>'打印备案', 'url'=>array('print','id'=>$model->id), 'linkOptions'=>array('target'=>'_blank')),
+    array('label'=>'打印备案', 'url'=>array('print','id'=>$model->purchasing_id), 'linkOptions'=>array('target'=>'_blank')),
 );
 ?>
 

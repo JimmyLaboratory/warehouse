@@ -2,7 +2,7 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'supplier-form',
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 )); ?>
 
 	<p class="note">标有<span class="required">*</span> 符号为必填项</p>
@@ -13,6 +13,7 @@
 		<?php echo $form->labelEx($model,'supplier_name'); ?>
 		<?php echo $form->textField($model,'supplier_name',array('size'=>60,'maxlength'=>200)); ?>
 		<?php echo $form->error($model,'supplier_name'); ?>
+		<?php echo $form->hiddenField($model,'supplier_id'); ?>
 	</div>
 
 	<div class="row">

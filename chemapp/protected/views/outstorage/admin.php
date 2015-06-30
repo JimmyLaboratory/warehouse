@@ -36,10 +36,10 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
-		'outstorage_id',
+		//'outstorage_id',
 		array('header'=>'申请单编号', 'name'=>'using_id'),
 		array('header'=>'领用人', 'name'=>'apply_user_id'),
-		'duty_user_id',
+		//'duty_user_id',  显示数字而不是人名
 		array(
 		'header'=>'领用时间', 'name'=>'datetime',
 		'htmlOptions'=>array(//设置单元格宽度

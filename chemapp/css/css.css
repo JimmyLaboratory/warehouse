@@ -6,6 +6,9 @@
     background: #E0E0E0;
 }
 
+.huanchongdai {
+    height:50px;/*TJ:缓冲带，因为目前下拉列表有时过于敏感，在下拉菜单下方也会触发，所以留出点空间避免总是误操作*/
+}
 .menu, .menu ul {
     list-style: none;/*把图像设置为列表中的列表项目标记*/
     padding: 0;

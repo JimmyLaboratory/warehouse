@@ -49,7 +49,7 @@ $using -> chem_id = $model -> chem_id;
 		'junk',
 		'status',
 		'information',
-		*/
+		
 		array(
 			'class'=>'CButtonColumn',
             'template'=>'{view}',
@@ -59,7 +59,7 @@ $using -> chem_id = $model -> chem_id;
                     'options'=>array('target'=>'_blank'),
                 ),
             ),
-		),
+		),*/
 	),
 )); ?>
 

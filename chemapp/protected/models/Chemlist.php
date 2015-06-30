@@ -163,11 +163,11 @@ class Chemlist extends CActiveRecord
                                 break;
                         case 'college':
                                 if(!empty($this->user_id)){
-                                        $teachers = Yii::app()->db->createCommand('select user_id from user where realname LIKE "%'.$this->user_id.'%"')->queryColumn();
-                                        $criteria ->addInCondition('user_id', $teachers);
+                                        
+                                        throw new CHttpException(504,'搜索功能还不完善，敬请期待');
                                 }
                                 else{
-                                        $teachers = Yii::app()->db->createCommand('select user_id from user where department_id='.$userInfo->department_id)->queryColumn();
+                                        $teachers = Yii::app()->db->createCommand("select user_id from user where department_id=".$userInfo->user_id)->queryColumn();
                                         $criteria ->addInCondition('user_id', $teachers);
                                 }
                                 break;

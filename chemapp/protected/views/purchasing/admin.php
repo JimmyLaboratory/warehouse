@@ -68,6 +68,10 @@ $('.search-form form').submit(function(){
             'labelExpression'=>'$data->purchasing_id',
             'urlExpression'=>'Yii::app()->createUrl("purchasing/view",array("id"=>$data->purchasing_id, "refer"=>"purchase"))',
         ),
+        array(
+            'name'=>'药品名',
+            'value'=>'$data->chemlist->chem_name'
+        ),
 		array(
             'name'=>'user_id',
             'value'=>'$data->user->realname'
