@@ -80,7 +80,7 @@ $using -> chem_id = $model -> chem_id;
         ),
         array(
             'name'=>'学院',         //单位名
-            'value'=>$model->user->department->department_name
+            'value'=>$model->user->dname
         ),
         array(
             'name'=>'chemcat_id',   //所属分类
@@ -149,7 +149,7 @@ $purchasing = Purchasing::model()->find('chem_id='.$model->chem_id);
         ),
         array(
             'name'=>'学院',
-            'value'=>$purchasing->user->department->department_name
+            'value'=>$purchasing->user->dname
         ),
 		array(
             'name'=>'timestamp',

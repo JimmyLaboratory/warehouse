@@ -17,7 +17,7 @@ body{
   <table border="1" align="center" cellpadding="1" cellspacing="1" >
     <tr >
       <td width="87" valign="center" ><p >申请人信息 </p></td>
-      <td width="686" valign="center" ><p >姓名：<?php echo $model->user->realname ?>&nbsp;&nbsp;学院：<?php echo $model->user->department->department_name ?>&nbsp;&nbsp;联系电话：<?php echo $model->user->tel_long ?>&nbsp; </p></td>
+      <td width="686" valign="center" ><p >姓名：<?php echo $model->user->realname ?>&nbsp;&nbsp;学院：<?php echo $model->user->dname ?>&nbsp;&nbsp;联系电话：<?php echo $model->user->tel_long ?>&nbsp; </p></td>
     </tr>
     <tr >
       <td width="87" valign="center" ><p >危险品信息 </p></td>

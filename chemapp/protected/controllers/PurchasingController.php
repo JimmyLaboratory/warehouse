@@ -300,7 +300,7 @@ class PurchasingController extends Controller
             $model->production_date = date('Y-m-d');
             $userInfo = User::getInfo();							//TJ:通过User类公共静态函数获取用户对象
             $model->user_id = $userInfo -> user_id;		//填入用户ID
-			$model->d_id=$userInfo->department_id;
+			
             $model->status = Purchasing::STATUS_APPLY;
             $image = CUploadedFile::getInstance($model, 'pics');
             if( is_object($image) && get_class($image) === 'CUploadedFile' ){  
@@ -315,6 +315,7 @@ class PurchasingController extends Controller
                     $model2->purchasing_id = $_POST['Chemlist']['purchasing_id'];
                     $model2->chem_id = $model->chem_id;
                     $model2->user_id = $model->user_id;
+                    $model2->d_id=$userInfo->department_id;		//TJ:因为我搞错了d_id应该在purchasing而不是chemlist而BUG 2015年6月30日19:36:53
                     $model2->timestamp = time();
                     $model2->status = Chemlist::STATUS_APPLY;
                     $information = array('教师：'.$userInfo->user_name.'【'.$userInfo->realname.'】于'.date('Y-m-d H:i:s').'提交采购申请表');

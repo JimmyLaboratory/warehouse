@@ -17,7 +17,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('department_id')); ?>:</b>
-	<?php echo CHtml::encode($data->department->department_name); ?>
+	<?php echo CHtml::encode($data->dname); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('cardno')); ?>:</b>

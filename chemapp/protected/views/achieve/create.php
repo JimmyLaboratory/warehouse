@@ -39,7 +39,7 @@ $this->menu=array(
 			),
 			array(
 				'name'=>'学院',
-				'value'=>$purchasing->user->department->department_name
+				'value'=>$purchasing->user->dname
 			),
 			array(
 				'name'=>'timestamp',

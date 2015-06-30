@@ -12,7 +12,7 @@
         $userOptions = array();
         $users = User::model() ->findAll('user_role="teacher"');
         foreach($users as $user)
-                $userOptions[$user->user_id] = $user->department->department_name.':'.$user->realname;
+                $userOptions[$user->user_id] = $user->dname.':'.$user->realname;
         ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_id'); ?>

@@ -52,7 +52,7 @@ else
     </tr>
     <tr >
       <td width="100" align="center" valign="center" ><p >申购人信息 </p></td>
-      <td width="690" valign="center" ><p >姓名：<?php echo $model->user->realname ?>&nbsp;学院：<?php echo $model->user->department->department_name ?>&nbsp;&nbsp;联系电话：<?php echo $model->user->tel_long ?> </p></td>
+      <td width="690" valign="center" ><p >姓名：<?php echo $model->user->realname ?>&nbsp;学院：<?php echo $model->user->dname ?>&nbsp;&nbsp;联系电话：<?php echo $model->user->tel_long ?> </p></td>
     </tr>
     <tr >
       <td width="100" align="center" valign="center" ><p >危险品信息 </p></td>
