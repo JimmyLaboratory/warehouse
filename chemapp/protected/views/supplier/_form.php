@@ -9,9 +9,13 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	
 	<div class="row">
+		<?php echo $form->labelEx($model,'supplier_name'); ?>
+		<?php echo $form->textField($model,'supplier_name',array('size'=>60,'maxlength'=>200)); ?>
+		<?php echo $form->error($model,'supplier_name'); ?>
+	</div>
 
+	<div class="row">
 		<?php echo $form->labelEx($model,'website'); ?>
 		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>200)); ?>
 		<?php echo $form->error($model,'website'); ?>
