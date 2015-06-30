@@ -9,19 +9,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-        <label>采购清单编号：</label><?php echo $cg='CG'.date('YmdHi').mt_rand(0, 999) ?>
-        <input type="hidden" name="id" value="<?php echo $id ?>" />
-        <input type="hidden" name="no" value="<?php echo $cg ?>" />
-    </div>
-
-    <?php if(isset($_GET['supplier_id'])): ?>
-		<div class="row">
-			<?php echo $form->labelEx($model,'supplier_name'); ?>
-			<?php echo $form->textField($model,'supplier_name',array('size'=>60,'maxlength'=>60)); ?>
-			<?php echo $form->error($model,'supplier_name'); ?>
-		</div>
-	<?php endif; ?>
+	
 	<div class="row">
 
 		<?php echo $form->labelEx($model,'website'); ?>

@@ -10,7 +10,6 @@ $this->breadcrumbs=array(
 <!-- <h1>登录</h1> -->
 
 <div class="narrowPage">
-<p>请输入用户名和密码:</p>
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -44,7 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+		<?php echo CHtml::submitButton('登陆'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
